@@ -111,7 +111,9 @@ namespace Techtella
             this.Controls.Add(this.connectLabel);
             this.Controls.Add(this.portLabel);
             this.Controls.Add(this.ipAddrLabel);
+            this.MaximizeBox = false;
             this.Name = "ConnectWindow";
+            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ConnectWindow";
