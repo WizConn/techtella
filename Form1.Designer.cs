@@ -187,7 +187,6 @@ namespace Techtella
             this.menuStrip1.Size = new System.Drawing.Size(1141, 26);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // toolStripMenuItem1
             // 
@@ -199,7 +198,6 @@ namespace Techtella
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(91, 22);
             this.toolStripMenuItem1.Text = "Connection";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // connectToolStripMenuItem
             // 
@@ -273,7 +271,6 @@ namespace Techtella
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(164, 18);
             this.statusLabel.Text = "0 Downloads, 0 Uploads";
-            this.statusLabel.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
             // 
             // statusLabel2
             // 
@@ -328,7 +325,6 @@ namespace Techtella
             this.startBox.Size = new System.Drawing.Size(666, 443);
             this.startBox.TabIndex = 1;
             this.startBox.Text = resources.GetString("startBox.Text");
-            this.startBox.TextChanged += new System.EventHandler(this.startBox_TextChanged);
             // 
             // pictureBox1
             // 
@@ -1117,7 +1113,6 @@ namespace Techtella
             this.statsSharedData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.statsSharedData.Size = new System.Drawing.Size(413, 245);
             this.statsSharedData.TabIndex = 13;
-            this.statsSharedData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.statsSharedData_CellContentClick);
             // 
             // sharedStatsCol
             // 
@@ -1490,7 +1485,6 @@ namespace Techtella
             this.Name = "Form1";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Techtella";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
