@@ -37,6 +37,8 @@ namespace Techtella
                 catch (FormatException) { }
                 try
                 {
+                    int descriptor = Client.descriptorHash * 100 + Client.pingCount + 1;
+                    server.AddActivePing(descriptor, "127.0.0.1");
                     Client.Ping(ip, pt);
                 }
                 catch
