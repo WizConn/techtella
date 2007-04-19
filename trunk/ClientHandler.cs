@@ -31,26 +31,12 @@ namespace Techtella
             readCB = new AsyncCallback(OnReadComplete);
             writeCB = new AsyncCallback(OnWriteComplete);
             starttime = DateTime.Now;
-            //parsedPacket.from = ParseHandle(iHandle);
         }
 
         public void StartRead()
         {
             iHandle = BasicMultiServer.immediateIP;
             netStream.BeginRead(buffer, 0, buffer.Length, readCB, null);
-        }
-
-        public string ParseHandle(string handle)
-        {
-            string tempstring = "";
-            int n = 0;
-            char tempchar = handle[n];
-            while (tempchar != ':')
-            {
-                tempstring += tempchar;
-                n++;
-            }
-            return tempstring;
         }
 
         private void OnReadComplete(IAsyncResult ar)
@@ -71,14 +57,12 @@ namespace Techtella
                         parsedPacket.hops++;
                         if (parsedPacket.ttl >= 0 && !owner.IsActive(parsedPacket) && iHandle != "127.0.0.1")
                         {
+                            Console.WriteLine("forwarding ping");
                             owner.ForwardPing(parsedPacket, iHandle);
                             owner.AddActivePing(parsedPacket.descriptor);
+                            Console.WriteLine("ponging back");
                             BasicMultiServer.Packet pong = MakePongPacket(parsedPacket);
                             owner.PongBack(pong, iHandle);
-                        }
-                        else if (iHandle == "127.0.0.1")
-                        {
-                            //Console.WriteLine("wont repeat ping to loopback");
                         }
                     }
                     else if (parsedPacket.type == (byte)1)
@@ -89,14 +73,17 @@ namespace Techtella
                         parsedPacket.hops++;
                         if (parsedPacket.ttl >= 0 && owner.IsActive(parsedPacket) && iHandle != "127.0.0.1")
                         {
+                            Console.WriteLine("setting corresponding ping inactive");
                             owner.SetInactive(parsedPacket.descriptor);
                             owner.ForwardPong(parsedPacket);
                             if (parsedPacket.ttl < Client.TTL)
                             {
+                                Console.WriteLine("adding known peer");
+                                Console.WriteLine("MSG in parsedPacket:  " + parsedPacket.msg);
                                 int pt = 0;
                                 string port = parsedPacket.msg.Split('&')[0];
                                 Console.WriteLine(port);
-                                string host = parsedPacket.msg.Split('&')[0];
+                                string host = parsedPacket.msg.Split('&')[1];
                                 Console.WriteLine(host);
                                 try
                                 {
@@ -105,11 +92,6 @@ namespace Techtella
                                 catch (FormatException) { }
                                 owner.AddFoundPeer(host, pt);
                             }
-
-                        }
-                        else if (iHandle == "127.0.0.1")
-                        {
-                            //Console.WriteLine("wont repeat pong to loopback");
                         }
                     }
                     else if (parsedPacket.type == (byte)80)
