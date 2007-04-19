@@ -25,12 +25,12 @@ namespace Techtella
             Thread th = new Thread(new ThreadStart(DoSplash));
             updater = new GUIUpdate(m, this);
             th.Start();
-            updater.RunThreaded();
             Thread.Sleep(3000);
             th.Abort();
             Thread.Sleep(1000);
             server = m;
             InitializeComponent();
+            updater.RunThreaded();
         }
 
         public void DoSplash()
