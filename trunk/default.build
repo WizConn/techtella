@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="Techtella" default="run">
+	<property name="tech" value="Techtella.exe"/>
+	<property name="debug" value="true"/>
+		
+	<!-- Default init tasks -->
+	<mkdir dir="bin" />
+	
+    <target name="clean">
+        <delete>
+            <fileset>
+		    <include name="bin/*.exe"/>
+		    <include name="bin/*.pdb"/>
+		    <include name="bin/*.dll"/>
+		    <include name="bin/*.mdb"/>
+            </fileset>
+        </delete>
+    </target>
+
+    <target name="build">
+
+	    <csc target="exe" output="bin/${tech}" debug="${debug}">
+		    <sources>
+			    <include name="Form1.cs"/>
+                      <include name="Form1.Designer.cs"/>
+                      <include name="About.cs"/>
+                      <include name="About.Designer.cs"/>
+                      <include name="BasicMultiServer.cs"/>
+                      <include name="Chat.cs"/>
+                      <include name="Chat.Designer.cs"/>
+                      <include name="Client.cs"/>
+                      <include name="ClientHandler.cs"/>
+                      <include name="ConnectWindow.cs"/>
+                      <include name="ConnectWindow.Designer.cs"/>
+                      <include name="Program.cs"/>
+                      <include name="Splash.cs"/>
+                      <include name="Splash.Designer.cs"/>
+                      <include name="Statistics.cs"/>
+		    </sources>
+		    <references>
+			    <include name="/net/hu15/cs2335/mono/mono-linux/lib/mono/2.0/*.dll"/>
+			    <include name="/usr/lib/mono/2.0/*.dll"/>
+		    </references>
+	    </csc>
+
+    </target>
+    
+    <target name="run" depends="build">
+	    <exec if="${platform::is-unix()}" 
+		  program="mono" commandline="bin/${tech}"/>
+	    <exec if="${platform::is-win32()}" 
+		  program="bin/${tech}"/>
+    </target>
+    
+</project>

@@ -33,8 +33,8 @@ namespace Techtella
             this.connectLabel = new System.Windows.Forms.Label();
             this.connectButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.connectPeerIPBox = new System.Windows.Forms.TextBox();
+            this.connectPeerPortBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // ipAddrLabel
@@ -73,6 +73,7 @@ namespace Techtella
             this.connectButton.TabIndex = 3;
             this.connectButton.Text = "Connect";
             this.connectButton.UseVisualStyleBackColor = true;
+            this.connectButton.Enter += new System.EventHandler(this.Button_Click);
             this.connectButton.Click += new System.EventHandler(this.Button_Click);
             // 
             // cancelButton
@@ -85,27 +86,27 @@ namespace Techtella
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.Button_Click);
             // 
-            // textBox1
+            // connectPeerIPBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(79, 33);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 5;
+            this.connectPeerIPBox.Location = new System.Drawing.Point(79, 33);
+            this.connectPeerIPBox.Name = "connectPeerIPBox";
+            this.connectPeerIPBox.Size = new System.Drawing.Size(100, 20);
+            this.connectPeerIPBox.TabIndex = 1;
             // 
-            // textBox2
+            // connectPeerPortBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(79, 59);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 6;
+            this.connectPeerPortBox.Location = new System.Drawing.Point(79, 59);
+            this.connectPeerPortBox.Name = "connectPeerPortBox";
+            this.connectPeerPortBox.Size = new System.Drawing.Size(100, 20);
+            this.connectPeerPortBox.TabIndex = 2;
             // 
             // ConnectWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(196, 133);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.connectPeerPortBox);
+            this.Controls.Add(this.connectPeerIPBox);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.connectButton);
             this.Controls.Add(this.connectLabel);
@@ -129,7 +130,7 @@ namespace Techtella
         private System.Windows.Forms.Label connectLabel;
         private System.Windows.Forms.Button connectButton;
         private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox connectPeerIPBox;
+        private System.Windows.Forms.TextBox connectPeerPortBox;
     }
 }
