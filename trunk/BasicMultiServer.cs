@@ -51,7 +51,7 @@ namespace Techtella
 
         public void ForwardPong(Packet pong)
         {
-            foreach (object hostname in knownPeers)
+            foreach (object hostname in activePings)
             {
                 Client.Pong(ParseHostname((string)hostname), 12345, pong.descriptor, pong.msg);
             }
@@ -88,7 +88,7 @@ namespace Techtella
         {
             foreach (object active in activePings)
             {
-                if (toCheck.descriptor == Int32.Parse(active.ToString()))
+                if (toCheck.descriptor == Int32.Parse(active.ToString().Split('_')[1]))
                 {
                     return true;
                 }
@@ -108,9 +108,9 @@ namespace Techtella
             return false;
         }
 
-        public void AddActivePing(int descriptor)
+        public void AddActivePing(int descriptor, string from)
         {
-            activePings.Add(descriptor);
+            activePings.Add(from +"_"+ descriptor);
         }
 
         public void AddActiveQuery(int descriptor)
