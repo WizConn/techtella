@@ -78,7 +78,7 @@ namespace Techtella
                             owner.ForwardPong(parsedPacket);
                             if (parsedPacket.ttl < Client.TTL)
                             {
-                                Console.WriteLine("adding known peer");
+                                Console.WriteLine("adding found peer");
                                 Console.WriteLine("MSG in parsedPacket:  " + parsedPacket.msg);
                                 int pt = 0;
                                 string port = parsedPacket.msg.Split('&')[0];
