@@ -118,15 +118,9 @@ namespace Techtella
             activeQueries.Add(descriptor);
         }
 
-        public void PongBack(Packet p, string ignore)
+        public void PongBack(Packet p, string target)
         {
-            foreach(object hostname in knownPeers)
-            {
-                if (ParseHostname((string)hostname) != ignore)
-                {
-                    Client.Pong(ParseHostname((string)hostname), 12345, p.descriptor, p.msg);
-                }
-            }
+            Client.Pong(ParseHostname(target), 12345, p.descriptor, p.msg);
         }
 
         public void QHitBack(Packet p, string ignore)
