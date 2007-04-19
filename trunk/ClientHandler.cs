@@ -15,7 +15,6 @@ namespace Techtella
         private AsyncCallback readCB;
         private AsyncCallback writeCB;
         private const int bufferSize = 1024;
-        private DateTime starttime, endtime;
         private string iHandle;
         private BasicMultiServer owner;
         private BasicMultiServer.Packet parsedPacket;
@@ -30,13 +29,16 @@ namespace Techtella
 
             readCB = new AsyncCallback(OnReadComplete);
             writeCB = new AsyncCallback(OnWriteComplete);
-            starttime = DateTime.Now;
         }
 
         public void StartRead()
         {
             iHandle = BasicMultiServer.immediateIP;
-            netStream.BeginRead(buffer, 0, buffer.Length, readCB, null);
+            try
+            {
+                netStream.BeginRead(buffer, 0, buffer.Length, readCB, null);
+            }
+            catch { }
         }
 
         private void OnReadComplete(IAsyncResult ar)
@@ -57,6 +59,7 @@ namespace Techtella
                         parsedPacket.hops++;
                         if (parsedPacket.ttl >= 0 && !owner.IsActive(parsedPacket))
                         {
+                            Console.WriteLine("TTL:  " + parsedPacket.ttl);
                             Console.WriteLine("forwarding ping");
                             owner.ForwardPing(parsedPacket, iHandle);
                             owner.AddActivePing(parsedPacket.descriptor, iHandle);
@@ -71,12 +74,12 @@ namespace Techtella
                         Console.WriteLine("got pong");
                         parsedPacket.ttl--;
                         parsedPacket.hops++;
-                        if (parsedPacket.ttl >= 0 && owner.IsActive(parsedPacket) && iHandle != "127.0.0.1")
+                        if (owner.IsActive(parsedPacket))
                         {
                             //Console.WriteLine("setting corresponding ping inactive");
                             //owner.SetInactive(parsedPacket.descriptor);
                             Console.WriteLine("forwarding pong");
-                            owner.ForwardPong(parsedPacket);
+                            owner.ForwardPong(parsedPacket, iHandle);
                             if (true)
                             {
                                 Console.WriteLine("adding found peer");
@@ -151,7 +154,7 @@ namespace Techtella
                     else if (parsedPacket.type == (byte)123)
                     {
                         //chat packet
-                        owner.AddChatMessage(parsedPacket.msg, iHandle);
+                        owner.AddChatMessage(parsedPacket.msg + "\n", iHandle);
                     }
                 }
                 else

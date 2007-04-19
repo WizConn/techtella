@@ -50,11 +50,14 @@ namespace Techtella
             }
         }
 
-        public void ForwardPong(Packet pong)
+        public void ForwardPong(Packet pong, string ignore)
         {
             foreach (object hostname in activePings)
             {
-                Client.Pong(ParseHostname((string)hostname), 12345, pong.descriptor, pong.msg);
+                if (((string)hostname).Split(':')[0] != ignore.Split(':')[0])
+                {
+                    Client.Pong(ParseHostname((string)hostname).Split(':')[0], 12345, pong.descriptor, pong.msg);
+                }
             }
         }
 
@@ -159,14 +162,36 @@ namespace Techtella
 
         public void AddKnownPeer(string hostname, int portnum)
         {
-            hostname += "_" + portnum.ToString();
-            knownPeers.Add(hostname);
+            bool alreadyknown = false;
+            foreach (object host in knownPeers)
+            {
+                if (host.ToString().Split('_')[0] == hostname)
+                {
+                    alreadyknown = true;
+                }
+            }
+            if (!alreadyknown)
+            {
+                hostname += "_" + portnum.ToString();
+                knownPeers.Add(hostname);
+            }
         }
 
         public void AddFoundPeer(string hostname, int portnum)
         {
-            hostname += "_" + portnum.ToString();
-            foundPeers.Add(hostname);
+            bool alreadyknown = false;
+            foreach (object host in foundPeers)
+            {
+                if (host.ToString().Split('_')[0] == hostname)
+                {
+                    alreadyknown = true;
+                }
+            }
+            if (!alreadyknown)
+            {
+                hostname += "_" + portnum.ToString();
+                foundPeers.Add(hostname);
+            }
         }
 
         private void Run()

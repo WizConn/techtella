@@ -30,7 +30,13 @@ namespace Techtella
             Thread.Sleep(1000);
             server = m;
             InitializeComponent();
+            CheckForIllegalCrossThreadCalls = false;
             updater.RunThreaded();
+        }
+
+        public void SetText(string output)
+        {
+            chatOutputBox.Text = output;
         }
 
         public void DoSplash()
@@ -120,11 +126,13 @@ namespace Techtella
                 Client.SendMsg(chatIP, chatPort, chatInputBox.Text);
                 if (chatOutputBox.Text == "")
                 {
-                    chatOutputBox.Text = "You: " + chatInputBox.Text;
+                    updater.owner.chatMessages.Add("You: " + chatInputBox.Text + "\r\n");
+                    //chatOutputBox.Text = "You: " + chatInputBox.Text;
                 }
                 else
                 {
-                    chatOutputBox.Text += "\r\n" + "You: " + chatInputBox.Text;
+                    updater.owner.chatMessages.Add("You: " + chatInputBox.Text + "\r\n");
+                    //chatOutputBox.Text += "\r\n" + "You: " + chatInputBox.Text;
                 }
                 chatInputBox.Text = "";
             }
@@ -195,7 +203,7 @@ namespace Techtella
                 if (sender == chatInputBox)
                 {
                     Client.SendMsg(chatIP, chatPort, chatInputBox.Text);
-                    updater.owner.chatMessages.Add("\r\nYou: " + chatInputBox.Text);
+                    updater.owner.chatMessages.Add("You: " + chatInputBox.Text + "\r\n");
                     //chatOutputBox.Text += "\r\n" + "You: " + chatInputBox.Text;
                     chatInputBox.Text = "";
                 }
