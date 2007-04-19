@@ -257,9 +257,9 @@ namespace Techtella
                     //Console.WriteLine("Descriptor: " + parsedPacket.descriptor);
                     parsedPacket.hops = Int32.Parse(fields[3]);
                     //Console.WriteLine("hops: " + parsedPacket.hops);
-                    parsedPacket.length = fields[4].Length;
+                    parsedPacket.length = fields[5].Length;
                     //Console.WriteLine("length: " + parsedPacket.length);
-                    parsedPacket.msg = fields[4];
+                    parsedPacket.msg = fields[5];
                     //Console.WriteLine("message: " + parsedPacket.msg);
                     parsedPacket.ttl = Int32.Parse(fields[2]);
                     //Console.WriteLine("ttl: " + parsedPacket.ttl);
