@@ -17,7 +17,6 @@ namespace Techtella
         public ArrayList testList = new ArrayList();
         public static String chatIP;
         public static int chatPort;
-        string[] row1 = { "192.168.1.100", "54321", "0" };
         public GUIUpdate updater;
         
         public Form1(BasicMultiServer m)
@@ -45,16 +44,6 @@ namespace Techtella
             sp.ShowDialog();
         }
 
-        private void startBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (sender == knownPeersData)
@@ -75,7 +64,6 @@ namespace Techtella
             }
             else if (sender == knownPeersChatData)
             {
-                Console.WriteLine("got click from chat");
                 DataGridViewCellCollection tempRow = knownPeersChatData.CurrentRow.Cells;
                 if (tempRow[0] != null && tempRow[1] != null)
                 {
@@ -89,8 +77,6 @@ namespace Techtella
                     }
                     catch { }
                 }
-                Console.WriteLine(chatIP);
-                Console.WriteLine(chatPort);
             }
         }
 
@@ -138,16 +124,6 @@ namespace Techtella
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void statsSharedData_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
         private void ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (sender == aboutTechtellaToolStripMenuItem)
@@ -191,17 +167,28 @@ namespace Techtella
             
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
         private void KeyPressEvent(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Return)
             {
                 if (sender == chatInputBox)
                 {
+                    if (chatIP == null)
+                    {
+                        DataGridViewCellCollection tempRow = knownPeersChatData.CurrentRow.Cells;
+                        if (tempRow[0] != null && tempRow[1] != null)
+                        {
+
+                            chatIP = tempRow[0].Value.ToString();
+                            string temp = tempRow[1].Value.ToString();
+                            Console.WriteLine(tempRow);
+                            try
+                            {
+                                chatPort = int.Parse(temp);
+                            }
+                            catch { }
+                        }
+                    }
                     Client.SendMsg(chatIP, chatPort, chatInputBox.Text);
                     updater.owner.chatMessages.Add("You: " + chatInputBox.Text + "\r\n");
                     //chatOutputBox.Text += "\r\n" + "You: " + chatInputBox.Text;
@@ -209,13 +196,5 @@ namespace Techtella
                 }
             }
         }
-
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        
-
     }
 }
