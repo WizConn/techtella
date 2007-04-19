@@ -120,7 +120,7 @@ namespace Techtella
 
         public void PongBack(Packet p, string target)
         {
-            Client.Pong(ParseHostname(target), 12345, p.descriptor, p.msg);
+            Client.Pong(target.Split(':')[0], 12345, p.descriptor, p.msg);
         }
 
         public void QHitBack(Packet p, string ignore)
