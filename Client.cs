@@ -70,15 +70,22 @@ namespace Techtella
         {
             pongCount++;
             string msg = descriptor.ToString() + "?" + ((byte)1).ToString() + "?" + TTL.ToString() + "?" + "0?" + mesg.Length.ToString() + "?" + mesg + "?";
-            TcpClient client = new TcpClient(host.Split(':')[0], portnum);
-            Console.WriteLine("Client.Pong called on " + host + ":" + portnum);
+            if (host.Split(':')[0] == "127.0.0.1")
+            {
+                Console.WriteLine("cannot pong loopback, ignoring pong request");
+            }
+            else
+            {
+                TcpClient client = new TcpClient(host.Split(':')[0], portnum);
+                Console.WriteLine("Client.Pong called on " + host + ":" + portnum);
 
-            NetworkStream netStream = client.GetStream();
-            StreamReader reader = new StreamReader(netStream);
-            StreamWriter writer = new StreamWriter(netStream);
+                NetworkStream netStream = client.GetStream();
+                StreamReader reader = new StreamReader(netStream);
+                StreamWriter writer = new StreamWriter(netStream);
 
-            writer.WriteLine(msg);
-            writer.Flush();
+                writer.WriteLine(msg);
+                writer.Flush();
+            }
             //delete this line
            // Console.WriteLine(reader.ReadLine());
         }
