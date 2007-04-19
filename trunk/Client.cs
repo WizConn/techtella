@@ -13,7 +13,7 @@ namespace Techtella
         public static int descriptorHash;
         public static int pingCount = 0;
         public static int pongCount = 0;
-        public static int TTL = 2;
+        public static int TTL = 10;
         public static int MyQuery = 0; //PUT IN TO GET RID OFF ERROR - WHAT IS THIS?
 
         public Client()
