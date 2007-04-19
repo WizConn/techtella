@@ -37,12 +37,6 @@ namespace Techtella
             }
         }
         [Test]
-        public void ParseHandleTest()
-        {
-            string test = ch.ParseHandle("Hello World");
-            Assert.AreEqual(test, "Hello World");
-        }
-        [Test]
         public void MakePongPacketTest()
         {
             BasicMultiServer.Packet test = new BasicMultiServer.Packet();
