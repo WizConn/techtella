@@ -18,10 +18,12 @@ namespace Techtella
         public static String chatIP;
         public static int chatPort;
         string[] row1 = { "192.168.1.100", "54321", "0" };
+        public GUIUpdate updater;
         
         public Form1(BasicMultiServer m)
         {
             Thread th = new Thread(new ThreadStart(DoSplash));
+            updater = new GUIUpdate(m, this);
             th.Start();
             Thread.Sleep(3000);
             th.Abort();
@@ -192,10 +194,16 @@ namespace Techtella
                 if (sender == chatInputBox)
                 {
                     Client.SendMsg(chatIP, chatPort, chatInputBox.Text);
-                    chatOutputBox.Text += "\r\n" + "You: " + chatInputBox.Text;
+                    updater.owner.chatMessages.Add("\r\nYou: " + chatInputBox.Text);
+                    //chatOutputBox.Text += "\r\n" + "You: " + chatInputBox.Text;
                     chatInputBox.Text = "";
                 }
             }
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
         }
 
         
