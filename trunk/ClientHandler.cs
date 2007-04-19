@@ -77,7 +77,7 @@ namespace Techtella
                             owner.SetInactive(parsedPacket.descriptor);
                             Console.WriteLine("forwarding pong");
                             owner.ForwardPong(parsedPacket);
-                            if (parsedPacket.ttl < Client.TTL)
+                            if (true)
                             {
                                 Console.WriteLine("adding found peer");
                                 Console.WriteLine("MSG in parsedPacket:  " + parsedPacket.msg);
