@@ -36,7 +36,7 @@ namespace Techtella
 
             string msg = descriptor.ToString() + "?" + type.ToString() + "?" + TTL.ToString() + "?0?0??";
 
-            TcpClient client = new TcpClient(host, portnum);
+            TcpClient client = new TcpClient(host.Split(':')[0], portnum);
             Console.WriteLine("Client.Ping called on " + host + ":" + portnum);
 
             NetworkStream netStream = client.GetStream();
@@ -53,7 +53,7 @@ namespace Techtella
         {
             string msg = descriptor.ToString() + "?" + ((byte)0).ToString() + "?" + timeToLive.ToString() + "?" + hops.ToString() + "?" + "0" + "??";
 
-            TcpClient client = new TcpClient(host, portnum);
+            TcpClient client = new TcpClient(host.Split(':')[0], portnum);
             Console.WriteLine("Client.RePing called on " + host + ":" + portnum);
 
             NetworkStream netStream = client.GetStream();
@@ -85,7 +85,7 @@ namespace Techtella
 
         public static void SendMsg(string host, int portnum, string msg)
         {
-            TcpClient client = new TcpClient(host, portnum);
+            TcpClient client = new TcpClient(host.Split(':')[0], portnum);
             Console.WriteLine("Client.SendMsg called on " + host + ":" + portnum);
 
             NetworkStream netStream = client.GetStream();
@@ -107,7 +107,7 @@ namespace Techtella
 
             string msg = descriptor.ToString() + "?" + type.ToString() + "?" + TTL.ToString() + "?0?" + criteria.Length.ToString() + "?" + criteria + "?";
 
-            TcpClient client = new TcpClient(host, portnum);
+            TcpClient client = new TcpClient(host.Split(':')[0], portnum);
             Console.WriteLine("Client.Query called on " + host + ":" + portnum);
 
             NetworkStream netStream = client.GetStream();
@@ -122,7 +122,7 @@ namespace Techtella
         {
             string msg = descriptor.ToString() + "?" + ((byte)80).ToString() + "?" + timeToLive.ToString() + "?" + hops.ToString() + "?" + mesg.Length.ToString() +"?" + mesg + "?";
 
-            TcpClient client = new TcpClient(host, portnum);
+            TcpClient client = new TcpClient(host.Split(':')[0], portnum);
             Console.WriteLine("Client.ReQuery called on " + host + ":" + portnum);
 
             NetworkStream netStream = client.GetStream();
