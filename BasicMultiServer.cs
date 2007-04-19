@@ -15,6 +15,7 @@ namespace Techtella
         public ArrayList knownPeers, foundPeers, activePings, activeQueries, chatMessages;
         public int portnum;
         public static int filePort;
+        public DateTime starttime, now;
 
         public struct Packet
         {
@@ -81,14 +82,23 @@ namespace Techtella
             activePings = new ArrayList();
             activeQueries = new ArrayList();
             chatMessages = new ArrayList();
+            starttime = DateTime.Now;
             filePort = 23456;
         }
 
         public bool IsActive(Packet toCheck)
         {
+            TimeSpan age;
+            System.Console.WriteLine("Checking " + activePings.Count + " active pings");
             foreach (object active in activePings)
             {
-                if (toCheck.descriptor == Int32.Parse(active.ToString().Split('_')[1]))
+                age = DateTime.Now - DateTime.Parse(active.ToString().Split('_')[2]);
+                if (age.Seconds >= 10)
+                {
+                    SetInactive(toCheck.descriptor);
+                    Console.WriteLine("Set a ping inactive, descriptor:  " + Int32.Parse(active.ToString().Split('_')[1]));
+                }
+                else if (toCheck.descriptor == Int32.Parse(active.ToString().Split('_')[1]))
                 {
                     return true;
                 }
@@ -98,9 +108,17 @@ namespace Techtella
 
         public bool IsQActive(Packet toCheck)
         {
+            TimeSpan age;
+            Console.WriteLine("Checking " + activeQueries.Count + " active queries");
             foreach (object active in activeQueries)
             {
-                if (toCheck.descriptor == Int32.Parse(active.ToString()))
+                age = DateTime.Now - DateTime.Parse(active.ToString().Split('_')[1]);
+                if (age.Seconds >= 10)
+                {
+                    SetQInactive(toCheck.descriptor);
+                    Console.WriteLine("Set a query inactive, descriptor:  " + Int32.Parse(active.ToString().Split('_')[0]));
+                }
+                else if (toCheck.descriptor == Int32.Parse(active.ToString()))
                 {
                     return true;
                 }
@@ -110,17 +128,17 @@ namespace Techtella
 
         public void AddActivePing(int descriptor, string from)
         {
-            activePings.Add(from +"_"+ descriptor);
+            activePings.Add(from + "_" + descriptor + "_" + DateTime.Now);
         }
 
         public void AddActiveQuery(int descriptor)
         {
-            activeQueries.Add(descriptor);
+            activeQueries.Add(descriptor + "_" + DateTime.Now);
         }
 
         public void PongBack(Packet p, string target)
         {
-            Client.Pong(target.Split(':')[0], 12345, p.descriptor, p.msg);
+            Client.Pong(target, 12345, p.descriptor, p.msg);
         }
 
         public void QHitBack(Packet p, string ignore)
