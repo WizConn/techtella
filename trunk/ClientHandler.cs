@@ -55,7 +55,7 @@ namespace Techtella
                         Console.WriteLine("got ping");
                         parsedPacket.ttl--;
                         parsedPacket.hops++;
-                        if (parsedPacket.ttl >= 0 && !owner.IsActive(parsedPacket) && iHandle != "127.0.0.1")
+                        if (parsedPacket.ttl >= 0 && !owner.IsActive(parsedPacket))
                         {
                             Console.WriteLine("forwarding ping");
                             owner.ForwardPing(parsedPacket, iHandle);
@@ -73,8 +73,8 @@ namespace Techtella
                         parsedPacket.hops++;
                         if (parsedPacket.ttl >= 0 && owner.IsActive(parsedPacket) && iHandle != "127.0.0.1")
                         {
-                            Console.WriteLine("setting corresponding ping inactive");
-                            owner.SetInactive(parsedPacket.descriptor);
+                            //Console.WriteLine("setting corresponding ping inactive");
+                            //owner.SetInactive(parsedPacket.descriptor);
                             Console.WriteLine("forwarding pong");
                             owner.ForwardPong(parsedPacket);
                             if (true)
