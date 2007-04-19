@@ -59,7 +59,7 @@ namespace Techtella
                         {
                             Console.WriteLine("forwarding ping");
                             owner.ForwardPing(parsedPacket, iHandle);
-                            owner.AddActivePing(parsedPacket.descriptor);
+                            owner.AddActivePing(parsedPacket.descriptor, iHandle);
                             Console.WriteLine("ponging back");
                             BasicMultiServer.Packet pong = MakePongPacket(parsedPacket);
                             owner.PongBack(pong, iHandle);
