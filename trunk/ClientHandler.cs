@@ -75,6 +75,7 @@ namespace Techtella
                         {
                             Console.WriteLine("setting corresponding ping inactive");
                             owner.SetInactive(parsedPacket.descriptor);
+                            Console.WriteLine("forwarding pong");
                             owner.ForwardPong(parsedPacket);
                             if (parsedPacket.ttl < Client.TTL)
                             {

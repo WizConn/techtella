@@ -70,7 +70,7 @@ namespace Techtella
         {
             pongCount++;
             string msg = descriptor.ToString() + "?" + ((byte)1).ToString() + "?" + TTL.ToString() + "?" + "0?" + mesg.Length.ToString() + "?" + mesg + "?";
-            TcpClient client = new TcpClient(host, portnum);
+            TcpClient client = new TcpClient(host.Split(':')[0], portnum);
             Console.WriteLine("Client.Pong called on " + host + ":" + portnum);
 
             NetworkStream netStream = client.GetStream();
