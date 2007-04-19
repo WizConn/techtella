@@ -294,7 +294,7 @@ namespace Techtella
             this.tabControl.Controls.Add(this.chatTab);
             this.tabControl.Enabled = false;
             this.tabControl.Location = new System.Drawing.Point(0, 33);
-            this.tabControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(1141, 652);
@@ -307,9 +307,9 @@ namespace Techtella
             this.startTab.Controls.Add(this.startBox);
             this.startTab.Controls.Add(this.pictureBox1);
             this.startTab.Location = new System.Drawing.Point(4, 25);
-            this.startTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.startTab.Margin = new System.Windows.Forms.Padding(4);
             this.startTab.Name = "startTab";
-            this.startTab.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.startTab.Padding = new System.Windows.Forms.Padding(4);
             this.startTab.Size = new System.Drawing.Size(1133, 623);
             this.startTab.TabIndex = 0;
             this.startTab.Text = "Start";
@@ -321,7 +321,7 @@ namespace Techtella
             this.startBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.startBox.ForeColor = System.Drawing.Color.Black;
             this.startBox.Location = new System.Drawing.Point(8, 138);
-            this.startBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.startBox.Margin = new System.Windows.Forms.Padding(4);
             this.startBox.Multiline = true;
             this.startBox.Name = "startBox";
             this.startBox.ReadOnly = true;
@@ -334,7 +334,7 @@ namespace Techtella
             // 
             this.pictureBox1.Image = global::Techtella.Properties.Resources.logo;
             this.pictureBox1.Location = new System.Drawing.Point(8, 7);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(667, 123);
             this.pictureBox1.TabIndex = 0;
@@ -355,9 +355,9 @@ namespace Techtella
             this.connectionsTab.Controls.Add(this.peersData);
             this.connectionsTab.Controls.Add(this.knownPeersData);
             this.connectionsTab.Location = new System.Drawing.Point(4, 25);
-            this.connectionsTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.connectionsTab.Margin = new System.Windows.Forms.Padding(4);
             this.connectionsTab.Name = "connectionsTab";
-            this.connectionsTab.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.connectionsTab.Padding = new System.Windows.Forms.Padding(4);
             this.connectionsTab.Size = new System.Drawing.Size(1133, 623);
             this.connectionsTab.TabIndex = 1;
             this.connectionsTab.Text = "Connections";
@@ -366,7 +366,7 @@ namespace Techtella
             // peersRefreshButton
             // 
             this.peersRefreshButton.Location = new System.Drawing.Point(797, 433);
-            this.peersRefreshButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.peersRefreshButton.Margin = new System.Windows.Forms.Padding(4);
             this.peersRefreshButton.Name = "peersRefreshButton";
             this.peersRefreshButton.Size = new System.Drawing.Size(120, 28);
             this.peersRefreshButton.TabIndex = 11;
@@ -377,7 +377,7 @@ namespace Techtella
             // movePeerButton
             // 
             this.movePeerButton.Location = new System.Drawing.Point(797, 396);
-            this.movePeerButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.movePeerButton.Margin = new System.Windows.Forms.Padding(4);
             this.movePeerButton.Name = "movePeerButton";
             this.movePeerButton.Size = new System.Drawing.Size(120, 28);
             this.movePeerButton.TabIndex = 10;
@@ -388,7 +388,7 @@ namespace Techtella
             // addPeerButton
             // 
             this.addPeerButton.Location = new System.Drawing.Point(120, 484);
-            this.addPeerButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.addPeerButton.Margin = new System.Windows.Forms.Padding(4);
             this.addPeerButton.Name = "addPeerButton";
             this.addPeerButton.Size = new System.Drawing.Size(100, 28);
             this.addPeerButton.TabIndex = 9;
@@ -429,7 +429,7 @@ namespace Techtella
             // portBox
             // 
             this.portBox.Location = new System.Drawing.Point(120, 452);
-            this.portBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.portBox.Margin = new System.Windows.Forms.Padding(4);
             this.portBox.MaxLength = 5;
             this.portBox.Name = "portBox";
             this.portBox.Size = new System.Drawing.Size(132, 22);
@@ -438,7 +438,7 @@ namespace Techtella
             // ipBox
             // 
             this.ipBox.Location = new System.Drawing.Point(120, 420);
-            this.ipBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ipBox.Margin = new System.Windows.Forms.Padding(4);
             this.ipBox.MaxLength = 15;
             this.ipBox.Name = "ipBox";
             this.ipBox.Size = new System.Drawing.Size(132, 22);
@@ -478,7 +478,7 @@ namespace Techtella
             this.portColumnB,
             this.fileColumnB});
             this.peersData.Location = new System.Drawing.Point(600, 39);
-            this.peersData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.peersData.Margin = new System.Windows.Forms.Padding(4);
             this.peersData.Name = "peersData";
             this.peersData.ReadOnly = true;
             this.peersData.RowHeadersVisible = false;
@@ -519,7 +519,7 @@ namespace Techtella
             this.portColumnA,
             this.numFilesColumnA});
             this.knownPeersData.Location = new System.Drawing.Point(4, 39);
-            this.knownPeersData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.knownPeersData.Margin = new System.Windows.Forms.Padding(4);
             this.knownPeersData.Name = "knownPeersData";
             this.knownPeersData.ReadOnly = true;
             this.knownPeersData.RowHeadersVisible = false;
@@ -554,9 +554,9 @@ namespace Techtella
             this.transfersTab.Controls.Add(this.uploadData);
             this.transfersTab.Controls.Add(this.downloadData);
             this.transfersTab.Location = new System.Drawing.Point(4, 25);
-            this.transfersTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.transfersTab.Margin = new System.Windows.Forms.Padding(4);
             this.transfersTab.Name = "transfersTab";
-            this.transfersTab.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.transfersTab.Padding = new System.Windows.Forms.Padding(4);
             this.transfersTab.Size = new System.Drawing.Size(1133, 623);
             this.transfersTab.TabIndex = 2;
             this.transfersTab.Text = "Transfers";
@@ -604,7 +604,7 @@ namespace Techtella
             this.ulIPCol,
             this.ulPortCol});
             this.uploadData.Location = new System.Drawing.Point(0, 338);
-            this.uploadData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.uploadData.Margin = new System.Windows.Forms.Padding(4);
             this.uploadData.Name = "uploadData";
             this.uploadData.ReadOnly = true;
             this.uploadData.RowHeadersVisible = false;
@@ -681,7 +681,7 @@ namespace Techtella
             this.dlIPCol,
             this.dlPortCol});
             this.downloadData.Location = new System.Drawing.Point(0, 31);
-            this.downloadData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.downloadData.Margin = new System.Windows.Forms.Padding(4);
             this.downloadData.Name = "downloadData";
             this.downloadData.ReadOnly = true;
             this.downloadData.RowHeadersVisible = false;
@@ -749,7 +749,7 @@ namespace Techtella
             this.searchTab.Controls.Add(this.searchTitleBox);
             this.searchTab.Controls.Add(this.searchFileNameBox);
             this.searchTab.Location = new System.Drawing.Point(4, 25);
-            this.searchTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.searchTab.Margin = new System.Windows.Forms.Padding(4);
             this.searchTab.Name = "searchTab";
             this.searchTab.Size = new System.Drawing.Size(1133, 623);
             this.searchTab.TabIndex = 3;
@@ -771,7 +771,7 @@ namespace Techtella
             this.searchIPCol,
             this.searchHopCol});
             this.searchData.Location = new System.Drawing.Point(0, 55);
-            this.searchData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.searchData.Margin = new System.Windows.Forms.Padding(4);
             this.searchData.Name = "searchData";
             this.searchData.ReadOnly = true;
             this.searchData.RowHeadersVisible = false;
@@ -807,7 +807,7 @@ namespace Techtella
             // searchButton
             // 
             this.searchButton.Location = new System.Drawing.Point(911, 12);
-            this.searchButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.searchButton.Margin = new System.Windows.Forms.Padding(4);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(100, 28);
             this.searchButton.TabIndex = 6;
@@ -825,7 +825,7 @@ namespace Techtella
             "TEXT",
             "IMAGE"});
             this.searchCategoryCombo.Location = new System.Drawing.Point(649, 12);
-            this.searchCategoryCombo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.searchCategoryCombo.Margin = new System.Windows.Forms.Padding(4);
             this.searchCategoryCombo.Name = "searchCategoryCombo";
             this.searchCategoryCombo.Size = new System.Drawing.Size(160, 24);
             this.searchCategoryCombo.TabIndex = 5;
@@ -863,7 +863,7 @@ namespace Techtella
             // searchTitleBox
             // 
             this.searchTitleBox.Location = new System.Drawing.Point(331, 12);
-            this.searchTitleBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.searchTitleBox.Margin = new System.Windows.Forms.Padding(4);
             this.searchTitleBox.Name = "searchTitleBox";
             this.searchTitleBox.Size = new System.Drawing.Size(216, 22);
             this.searchTitleBox.TabIndex = 1;
@@ -871,7 +871,7 @@ namespace Techtella
             // searchFileNameBox
             // 
             this.searchFileNameBox.Location = new System.Drawing.Point(103, 12);
-            this.searchFileNameBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.searchFileNameBox.Margin = new System.Windows.Forms.Padding(4);
             this.searchFileNameBox.Name = "searchFileNameBox";
             this.searchFileNameBox.Size = new System.Drawing.Size(157, 22);
             this.searchFileNameBox.TabIndex = 0;
@@ -890,7 +890,7 @@ namespace Techtella
             this.sharedTab.Controls.Add(this.shareCategoryLabel);
             this.sharedTab.Controls.Add(this.sharedData);
             this.sharedTab.Location = new System.Drawing.Point(4, 25);
-            this.sharedTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sharedTab.Margin = new System.Windows.Forms.Padding(4);
             this.sharedTab.Name = "sharedTab";
             this.sharedTab.Size = new System.Drawing.Size(1133, 623);
             this.sharedTab.TabIndex = 4;
@@ -900,7 +900,7 @@ namespace Techtella
             // removeButton
             // 
             this.removeButton.Location = new System.Drawing.Point(11, 588);
-            this.removeButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.removeButton.Margin = new System.Windows.Forms.Padding(4);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(136, 28);
             this.removeButton.TabIndex = 11;
@@ -918,7 +918,7 @@ namespace Techtella
             "TEXT",
             "IMAGE"});
             this.shareCategoryCombo.Location = new System.Drawing.Point(81, 9);
-            this.shareCategoryCombo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.shareCategoryCombo.Margin = new System.Windows.Forms.Padding(4);
             this.shareCategoryCombo.Name = "shareCategoryCombo";
             this.shareCategoryCombo.Size = new System.Drawing.Size(160, 24);
             this.shareCategoryCombo.TabIndex = 10;
@@ -926,7 +926,7 @@ namespace Techtella
             // browseButton
             // 
             this.browseButton.Location = new System.Drawing.Point(989, 6);
-            this.browseButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.browseButton.Margin = new System.Windows.Forms.Padding(4);
             this.browseButton.Name = "browseButton";
             this.browseButton.Size = new System.Drawing.Size(100, 28);
             this.browseButton.TabIndex = 9;
@@ -936,7 +936,7 @@ namespace Techtella
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(492, 41);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(147, 28);
             this.button1.TabIndex = 8;
@@ -946,7 +946,7 @@ namespace Techtella
             // shareTitleBox
             // 
             this.shareTitleBox.Location = new System.Drawing.Point(317, 9);
-            this.shareTitleBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.shareTitleBox.Margin = new System.Windows.Forms.Padding(4);
             this.shareTitleBox.Name = "shareTitleBox";
             this.shareTitleBox.Size = new System.Drawing.Size(273, 22);
             this.shareTitleBox.TabIndex = 7;
@@ -954,7 +954,7 @@ namespace Techtella
             // shareFileBox
             // 
             this.shareFileBox.Location = new System.Drawing.Point(656, 9);
-            this.shareFileBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.shareFileBox.Margin = new System.Windows.Forms.Padding(4);
             this.shareFileBox.Name = "shareFileBox";
             this.shareFileBox.Size = new System.Drawing.Size(308, 22);
             this.shareFileBox.TabIndex = 6;
@@ -1018,7 +1018,7 @@ namespace Techtella
             this.sharedFileSizeCol,
             this.sharedIdentifierCol});
             this.sharedData.Location = new System.Drawing.Point(0, 108);
-            this.sharedData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sharedData.Margin = new System.Windows.Forms.Padding(4);
             this.sharedData.MultiSelect = false;
             this.sharedData.Name = "sharedData";
             this.sharedData.ReadOnly = true;
@@ -1069,7 +1069,7 @@ namespace Techtella
             this.statsTab.Controls.Add(this.messagesGroup);
             this.statsTab.Controls.Add(this.downloadersLabel);
             this.statsTab.Location = new System.Drawing.Point(4, 25);
-            this.statsTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.statsTab.Margin = new System.Windows.Forms.Padding(4);
             this.statsTab.Name = "statsTab";
             this.statsTab.Size = new System.Drawing.Size(1133, 623);
             this.statsTab.TabIndex = 5;
@@ -1079,7 +1079,7 @@ namespace Techtella
             // refreshStatsButton
             // 
             this.refreshStatsButton.Location = new System.Drawing.Point(323, 450);
-            this.refreshStatsButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.refreshStatsButton.Margin = new System.Windows.Forms.Padding(4);
             this.refreshStatsButton.Name = "refreshStatsButton";
             this.refreshStatsButton.Size = new System.Drawing.Size(121, 28);
             this.refreshStatsButton.TabIndex = 15;
@@ -1110,7 +1110,7 @@ namespace Techtella
             this.sharedStatsCol,
             this.dlStatsCol});
             this.statsSharedData.Location = new System.Drawing.Point(323, 178);
-            this.statsSharedData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.statsSharedData.Margin = new System.Windows.Forms.Padding(4);
             this.statsSharedData.Name = "statsSharedData";
             this.statsSharedData.ReadOnly = true;
             this.statsSharedData.RowTemplate.Height = 24;
@@ -1136,7 +1136,7 @@ namespace Techtella
             this.downloadersBox.FormattingEnabled = true;
             this.downloadersBox.ItemHeight = 16;
             this.downloadersBox.Location = new System.Drawing.Point(11, 178);
-            this.downloadersBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.downloadersBox.Margin = new System.Windows.Forms.Padding(4);
             this.downloadersBox.Name = "downloadersBox";
             this.downloadersBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.downloadersBox.Size = new System.Drawing.Size(265, 244);
@@ -1153,9 +1153,9 @@ namespace Techtella
             this.transferGroup.Controls.Add(this.filesulStat);
             this.transferGroup.Controls.Add(this.bytesdlLabel);
             this.transferGroup.Location = new System.Drawing.Point(323, 18);
-            this.transferGroup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.transferGroup.Margin = new System.Windows.Forms.Padding(4);
             this.transferGroup.Name = "transferGroup";
-            this.transferGroup.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.transferGroup.Padding = new System.Windows.Forms.Padding(4);
             this.transferGroup.Size = new System.Drawing.Size(267, 111);
             this.transferGroup.TabIndex = 11;
             this.transferGroup.TabStop = false;
@@ -1263,9 +1263,9 @@ namespace Techtella
             this.messagesGroup.Controls.Add(this.pongStat);
             this.messagesGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.messagesGroup.Location = new System.Drawing.Point(11, 18);
-            this.messagesGroup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.messagesGroup.Margin = new System.Windows.Forms.Padding(4);
             this.messagesGroup.Name = "messagesGroup";
-            this.messagesGroup.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.messagesGroup.Padding = new System.Windows.Forms.Padding(4);
             this.messagesGroup.Size = new System.Drawing.Size(267, 111);
             this.messagesGroup.TabIndex = 10;
             this.messagesGroup.TabStop = false;
@@ -1398,9 +1398,9 @@ namespace Techtella
             this.chatTab.Controls.Add(this.chatInputBox);
             this.chatTab.Controls.Add(this.chatOutputBox);
             this.chatTab.Location = new System.Drawing.Point(4, 25);
-            this.chatTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chatTab.Margin = new System.Windows.Forms.Padding(4);
             this.chatTab.Name = "chatTab";
-            this.chatTab.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chatTab.Padding = new System.Windows.Forms.Padding(4);
             this.chatTab.Size = new System.Drawing.Size(1133, 623);
             this.chatTab.TabIndex = 6;
             this.chatTab.Text = "Chat";
@@ -1418,7 +1418,7 @@ namespace Techtella
             this.Column1,
             this.Column2});
             this.knownPeersChatData.Location = new System.Drawing.Point(845, 7);
-            this.knownPeersChatData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.knownPeersChatData.Margin = new System.Windows.Forms.Padding(4);
             this.knownPeersChatData.MultiSelect = false;
             this.knownPeersChatData.Name = "knownPeersChatData";
             this.knownPeersChatData.ReadOnly = true;
@@ -1444,7 +1444,7 @@ namespace Techtella
             // chatSendButton
             // 
             this.chatSendButton.Location = new System.Drawing.Point(737, 521);
-            this.chatSendButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chatSendButton.Margin = new System.Windows.Forms.Padding(4);
             this.chatSendButton.Name = "chatSendButton";
             this.chatSendButton.Size = new System.Drawing.Size(100, 92);
             this.chatSendButton.TabIndex = 3;
@@ -1455,7 +1455,7 @@ namespace Techtella
             // chatInputBox
             // 
             this.chatInputBox.Location = new System.Drawing.Point(4, 521);
-            this.chatInputBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chatInputBox.Margin = new System.Windows.Forms.Padding(4);
             this.chatInputBox.Multiline = true;
             this.chatInputBox.Name = "chatInputBox";
             this.chatInputBox.Size = new System.Drawing.Size(724, 91);
@@ -1466,14 +1466,14 @@ namespace Techtella
             // 
             this.chatOutputBox.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.chatOutputBox.Location = new System.Drawing.Point(4, 7);
-            this.chatOutputBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chatOutputBox.Margin = new System.Windows.Forms.Padding(4);
             this.chatOutputBox.MaxLength = 327676;
             this.chatOutputBox.Multiline = true;
             this.chatOutputBox.Name = "chatOutputBox";
             this.chatOutputBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.chatOutputBox.Size = new System.Drawing.Size(832, 505);
             this.chatOutputBox.TabIndex = 0;
-            // 
+            // );
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1483,7 +1483,7 @@ namespace Techtella
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1149, 763);
             this.MinimumSize = new System.Drawing.Size(1149, 741);
@@ -1646,7 +1646,7 @@ namespace Techtella
         private System.Windows.Forms.DataGridViewTextBoxColumn sharedStatsCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn dlStatsCol;
         private System.Windows.Forms.TabPage chatTab;
-        public System.Windows.Forms.TextBox chatOutputBox;
+        private System.Windows.Forms.TextBox chatOutputBox;
         private System.Windows.Forms.TextBox chatInputBox;
         private System.Windows.Forms.Button chatSendButton;
         private System.Windows.Forms.DataGridView knownPeersChatData;

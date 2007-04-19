@@ -21,12 +21,12 @@ namespace Techtella
             while (true)
             {
                 string chatOutput = "";
-                ArrayList currentMessages = owner.chatMessages;
+                ArrayList currentMessages = (ArrayList)owner.chatMessages.Clone();
                 foreach(object message in currentMessages)
                 {
                     chatOutput += message.ToString();
                 }
-                target.chatOutputBox.Text = chatOutput;
+                target.SetText(chatOutput);
             }
         }
 
