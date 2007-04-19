@@ -124,7 +124,7 @@
     <value>126, 17</value>
   </metadata>
   <data name="startBox.Text" xml:space="preserve">
-    <value>Welcome to Techtella.  Techtella is a peer-to-peer (P2P) file-sharing program based on the gnutella file-sharing system.  To get started, click on the Connections tab and add another Techtella user.  From there connections will be made with other clients.  You can add files you would like to share by clicking the Shared Files tab.  Other users will be able to search for these files and download them.  To perform a search click on the Search tab and enter what you are looking for.  Once you are downloading or uploading a file, you can view the progress by clicking the Transfers tab.  The Statistics tab displays information about how many clients you are connected to, you many times your files have been downloaded, etc.</value>
+    <value>Welcome to Techtella.  Techtella is a peer-to-peer (P2P) file-sharing program based on the gnutella file-sharing system.  To get started, click on the Connections menu and choose connect.  Enter  another Techtella user.  From there connections will be made with other clients.  You can add files you would like to share by clicking the Shared Files tab.  Other users will be able to search for these files and download them.  To perform a search click on the Search tab and enter what you are looking for.  Once you are downloading or uploading a file, you can view the progress by clicking the Transfers tab.  The Statistics tab displays information about how many clients you are connected to, you many times your files have been downloaded, etc.</value>
   </data>
   <metadata name="ipColumnB.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -225,7 +225,10 @@
   <metadata name="dlStatsCol.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>38</value>
+    <value>25</value>
   </metadata>
 </root>

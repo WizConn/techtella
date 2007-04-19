@@ -2,6 +2,7 @@ namespace Techtella
 {
     partial class Form1
     {
+        //Statistics stats = new Statistics();
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -47,6 +48,8 @@ namespace Techtella
             this.startBox = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.connectionsTab = new System.Windows.Forms.TabPage();
+            this.chatButton = new System.Windows.Forms.Button();
+            this.peersRefreshButton = new System.Windows.Forms.Button();
             this.movePeerButton = new System.Windows.Forms.Button();
             this.addPeerButton = new System.Windows.Forms.Button();
             this.addPeerLabel = new System.Windows.Forms.Label();
@@ -116,6 +119,7 @@ namespace Techtella
             this.sharedFileSizeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sharedIdentifierCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statsTab = new System.Windows.Forms.TabPage();
+            this.refreshStatsButton = new System.Windows.Forms.Button();
             this.statsPeersLabel = new System.Windows.Forms.Label();
             this.statsSharedData = new System.Windows.Forms.DataGridView();
             this.sharedStatsCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -174,6 +178,7 @@ namespace Techtella
             this.menuStrip1.Size = new System.Drawing.Size(856, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // toolStripMenuItem1
             // 
@@ -189,7 +194,7 @@ namespace Techtella
             // connectToolStripMenuItem
             // 
             this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-            this.connectToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.connectToolStripMenuItem.Text = "Connect";
             this.connectToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
@@ -197,18 +202,18 @@ namespace Techtella
             // 
             this.disconnectToolStripMenuItem.Enabled = false;
             this.disconnectToolStripMenuItem.Name = "disconnectToolStripMenuItem";
-            this.disconnectToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.disconnectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.disconnectToolStripMenuItem.Text = "Disconnect";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(134, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
@@ -217,13 +222,13 @@ namespace Techtella
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem1});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.settingsToolStripMenuItem.Text = "Options";
             // 
             // settingsToolStripMenuItem1
             // 
             this.settingsToolStripMenuItem1.Name = "settingsToolStripMenuItem1";
-            this.settingsToolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
+            this.settingsToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
             this.settingsToolStripMenuItem1.Text = "Settings";
             // 
             // helpToolStripMenuItem
@@ -231,13 +236,13 @@ namespace Techtella
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutTechtellaToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // aboutTechtellaToolStripMenuItem
             // 
             this.aboutTechtellaToolStripMenuItem.Name = "aboutTechtellaToolStripMenuItem";
-            this.aboutTechtellaToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.aboutTechtellaToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.aboutTechtellaToolStripMenuItem.Text = "About Techtella";
             this.aboutTechtellaToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
@@ -246,7 +251,7 @@ namespace Techtella
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabel,
             this.statusLabel2});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 574);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 575);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(856, 22);
             this.statusStrip1.TabIndex = 1;
@@ -255,7 +260,7 @@ namespace Techtella
             // statusLabel
             // 
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(122, 17);
+            this.statusLabel.Size = new System.Drawing.Size(123, 17);
             this.statusLabel.Text = "0 Downloads, 0 Uploads";
             this.statusLabel.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
             // 
@@ -263,7 +268,7 @@ namespace Techtella
             // 
             this.statusLabel2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.statusLabel2.Name = "statusLabel2";
-            this.statusLabel2.Size = new System.Drawing.Size(146, 17);
+            this.statusLabel2.Size = new System.Drawing.Size(142, 17);
             this.statusLabel2.Text = "-  Sharing 0 files with 0 peers";
             // 
             // tabControl
@@ -275,6 +280,7 @@ namespace Techtella
             this.tabControl.Controls.Add(this.searchTab);
             this.tabControl.Controls.Add(this.sharedTab);
             this.tabControl.Controls.Add(this.statsTab);
+            this.tabControl.Enabled = false;
             this.tabControl.Location = new System.Drawing.Point(0, 27);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -298,6 +304,7 @@ namespace Techtella
             // 
             this.startBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(227)))), ((int)(((byte)(167)))));
             this.startBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.startBox.ForeColor = System.Drawing.Color.Black;
             this.startBox.Location = new System.Drawing.Point(6, 112);
             this.startBox.Multiline = true;
             this.startBox.Name = "startBox";
@@ -318,6 +325,8 @@ namespace Techtella
             // 
             // connectionsTab
             // 
+            this.connectionsTab.Controls.Add(this.chatButton);
+            this.connectionsTab.Controls.Add(this.peersRefreshButton);
             this.connectionsTab.Controls.Add(this.movePeerButton);
             this.connectionsTab.Controls.Add(this.addPeerButton);
             this.connectionsTab.Controls.Add(this.addPeerLabel);
@@ -336,6 +345,26 @@ namespace Techtella
             this.connectionsTab.TabIndex = 1;
             this.connectionsTab.Text = "Connections";
             this.connectionsTab.UseVisualStyleBackColor = true;
+            // 
+            // chatButton
+            // 
+            this.chatButton.Location = new System.Drawing.Point(320, 317);
+            this.chatButton.Name = "chatButton";
+            this.chatButton.Size = new System.Drawing.Size(75, 23);
+            this.chatButton.TabIndex = 12;
+            this.chatButton.Text = "Chat";
+            this.chatButton.UseVisualStyleBackColor = true;
+            this.chatButton.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // peersRefreshButton
+            // 
+            this.peersRefreshButton.Location = new System.Drawing.Point(598, 352);
+            this.peersRefreshButton.Name = "peersRefreshButton";
+            this.peersRefreshButton.Size = new System.Drawing.Size(90, 23);
+            this.peersRefreshButton.TabIndex = 11;
+            this.peersRefreshButton.Text = "Refresh";
+            this.peersRefreshButton.UseVisualStyleBackColor = true;
+            this.peersRefreshButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // movePeerButton
             // 
@@ -434,6 +463,7 @@ namespace Techtella
             this.peersData.Location = new System.Drawing.Point(450, 32);
             this.peersData.Name = "peersData";
             this.peersData.ReadOnly = true;
+            this.peersData.RowTemplate.Height = 24;
             this.peersData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.peersData.Size = new System.Drawing.Size(390, 278);
             this.peersData.TabIndex = 1;
@@ -472,6 +502,7 @@ namespace Techtella
             this.knownPeersData.Location = new System.Drawing.Point(3, 32);
             this.knownPeersData.Name = "knownPeersData";
             this.knownPeersData.ReadOnly = true;
+            this.knownPeersData.RowTemplate.Height = 24;
             this.knownPeersData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.knownPeersData.Size = new System.Drawing.Size(392, 278);
             this.knownPeersData.TabIndex = 0;
@@ -551,6 +582,7 @@ namespace Techtella
             this.uploadData.Location = new System.Drawing.Point(0, 275);
             this.uploadData.Name = "uploadData";
             this.uploadData.ReadOnly = true;
+            this.uploadData.RowTemplate.Height = 24;
             this.uploadData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.uploadData.Size = new System.Drawing.Size(848, 223);
             this.uploadData.TabIndex = 1;
@@ -625,6 +657,7 @@ namespace Techtella
             this.downloadData.Location = new System.Drawing.Point(0, 25);
             this.downloadData.Name = "downloadData";
             this.downloadData.ReadOnly = true;
+            this.downloadData.RowTemplate.Height = 24;
             this.downloadData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.downloadData.Size = new System.Drawing.Size(848, 223);
             this.downloadData.TabIndex = 0;
@@ -711,6 +744,7 @@ namespace Techtella
             this.searchData.Location = new System.Drawing.Point(0, 45);
             this.searchData.Name = "searchData";
             this.searchData.ReadOnly = true;
+            this.searchData.RowTemplate.Height = 24;
             this.searchData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.searchData.Size = new System.Drawing.Size(848, 459);
             this.searchData.TabIndex = 7;
@@ -938,6 +972,7 @@ namespace Techtella
             this.sharedData.MultiSelect = false;
             this.sharedData.Name = "sharedData";
             this.sharedData.ReadOnly = true;
+            this.sharedData.RowTemplate.Height = 24;
             this.sharedData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.sharedData.ShowEditingIcon = false;
             this.sharedData.Size = new System.Drawing.Size(848, 384);
@@ -975,6 +1010,7 @@ namespace Techtella
             // 
             // statsTab
             // 
+            this.statsTab.Controls.Add(this.refreshStatsButton);
             this.statsTab.Controls.Add(this.statsPeersLabel);
             this.statsTab.Controls.Add(this.statsSharedData);
             this.statsTab.Controls.Add(this.downloadersBox);
@@ -988,10 +1024,20 @@ namespace Techtella
             this.statsTab.Text = "Statistics";
             this.statsTab.UseVisualStyleBackColor = true;
             // 
+            // refreshStatsButton
+            // 
+            this.refreshStatsButton.Location = new System.Drawing.Point(242, 366);
+            this.refreshStatsButton.Name = "refreshStatsButton";
+            this.refreshStatsButton.Size = new System.Drawing.Size(91, 23);
+            this.refreshStatsButton.TabIndex = 15;
+            this.refreshStatsButton.Text = "Refresh Stats";
+            this.refreshStatsButton.UseVisualStyleBackColor = true;
+            this.refreshStatsButton.Click += new System.EventHandler(this.button1_Click);
+            // 
             // statsPeersLabel
             // 
             this.statsPeersLabel.AutoSize = true;
-            this.statsPeersLabel.Location = new System.Drawing.Point(5, 366);
+            this.statsPeersLabel.Location = new System.Drawing.Point(8, 371);
             this.statsPeersLabel.Name = "statsPeersLabel";
             this.statsPeersLabel.Size = new System.Drawing.Size(90, 13);
             this.statsPeersLabel.TabIndex = 14;
@@ -1012,6 +1058,7 @@ namespace Techtella
             this.statsSharedData.Location = new System.Drawing.Point(242, 145);
             this.statsSharedData.Name = "statsSharedData";
             this.statsSharedData.ReadOnly = true;
+            this.statsSharedData.RowTemplate.Height = 24;
             this.statsSharedData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.statsSharedData.Size = new System.Drawing.Size(310, 199);
             this.statsSharedData.TabIndex = 13;
@@ -1025,7 +1072,7 @@ namespace Techtella
             // 
             // dlStatsCol
             // 
-            this.dlStatsCol.HeaderText = "Times Dwnloaded";
+            this.dlStatsCol.HeaderText = "Times Downloaded";
             this.dlStatsCol.Name = "dlStatsCol";
             this.dlStatsCol.ReadOnly = true;
             // 
@@ -1268,12 +1315,16 @@ namespace Techtella
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(856, 596);
+            this.ClientSize = new System.Drawing.Size(856, 597);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(864, 626);
+            this.MinimumSize = new System.Drawing.Size(864, 608);
             this.Name = "Form1";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Techtella";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -1407,8 +1458,6 @@ namespace Techtella
         private System.Windows.Forms.Label queryHitLabel;
         private System.Windows.Forms.ListBox downloadersBox;
         private System.Windows.Forms.DataGridView statsSharedData;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sharedStatsCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dlStatsCol;
         private System.Windows.Forms.Label statsPeersLabel;
         private System.Windows.Forms.Label pingStat;
         private System.Windows.Forms.Label bytesdlStat;
@@ -1425,6 +1474,11 @@ namespace Techtella
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem1;
+        private System.Windows.Forms.Button peersRefreshButton;
+        private System.Windows.Forms.Button refreshStatsButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sharedStatsCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dlStatsCol;
+        private System.Windows.Forms.Button chatButton;
     }
 }
 

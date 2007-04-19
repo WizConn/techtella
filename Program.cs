@@ -14,7 +14,10 @@ namespace Techtella
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            BasicMultiServer TechServer = new BasicMultiServer();
+            TechServer.RunThreaded();
+            Client InitClientData = new Client();
+            Application.Run(new Form1(TechServer));
         }
     }
 }
