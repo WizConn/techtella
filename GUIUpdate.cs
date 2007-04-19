@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using System.Collections;
 
 namespace Techtella
 {
@@ -20,7 +21,8 @@ namespace Techtella
             while (true)
             {
                 string chatOutput = "";
-                foreach(object message in owner.chatMessages)
+                ArrayList currentMessages = owner.chatMessages;
+                foreach(object message in currentMessages)
                 {
                     chatOutput += message.ToString();
                 }
