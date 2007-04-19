@@ -48,16 +48,40 @@ namespace Techtella
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewCellCollection tempRow = knownPeersData.CurrentRow.Cells;
-            if (tempRow[0] != null && tempRow[1] != null)
+            if (sender == knownPeersData)
             {
-                chatIP = tempRow[0].Value.ToString();
-                string temp = tempRow[1].Value.ToString();
-                try
+                DataGridViewCellCollection tempRow = knownPeersData.CurrentRow.Cells;
+                if (tempRow[0] != null && tempRow[1] != null)
                 {
-                    chatPort = int.Parse(temp);
+                    chatIP = tempRow[0].Value.ToString();
+                    string temp = tempRow[1].Value.ToString();
+                    try
+                    {
+                        chatPort = int.Parse(temp);
+                    }
+                    catch { }
                 }
-                catch { }
+                Console.WriteLine(chatIP);
+                Console.WriteLine(chatPort);
+            }
+            else if (sender == knownPeersChatData)
+            {
+                Console.WriteLine("got click from chat");
+                DataGridViewCellCollection tempRow = knownPeersChatData.CurrentRow.Cells;
+                if (tempRow[0] != null && tempRow[1] != null)
+                {
+
+                    chatIP = tempRow[0].Value.ToString();
+                    string temp = tempRow[1].Value.ToString();
+                    Console.WriteLine(tempRow);
+                    try
+                    {
+                        chatPort = int.Parse(temp);
+                    }
+                    catch { }
+                }
+                Console.WriteLine(chatIP);
+                Console.WriteLine(chatPort);
             }
         }
 
@@ -87,13 +111,19 @@ namespace Techtella
                // queryStat.Text = "" + stats.numQuery;
                 //Need queryhit and push as well
             }
-            else if (sender == chatButton)
+            else if (sender == chatSendButton)
             {
-                if (chatIP != null)
+                Console.WriteLine(chatIP);
+                Client.SendMsg(chatIP, chatPort, chatInputBox.Text);
+                if (chatOutputBox.Text == "")
                 {
-                    Chat chat = new Chat(chatIP, chatPort);
-                    chat.Show();
+                    chatOutputBox.Text = "You: " + chatInputBox.Text;
                 }
+                else
+                {
+                    chatOutputBox.Text += "\r\n" + "You: " + chatInputBox.Text;
+                }
+                chatInputBox.Text = "";
             }
         }
 
@@ -131,14 +161,17 @@ namespace Techtella
                     foreach (string peer in server.knownPeers)
                     {
                         string[] row = {"","",""};
+                        string[] row2 = { "", "" };
                         int i = 0;
                         foreach (string col in peer.Split(delimit))
                         {
                             row.SetValue(col, i);
+                            row2.SetValue(col, i);
                             i++;
                         }
                         row.SetValue("0", 2);
                         knownPeersData.Rows.Add(row);
+                        knownPeersChatData.Rows.Add(row2);
                     }
                     
                     
@@ -151,6 +184,21 @@ namespace Techtella
         {
 
         }
+
+        private void KeyPressEvent(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                if (sender == chatInputBox)
+                {
+                    Client.SendMsg(chatIP, chatPort, chatInputBox.Text);
+                    chatOutputBox.Text += "\r\n" + "You: " + chatInputBox.Text;
+                    chatInputBox.Text = "";
+                }
+            }
+        }
+
+        
 
     }
 }
