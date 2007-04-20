@@ -794,6 +794,7 @@ namespace Techtella
             this.searchButton.TabIndex = 6;
             this.searchButton.Text = "Search";
             this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // searchCategoryCombo
             // 
