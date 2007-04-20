@@ -12,7 +12,8 @@ namespace Techtella
     {
         public static int descriptorHash;
         public static int pingCount = 0;
-        public static int pongCount = 0;
+        public static int statPing = 0;
+        public static int statPong = 0;
         public static int TTL = 10;
         public static int MyQuery = 0; //PUT IN TO GET RID OFF ERROR - WHAT IS THIS?
 
@@ -31,6 +32,7 @@ namespace Techtella
         {
             try
             {
+                statPing++;
                 pingCount++;
                 int descriptor = descriptorHash * 10 + pingCount;
                 byte type = new byte();
@@ -61,6 +63,7 @@ namespace Techtella
         {
             try
             {
+                statPing++;
                 string msg = descriptor.ToString() + "?" + ((byte)0).ToString() + "?" + timeToLive.ToString() + "?" + hops.ToString() + "?" + "0" + "??";
 
                 TcpClient client = new TcpClient(host.Split(':')[0], portnum);
@@ -85,7 +88,7 @@ namespace Techtella
         {
             try
             {
-                pongCount++;
+                statPong++;
                 string msg = descriptor.ToString() + "?" + ((byte)1).ToString() + "?" + TTL.ToString() + "?" + "0?" + mesg.Length.ToString() + "?" + mesg + "?";
                 if (host.Split(':')[0] == "127.0.0.1")
                 {

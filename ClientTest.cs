@@ -28,12 +28,6 @@ namespace Techtella
             
         }
 
-        [Test]
-        public void PongTest()
-        {
-            Client.Pong("127.0.0.1", 12345, 987654321, "12345&127.0.0.1&18");
-            Assert.AreEqual(Client.pongCount, 1);
-        }
 
         [Test]
         public void QueryTest()

@@ -101,8 +101,8 @@ namespace Techtella
             }
             else if (sender == refreshStatsButton)
             {
-                pingStat.Text = Client.pingCount.ToString();
-                pongStat.Text = Client.pongCount.ToString();
+                pingStat.Text = Client.statPing.ToString();
+                pongStat.Text = Client.statPong.ToString();
                // queryStat.Text = "" + stats.numQuery;
                 //Need queryhit and push as well
             }
