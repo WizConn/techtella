@@ -7,12 +7,16 @@ namespace Techtella
         private static ArrayList FileList;
         private static ArrayList FileIDs;
         private static ArrayList NetFiles;
+        private static ArrayList FileHosts;
+        private static ArrayList FileCodes;
 
         public FileClass()
         {
             FileList = new ArrayList();
             FileIDs = new ArrayList();
             NetFiles = new ArrayList();
+            FileCodes = new ArrayList();
+            FileHosts = new ArrayList();
         }
 
         public static int AddFile(string filename)
@@ -72,6 +76,8 @@ namespace Techtella
                 }
                 if (toRemove != null)
                 {
+                    FileCodes.Remove(FileCodes.ToArray()[NetFiles.IndexOf(toRemove)]);
+                    FileHosts.Remove(FileHosts.ToArray()[NetFiles.IndexOf(toRemove)]);
                     NetFiles.Remove(toRemove);
                     return 1;
                 }
@@ -83,7 +89,7 @@ namespace Techtella
             return 0;
         }
 
-        public static int AddNetFile(string filename)
+        public static int AddNetFile(string filename, int code, string host)
         {
             if (NetFiles != null)
             {
@@ -96,6 +102,8 @@ namespace Techtella
                 }
             }
             NetFiles.Add(filename);
+            NetFiles.Add(code);
+            FileHosts.Add(host);
             return 1;
         }
 
