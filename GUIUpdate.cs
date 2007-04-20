@@ -27,6 +27,8 @@ namespace Techtella
                     chatOutput += message.ToString();
                 }
                 target.SetText(chatOutput);
+                target.stats.statisticsUpdate();
+                target.updateStats();
             }
         }
 

@@ -93,5 +93,11 @@ namespace Techtella
             set { timesDownloaded.Add(value); }
         }
         #endregion
+
+        public void statisticsUpdate()
+        {
+            numPing = Client.statPing;
+            numPong = Client.statPong;
+        }
     }
 }
