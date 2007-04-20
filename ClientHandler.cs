@@ -107,7 +107,7 @@ namespace Techtella
                         {
                             owner.ForwardQuery(parsedPacket, iHandle);
                             owner.AddActiveQuery(parsedPacket.descriptor);
-                            if (true) // if (fileclass.gotsfile(parsedPacket.msg)) or some crap
+                            if (FileClass.GetFileByTitle(parsedPacket.msg) > 0) // if (fileclass.gotsfile(parsedPacket.msg)) or some crap
                             {
                                 BasicMultiServer.Packet qHit = MakeQHitPacket(parsedPacket);
                                 owner.QHitBack(qHit, iHandle);
@@ -128,10 +128,6 @@ namespace Techtella
                             owner.SetQInactive(parsedPacket.descriptor);
                             owner.ForwardQHit(parsedPacket);
                         }
-                        else if (iHandle == "127.0.0.1")
-                        {
-                            //Console.WriteLine("wont repeat pong to loopback");
-                        }
                         if (parsedPacket.descriptor == Client.MyQuery)
                         {
                             //**IMPLIMENT THIS**
@@ -145,6 +141,8 @@ namespace Techtella
                             //[4] = length of file name
                             //[5] = name of the file
                             //[6] = access code for the file's download
+                            string qhitpacket = parsedPacket.msg.Split('?')[5];
+                            FileClass.AddNetFile(qhitpacket.Split('&')[5], Int32.Parse(qhitpacket.Split('&')[6]), qhitpacket.Split('&')[1] + ":" + qhitpacket.Split('&')[0]);
                         }
                     }
                     else if (parsedPacket.type == (byte)40)
@@ -212,7 +210,7 @@ namespace Techtella
             //it needs to search fileclass and generate the appropriate message for response
             //if a file is found it also needs to somehow cause a port to run on the server
             //for file transfer (but that comes later)
-            msg += "0&"; //index
+            msg += "0&"; //index, always 0
             msg += "0&"; //size in bytes
             msg += "0&"; //length(of file name)
             msg += "&0&"; //name of file (blank), code 0 (no download)
