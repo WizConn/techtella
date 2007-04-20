@@ -12,7 +12,7 @@ namespace Techtella
 {
     public partial class Form1 : Form
     {
-        //public Statistics stats = new Statistics();
+        public Statistics stats = new Statistics();
         public BasicMultiServer server;
         public ArrayList testList = new ArrayList();
         public static String chatIP;
@@ -193,6 +193,12 @@ namespace Techtella
                     chatInputBox.Text = "";
                 }
             }
+        }
+
+        public void updateStats()
+        {
+            pingLabel.Text = stats.numPing + "";
+            pongLabel.Text = stats.numPong + "";
         }
     }
 }
