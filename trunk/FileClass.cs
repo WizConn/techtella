@@ -156,5 +156,15 @@ namespace Techtella
             return NetFiles;
         }
 
+        public static ArrayList GetDownCodes()
+        {
+            return FileCodes;
+        }
+
+        public static ArrayList GetHosts()
+        {
+            return FileHosts;
+        }
+
     }
 }
