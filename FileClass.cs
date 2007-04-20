@@ -1,4 +1,7 @@
 using System.Collections;
+using System.IO;
+using System.Text;
+using System;
 
 namespace Techtella
 {
@@ -19,24 +22,7 @@ namespace Techtella
             FileHosts = new ArrayList();
         }
 
-        //public static int AddFile(string filename)
-        //{
-        //    if (FileList != null)
-        //    {
-        //        foreach (object fileObj in FileList)
-        //        {
-        //            if (fileObj.ToString() == filename)
-        //            {
-        //                return 0;
-        //            }
-        //        }
-        //    }
-        //    FileList.Add(filename);
-        //    FileIDs.Add(filename.GetHashCode());
-        //    return 1;
-        //}
-
-        public static void AddFile(string filename)
+        public int AddFile(string filename)
         {
             if (FileList != null)
             {
@@ -44,18 +30,16 @@ namespace Techtella
                 {
                     if (fileObj.ToString() == filename)
                     {
-
+                        return 0;
                     }
                 }
             }
-            else
-            {
-                FileList.Add(filename);
-                FileIDs.Add(filename.GetHashCode());
-            }
+            FileList.Add(filename);
+            FileIDs.Add(filename.GetHashCode());
+            return 1;
         }
 
-        public static int RemoveFile(string filename)
+        public int RemoveFile(string filename)
         {
             object toRemove = null;
             if (FileList != null)
@@ -81,7 +65,7 @@ namespace Techtella
             return 0;
         }
 
-        public static int RemoveNetFile(string filename)
+        public int RemoveNetFile(string filename)
         {
             object toRemove = null;
             if (NetFiles != null)
@@ -126,27 +110,27 @@ namespace Techtella
             return 1;
         }
 
-        public static ArrayList GetFileData()
+        public ArrayList GetFileData()
         {
             return FileList;
         }
 
-        public static ArrayList GetFileIDs()
+        public ArrayList GetFileIDs()
         {
             return FileIDs;
         }
 
-        public static ArrayList GetNetFiles()
+        public ArrayList GetNetFiles()
         {
             return NetFiles;
         }
 
-        public static ArrayList GetDownCodes()
+        public ArrayList GetDownCodes()
         {
             return FileCodes;
         }
 
-        public static ArrayList GetHosts()
+        public ArrayList GetHosts()
         {
             return FileHosts;
         }
