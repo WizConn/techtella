@@ -28,6 +28,13 @@ namespace Techtella
             public string from;
         }
 
+        public void CreatePing(string host, int port)
+        {
+            int descriptor = Client.descriptorHash * 100 + Client.pingCount + 1;
+            AddActivePing(descriptor, "127.0.0.1");
+            Client.Ping(host, portnum);
+        }
+
         public void ForwardPing(Packet ping, string ignore)
         {
             foreach (object hostname in knownPeers)
