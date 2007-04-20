@@ -197,8 +197,8 @@ namespace Techtella
 
         public void updateStats()
         {
-            pingLabel.Text = stats.numPing + "";
-            pongLabel.Text = stats.numPong + "";
+            pingStat.Text = stats.numPing + "";
+            pongStat.Text = stats.numPong + "";
         }
     }
 }
