@@ -118,7 +118,6 @@ namespace Techtella
             this.sharedFileSizeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sharedIdentifierCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statsTab = new System.Windows.Forms.TabPage();
-            this.refreshStatsButton = new System.Windows.Forms.Button();
             this.statsPeersLabel = new System.Windows.Forms.Label();
             this.statsSharedData = new System.Windows.Forms.DataGridView();
             this.sharedStatsCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1014,7 +1013,6 @@ namespace Techtella
             // 
             // statsTab
             // 
-            this.statsTab.Controls.Add(this.refreshStatsButton);
             this.statsTab.Controls.Add(this.statsPeersLabel);
             this.statsTab.Controls.Add(this.statsSharedData);
             this.statsTab.Controls.Add(this.downloadersBox);
@@ -1027,16 +1025,6 @@ namespace Techtella
             this.statsTab.TabIndex = 5;
             this.statsTab.Text = "Statistics";
             this.statsTab.UseVisualStyleBackColor = true;
-            // 
-            // refreshStatsButton
-            // 
-            this.refreshStatsButton.Location = new System.Drawing.Point(242, 366);
-            this.refreshStatsButton.Name = "refreshStatsButton";
-            this.refreshStatsButton.Size = new System.Drawing.Size(91, 23);
-            this.refreshStatsButton.TabIndex = 15;
-            this.refreshStatsButton.Text = "Refresh Stats";
-            this.refreshStatsButton.UseVisualStyleBackColor = true;
-            this.refreshStatsButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // statsPeersLabel
             // 
@@ -1568,7 +1556,6 @@ namespace Techtella
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem1;
         private System.Windows.Forms.Button peersRefreshButton;
-        private System.Windows.Forms.Button refreshStatsButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn sharedStatsCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn dlStatsCol;
         private System.Windows.Forms.TabPage chatTab;

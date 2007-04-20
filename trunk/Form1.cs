@@ -99,13 +99,7 @@ namespace Techtella
                 }
                 catch(NullReferenceException){}
             }
-            else if (sender == refreshStatsButton)
-            {
-                pingStat.Text = Client.statPing.ToString();
-                pongStat.Text = Client.statPong.ToString();
-               // queryStat.Text = "" + stats.numQuery;
-                //Need queryhit and push as well
-            }
+           
             else if (sender == chatSendButton)
             {
                 Console.WriteLine(chatIP);
