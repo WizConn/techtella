@@ -107,7 +107,7 @@ namespace Techtella
                         {
                             owner.ForwardQuery(parsedPacket, iHandle);
                             owner.AddActiveQuery(parsedPacket.descriptor);
-                            if (FileClass.GetFileByTitle(parsedPacket.msg) > 0) // if (fileclass.gotsfile(parsedPacket.msg)) or some crap
+                            if (FileClass.HasFile(parsedPacket.msg) > 0) // if (fileclass.gotsfile(parsedPacket.msg)) or some crap
                             {
                                 BasicMultiServer.Packet qHit = MakeQHitPacket(parsedPacket);
                                 owner.QHitBack(qHit, iHandle);
