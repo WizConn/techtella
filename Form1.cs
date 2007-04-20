@@ -23,6 +23,8 @@ namespace Techtella
         public static int foundPeerPort;
         public GUIUpdate updater;
         public String selectedCategory = "ANY";
+        public static String[] category = { "ANY", "AUDIO", "VIDEO", "DATA", "TEXT", "IMAGE" };
+        public static String[] searchCategory = { "ANY", "AUDIO", "VIDEO", "DATA", "TEXT", "IMAGE" };
         
         public Form1(BasicMultiServer m)
         {
@@ -161,9 +163,27 @@ namespace Techtella
                 //and with title of: shareTitleBox.Text
                 //from the path: 
                 Console.WriteLine(shareCategoryCombo.SelectedText);
-                String file = shareCategoryCombo.SelectedText + "*" + shareTitleBox.Text + "*" + shareFileBox.Text;
+                String file = category[shareCategoryCombo.SelectedIndex] + "*" + shareTitleBox.Text + "*" + shareFileBox.Text;
                 FileClass.AddFile(file);
-                Console.WriteLine("Just added file: " + file);
+                try
+                {
+                    string[] row = { "", "", "", "", "" };
+                    int i = 0;
+                    foreach (string col in file.Split('*'))
+                    {
+                        //variables for each col
+                    }
+                    row.SetValue("0", 2);
+                    peersData.Rows.Add(row);
+                    
+                }
+                catch (NullReferenceException) { }
+            }
+            else if (sender == searchButton)
+            {
+                String searchQuery = searchCategory[searchCategoryCombo.SelectedIndex] + "*" + searchTitleBox.Text + "*" + searchFileNameBox.Text;
+                Console.WriteLine(searchQuery);
+                server.CreateQuery(searchQuery);
             }
         }
 
