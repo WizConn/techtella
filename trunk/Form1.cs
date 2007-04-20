@@ -33,6 +33,7 @@ namespace Techtella
         public static string file;
         public static String tempFilePath;
         public static DataGridViewRow removeRow;
+        public static FileClass fileClass = new FileClass();
 
 
         public Form1(BasicMultiServer m)
@@ -176,9 +177,8 @@ namespace Techtella
             }
             else if (sender == addSharedFileButton)
             {
-                Console.WriteLine(shareCategoryCombo.SelectedText);
                 file = category[shareCategoryCombo.SelectedIndex] + "*" + shareTitleBox.Text + "*" + shareFileBox.Text;
-                FileClass.AddFile(file);
+                fileClass.AddFile(file);
                 try
                 {
                     string[] row = { "", "", "", "", "" };
@@ -218,10 +218,10 @@ namespace Techtella
             }
             else if (sender == removeButton)
             {
-                //listFiles = FileClass.GetFileData();
-                //tempFilePath = listFiles[sharedData.CurrentRow.Index].ToString();
+                listFiles = fileClass.GetFileData();
+                tempFilePath = listFiles[sharedData.CurrentRow.Index].ToString();
                 sharedData.Rows.Remove(sharedData.CurrentRow);
-                //FileClass.RemoveFile(tempFilePath);
+                fileClass.RemoveFile(tempFilePath);
             }
         }
 
