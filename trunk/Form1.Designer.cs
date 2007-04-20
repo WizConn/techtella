@@ -48,6 +48,7 @@ namespace Techtella
             this.startBox = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.connectionsTab = new System.Windows.Forms.TabPage();
+            this.forcePingButton = new System.Windows.Forms.Button();
             this.peersRefreshButton = new System.Windows.Forms.Button();
             this.movePeerButton = new System.Windows.Forms.Button();
             this.addPeerButton = new System.Windows.Forms.Button();
@@ -104,7 +105,7 @@ namespace Techtella
             this.removeButton = new System.Windows.Forms.Button();
             this.shareCategoryCombo = new System.Windows.Forms.ComboBox();
             this.browseButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.addSharedFileButton = new System.Windows.Forms.Button();
             this.shareTitleBox = new System.Windows.Forms.TextBox();
             this.shareFileBox = new System.Windows.Forms.TextBox();
             this.shareSharedLabel = new System.Windows.Forms.Label();
@@ -151,7 +152,7 @@ namespace Techtella
             this.chatSendButton = new System.Windows.Forms.Button();
             this.chatInputBox = new System.Windows.Forms.TextBox();
             this.chatOutputBox = new System.Windows.Forms.TextBox();
-            this.forcePingButton = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -302,7 +303,7 @@ namespace Techtella
             this.startTab.Controls.Add(this.pictureBox1);
             this.startTab.Location = new System.Drawing.Point(4, 22);
             this.startTab.Name = "startTab";
-            this.startTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.startTab.Padding = new System.Windows.Forms.Padding(3);
             this.startTab.Size = new System.Drawing.Size(848, 504);
             this.startTab.TabIndex = 0;
             this.startTab.Text = "Start";
@@ -347,11 +348,21 @@ namespace Techtella
             this.connectionsTab.Controls.Add(this.knownPeersData);
             this.connectionsTab.Location = new System.Drawing.Point(4, 22);
             this.connectionsTab.Name = "connectionsTab";
-            this.connectionsTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.connectionsTab.Padding = new System.Windows.Forms.Padding(3);
             this.connectionsTab.Size = new System.Drawing.Size(848, 504);
             this.connectionsTab.TabIndex = 1;
             this.connectionsTab.Text = "Connections";
             this.connectionsTab.UseVisualStyleBackColor = true;
+            // 
+            // forcePingButton
+            // 
+            this.forcePingButton.Location = new System.Drawing.Point(358, 316);
+            this.forcePingButton.Name = "forcePingButton";
+            this.forcePingButton.Size = new System.Drawing.Size(123, 23);
+            this.forcePingButton.TabIndex = 17;
+            this.forcePingButton.Text = "Get Your Ping On";
+            this.forcePingButton.UseVisualStyleBackColor = true;
+            this.forcePingButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // peersRefreshButton
             // 
@@ -533,7 +544,7 @@ namespace Techtella
             this.transfersTab.Controls.Add(this.downloadData);
             this.transfersTab.Location = new System.Drawing.Point(4, 22);
             this.transfersTab.Name = "transfersTab";
-            this.transfersTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.transfersTab.Padding = new System.Windows.Forms.Padding(3);
             this.transfersTab.Size = new System.Drawing.Size(848, 504);
             this.transfersTab.TabIndex = 2;
             this.transfersTab.Text = "Transfers";
@@ -845,7 +856,7 @@ namespace Techtella
             this.sharedTab.Controls.Add(this.removeButton);
             this.sharedTab.Controls.Add(this.shareCategoryCombo);
             this.sharedTab.Controls.Add(this.browseButton);
-            this.sharedTab.Controls.Add(this.button1);
+            this.sharedTab.Controls.Add(this.addSharedFileButton);
             this.sharedTab.Controls.Add(this.shareTitleBox);
             this.sharedTab.Controls.Add(this.shareFileBox);
             this.sharedTab.Controls.Add(this.shareSharedLabel);
@@ -892,15 +903,16 @@ namespace Techtella
             this.browseButton.TabIndex = 9;
             this.browseButton.Text = "Browse";
             this.browseButton.UseVisualStyleBackColor = true;
+            this.browseButton.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button1
+            // addSharedFileButton
             // 
-            this.button1.Location = new System.Drawing.Point(369, 33);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Add to Shared Files";
-            this.button1.UseVisualStyleBackColor = true;
+            this.addSharedFileButton.Location = new System.Drawing.Point(369, 33);
+            this.addSharedFileButton.Name = "addSharedFileButton";
+            this.addSharedFileButton.Size = new System.Drawing.Size(110, 23);
+            this.addSharedFileButton.TabIndex = 8;
+            this.addSharedFileButton.Text = "Add to Shared Files";
+            this.addSharedFileButton.UseVisualStyleBackColor = true;
             // 
             // shareTitleBox
             // 
@@ -1310,7 +1322,7 @@ namespace Techtella
             this.chatTab.Controls.Add(this.chatOutputBox);
             this.chatTab.Location = new System.Drawing.Point(4, 22);
             this.chatTab.Name = "chatTab";
-            this.chatTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.chatTab.Padding = new System.Windows.Forms.Padding(3);
             this.chatTab.Size = new System.Drawing.Size(848, 504);
             this.chatTab.TabIndex = 6;
             this.chatTab.Text = "Chat";
@@ -1380,15 +1392,10 @@ namespace Techtella
             this.chatOutputBox.Size = new System.Drawing.Size(625, 411);
             this.chatOutputBox.TabIndex = 0;
             // 
-            // forcePingButton
+            // openFileDialog1
             // 
-            this.forcePingButton.Location = new System.Drawing.Point(358, 316);
-            this.forcePingButton.Name = "forcePingButton";
-            this.forcePingButton.Size = new System.Drawing.Size(123, 23);
-            this.forcePingButton.TabIndex = 17;
-            this.forcePingButton.Text = "Get Your Ping On";
-            this.forcePingButton.UseVisualStyleBackColor = true;
-            this.forcePingButton.Click += new System.EventHandler(this.button1_Click);
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // Form1
             // 
@@ -1510,7 +1517,7 @@ namespace Techtella
         private System.Windows.Forms.DataGridViewTextBoxColumn searchHopCol;
         private System.Windows.Forms.ComboBox shareCategoryCombo;
         private System.Windows.Forms.Button browseButton;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button addSharedFileButton;
         private System.Windows.Forms.TextBox shareTitleBox;
         private System.Windows.Forms.TextBox shareFileBox;
         private System.Windows.Forms.Label shareSharedLabel;
@@ -1566,6 +1573,7 @@ namespace Techtella
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.Button forcePingButton;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

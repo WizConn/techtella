@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace TECHTELLA
+namespace Techtella
 {
     public class FileClass
     {

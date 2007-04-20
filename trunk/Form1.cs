@@ -148,6 +148,19 @@ namespace Techtella
                 }
                 server.CreatePing(knownPeerIP, knownPeerPort);
             }
+            else if (sender == browseButton)
+            {
+                openFileDialog1.ShowDialog();
+            }
+            else if (sender == addSharedFileButton)
+            {
+                //make a file with category of: shareCategoryCombo.SelectedText
+                //and with title of: shareTitleBox.Text
+                //from the path: 
+                String file = shareCategoryCombo.SelectedText + "*" + shareTitleBox.Text + "*" + shareFileBox;
+                FileClass.AddFile(file);
+                
+            }
         }
 
         private void ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -227,6 +240,11 @@ namespace Techtella
         {
             pingStat.Text = stats.numPing + "";
             pongStat.Text = stats.numPong + "";
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            shareFileBox.Text = "" + openFileDialog1.FileName;
         }
     }
 }

@@ -51,6 +51,7 @@
     <Compile Include="ClientHandler.cs" />
     <Compile Include="ClientHandlerTest.cs" />
     <Compile Include="ClientTest.cs" />
+    <Compile Include="FileClass.cs" />
     <Compile Include="GUIUpdate.cs" />
     <Compile Include="ConnectWindow.cs">
       <SubType>Form</SubType>
