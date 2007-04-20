@@ -15,6 +15,7 @@ namespace Techtella
         public Statistics stats = new Statistics();
         public BasicMultiServer server;
         public ArrayList testList = new ArrayList();
+        public ArrayList listFiles = new ArrayList();
         public static String chatIP;
         public static int chatPort;
         public static String knownPeerIP;
@@ -30,7 +31,7 @@ namespace Techtella
         public static string title = "";
         public static string sharedCategory = "";
         public static string file;
-        public static String tempFileName;
+        public static String tempFilePath;
         public static DataGridViewRow removeRow;
 
 
@@ -95,15 +96,14 @@ namespace Techtella
                 }
 
             }
-            else if (sender == sharedData)
-            {
-                removeRow = sharedData.CurrentRow;
-                if (removeRow.Cells[0] != null)
-                {
-
-                    tempFileName = removeRow.Cells[0].Value.ToString();
-                }
-            }
+            //else if (sender == sharedData)
+            //{
+            //    removeRow = sharedData.CurrentRow;
+            //    if (removeRow.Cells[0] != null)
+            //    {
+            //        tempFileName = removeRow.Cells[0].Value.ToString();
+            //    }
+            //}
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -176,9 +176,6 @@ namespace Techtella
             }
             else if (sender == addSharedFileButton)
             {
-                //make a file with category of: shareCategoryCombo.SelectedText
-                //and with title of: shareTitleBox.Text
-                //from the path: 
                 Console.WriteLine(shareCategoryCombo.SelectedText);
                 file = category[shareCategoryCombo.SelectedIndex] + "*" + shareTitleBox.Text + "*" + shareFileBox.Text;
                 FileClass.AddFile(file);
@@ -221,18 +218,10 @@ namespace Techtella
             }
             else if (sender == removeButton)
             {
-                if (tempFileName == null)
-                {
-                    removeRow = sharedData.CurrentRow;
-                    if (removeRow.Cells[0] != null)
-                    {
-                        tempFileName = removeRow.Cells[0].Value.ToString();
-                    }
-                }
-                //removeRow = sharedData.CurrentRow;
-                FileClass.RemoveFile(filePath);
-                sharedData.Rows.Remove(removeRow);
-                //sharedData.CurrentRow.Index = 0;
+                //listFiles = FileClass.GetFileData();
+                //tempFilePath = listFiles[sharedData.CurrentRow.Index].ToString();
+                sharedData.Rows.Remove(sharedData.CurrentRow);
+                //FileClass.RemoveFile(tempFilePath);
             }
         }
 

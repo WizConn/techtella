@@ -880,6 +880,7 @@ namespace Techtella
             this.removeButton.TabIndex = 11;
             this.removeButton.Text = "Remove Selected";
             this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // shareCategoryCombo
             // 
@@ -994,6 +995,7 @@ namespace Techtella
             this.sharedData.ShowEditingIcon = false;
             this.sharedData.Size = new System.Drawing.Size(848, 384);
             this.sharedData.TabIndex = 0;
+            this.sharedData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // sharedFileNameCol
             // 
@@ -1064,6 +1066,7 @@ namespace Techtella
             this.statsSharedData.Location = new System.Drawing.Point(242, 145);
             this.statsSharedData.Name = "statsSharedData";
             this.statsSharedData.ReadOnly = true;
+            this.statsSharedData.RowHeadersVisible = false;
             this.statsSharedData.RowTemplate.Height = 24;
             this.statsSharedData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.statsSharedData.Size = new System.Drawing.Size(310, 199);

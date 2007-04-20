@@ -19,7 +19,24 @@ namespace Techtella
             FileHosts = new ArrayList();
         }
 
-        public static int AddFile(string filename)
+        //public static int AddFile(string filename)
+        //{
+        //    if (FileList != null)
+        //    {
+        //        foreach (object fileObj in FileList)
+        //        {
+        //            if (fileObj.ToString() == filename)
+        //            {
+        //                return 0;
+        //            }
+        //        }
+        //    }
+        //    FileList.Add(filename);
+        //    FileIDs.Add(filename.GetHashCode());
+        //    return 1;
+        //}
+
+        public static void AddFile(string filename)
         {
             if (FileList != null)
             {
@@ -27,13 +44,15 @@ namespace Techtella
                 {
                     if (fileObj.ToString() == filename)
                     {
-                        return 0;
+
                     }
                 }
             }
-            FileList.Add(filename);
-            FileIDs.Add(filename.GetHashCode());
-            return 1;
+            else
+            {
+                FileList.Add(filename);
+                FileIDs.Add(filename.GetHashCode());
+            }
         }
 
         public static int RemoveFile(string filename)
