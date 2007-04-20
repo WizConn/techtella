@@ -76,9 +76,9 @@ namespace Techtella
             }
         }
 
-        public void SetInactive(int descriptor)
+        public void SetInactive(object remove)
         {
-            activePings.Remove(descriptor);
+            activePings.Remove(remove);
         }
         
         public void SetQInactive(int descriptor)
@@ -100,12 +100,13 @@ namespace Techtella
         {
             TimeSpan age;
             System.Console.WriteLine("Checking " + activePings.Count + " active pings");
-            foreach (object active in activePings)
+            ArrayList currentPings = (ArrayList)activePings.Clone();
+            foreach (object active in currentPings)
             {
                 age = DateTime.Now - DateTime.Parse(active.ToString().Split('_')[2]);
                 if (age.Seconds >= 10)
                 {
-                    SetInactive(toCheck.descriptor);
+                    SetInactive(active);
                     Console.WriteLine("Set a ping inactive, descriptor:  " + Int32.Parse(active.ToString().Split('_')[1]));
                 }
                 else if (toCheck.descriptor == Int32.Parse(active.ToString().Split('_')[1]))
