@@ -122,6 +122,10 @@ namespace Techtella
                 }
                 chatInputBox.Text = "";
             }
+            else if (sender == forcePingButton)
+            {
+                server.CreatePing(chatIP, chatPort);
+            }
         }
 
         private void ToolStripMenuItem_Click(object sender, EventArgs e)
