@@ -22,6 +22,7 @@ namespace Techtella
         public static String foundPeerIP;
         public static int foundPeerPort;
         public GUIUpdate updater;
+        public String selectedCategory = "ANY";
         
         public Form1(BasicMultiServer m)
         {
@@ -88,8 +89,10 @@ namespace Techtella
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (sender == peersRefreshButton) {
-                try{
+            if (sender == peersRefreshButton)
+            {
+                try
+                {
                     foreach (string peer in server.foundPeers)
                     {
                         string[] row = { "", "", "" };
@@ -103,9 +106,9 @@ namespace Techtella
                         peersData.Rows.Add(row);
                     }
                 }
-                catch(NullReferenceException){}
+                catch (NullReferenceException) { }
             }
-           
+
             else if (sender == chatSendButton)
             {
                 if (chatIP == null)
@@ -123,7 +126,7 @@ namespace Techtella
                         }
                         catch { }
                     }
-                } 
+                }
                 Client.SendMsg(chatIP, chatPort, chatInputBox.Text);
                 updater.owner.chatMessages.Add("You: " + chatInputBox.Text + "\r\n");
                 chatInputBox.Text = "";
@@ -157,9 +160,10 @@ namespace Techtella
                 //make a file with category of: shareCategoryCombo.SelectedText
                 //and with title of: shareTitleBox.Text
                 //from the path: 
-                String file = shareCategoryCombo.SelectedText + "*" + shareTitleBox.Text + "*" + shareFileBox;
+                Console.WriteLine(shareCategoryCombo.SelectedText);
+                String file = shareCategoryCombo.SelectedText + "*" + shareTitleBox.Text + "*" + shareFileBox.Text;
                 FileClass.AddFile(file);
-                
+                Console.WriteLine("Just added file: " + file);
             }
         }
 
@@ -245,6 +249,11 @@ namespace Techtella
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             shareFileBox.Text = "" + openFileDialog1.FileName;
+        }
+
+        private void shareCategoryCombo_SelectedValueChanged(object sender, EventArgs e)
+        {
+            selectedCategory = e.ToString();
         }
     }
 }
