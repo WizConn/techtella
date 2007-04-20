@@ -102,18 +102,24 @@ namespace Techtella
            
             else if (sender == chatSendButton)
             {
-                Console.WriteLine(chatIP);
+                if (chatIP == null)
+                {
+                    DataGridViewCellCollection tempRow = knownPeersChatData.CurrentRow.Cells;
+                    if (tempRow[0] != null && tempRow[1] != null)
+                    {
+
+                        chatIP = tempRow[0].Value.ToString();
+                        string temp = tempRow[1].Value.ToString();
+                        Console.WriteLine(tempRow);
+                        try
+                        {
+                            chatPort = int.Parse(temp);
+                        }
+                        catch { }
+                    }
+                } 
                 Client.SendMsg(chatIP, chatPort, chatInputBox.Text);
-                if (chatOutputBox.Text == "")
-                {
-                    updater.owner.chatMessages.Add("You: " + chatInputBox.Text + "\r\n");
-                    //chatOutputBox.Text = "You: " + chatInputBox.Text;
-                }
-                else
-                {
-                    updater.owner.chatMessages.Add("You: " + chatInputBox.Text + "\r\n");
-                    //chatOutputBox.Text += "\r\n" + "You: " + chatInputBox.Text;
-                }
+                updater.owner.chatMessages.Add("You: " + chatInputBox.Text + "\r\n");
                 chatInputBox.Text = "";
             }
             else if (sender == forcePingButton)
@@ -166,7 +172,7 @@ namespace Techtella
         }
 
         private void KeyPressEvent(object sender, KeyPressEventArgs e)
-        {
+        {/*
             if (e.KeyChar == (char)Keys.Return)
             {
                 if (sender == chatInputBox)
@@ -189,10 +195,10 @@ namespace Techtella
                     }
                     Client.SendMsg(chatIP, chatPort, chatInputBox.Text);
                     updater.owner.chatMessages.Add("You: " + chatInputBox.Text + "\r\n");
-                    //chatOutputBox.Text += "\r\n" + "You: " + chatInputBox.Text;
                     chatInputBox.Text = "";
                 }
             }
+        */
         }
 
         public void updateStats()
