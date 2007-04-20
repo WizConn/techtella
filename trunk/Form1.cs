@@ -17,6 +17,10 @@ namespace Techtella
         public ArrayList testList = new ArrayList();
         public static String chatIP;
         public static int chatPort;
+        public static String knownPeerIP;
+        public static int knownPeerPort;
+        public static String foundPeerIP;
+        public static int foundPeerPort;
         public GUIUpdate updater;
         
         public Form1(BasicMultiServer m)
@@ -46,24 +50,25 @@ namespace Techtella
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (sender == knownPeersData)
-            {
-                DataGridViewCellCollection tempRow = knownPeersData.CurrentRow.Cells;
-                if (tempRow[0] != null && tempRow[1] != null)
+            
+                if (sender == knownPeersData)
                 {
-                    chatIP = tempRow[0].Value.ToString();
-                    string temp = tempRow[1].Value.ToString();
-                    try
+                    DataGridViewCellCollection tempRow = knownPeersData.CurrentRow.Cells;
+                    if (tempRow[0] != null && tempRow[1] != null)
                     {
-                        chatPort = int.Parse(temp);
+                        knownPeerIP = tempRow[0].Value.ToString();
+                        string temp = tempRow[1].Value.ToString();
+                        try
+                        {
+                            knownPeerPort = int.Parse(temp);
+                        }
+                        catch { }
                     }
-                    catch { }
                 }
-                Console.WriteLine(chatIP);
-                Console.WriteLine(chatPort);
-            }
+            
             else if (sender == knownPeersChatData)
             {
+
                 DataGridViewCellCollection tempRow = knownPeersChatData.CurrentRow.Cells;
                 if (tempRow[0] != null && tempRow[1] != null)
                 {
@@ -77,6 +82,7 @@ namespace Techtella
                     }
                     catch { }
                 }
+
             }
         }
 
@@ -124,7 +130,23 @@ namespace Techtella
             }
             else if (sender == forcePingButton)
             {
-                server.CreatePing(chatIP, chatPort);
+                if (knownPeerIP == null)
+                {
+                    DataGridViewCellCollection tempRow = knownPeersData.CurrentRow.Cells;
+                    if (tempRow[0] != null && tempRow[1] != null)
+                    {
+
+                        knownPeerIP = tempRow[0].Value.ToString();
+                        string temp = tempRow[1].Value.ToString();
+                        Console.WriteLine(tempRow);
+                        try
+                        {
+                            knownPeerPort = int.Parse(temp);
+                        }
+                        catch { }
+                    }
+                }
+                server.CreatePing(knownPeerIP, knownPeerPort);
             }
         }
 
