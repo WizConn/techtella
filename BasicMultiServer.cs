@@ -241,7 +241,7 @@ namespace Techtella
             AddActiveQuery(descriptor);
             foreach (object host in knownPeers)
             {
-                Client.Query(host.ToString().Split(':')[0], Int32.Parse(host.ToString().Split(':')[1]), 10, criteria);
+                Client.Query(host.ToString().Split(':')[0], 12345, 10, criteria);
             }
         }
     }

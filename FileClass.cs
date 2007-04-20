@@ -107,40 +107,6 @@ namespace Techtella
             return 1;
         }
 
-        public static int GetFileByTitle(string search)
-        {
-            int index = 0;
-            if (FileList != null)
-            {
-                foreach (object fileObj in FileList)
-                {
-                    if (fileObj.ToString().Split('*')[1] == search)
-                    {
-                        return (int)FileIDs.ToArray()[index];
-                    }
-                    index++;
-                }
-            }
-            return 0;
-        }
-
-        public static string GetFileByHash(int hash)
-        {
-            int index = 0;
-            if (FileIDs != null)
-            {
-                foreach (object fileObj in FileIDs)
-                {
-                    if ((int)fileObj == hash)
-                    {
-                        return (string)FileList.ToArray()[index];
-                    }
-                    index++;
-                }
-            }
-            return "none";
-        }
-
         public static ArrayList GetFileData()
         {
             return FileList;
@@ -164,6 +130,25 @@ namespace Techtella
         public static ArrayList GetHosts()
         {
             return FileHosts;
+        }
+
+        public static int HasFile(string criteria)
+        {
+            foreach (object File in FileList)
+            {
+                if (File.ToString().Split('*')[0] == criteria.Split('*')[0])
+                {
+                    if (File.ToString().Split('*')[1] == criteria.Split('*')[0])
+                    {
+                        return 1;
+                    }
+                    if (File.ToString().Split('*')[2] == criteria.Split('*')[2])
+                    {
+                        return 2;
+                    }
+                }
+            }
+            return 0;
         }
 
     }
