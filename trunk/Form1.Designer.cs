@@ -913,6 +913,7 @@ namespace Techtella
             this.addSharedFileButton.TabIndex = 8;
             this.addSharedFileButton.Text = "Add to Shared Files";
             this.addSharedFileButton.UseVisualStyleBackColor = true;
+            this.addSharedFileButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // shareTitleBox
             // 
