@@ -17,11 +17,14 @@ namespace Techtella
 
         public static int AddFile(string filename)
         {
-            foreach (object fileObj in FileList)
+            if (FileList != null)
             {
-                if (fileObj.ToString() == filename)
+                foreach (object fileObj in FileList)
                 {
-                    return 0;
+                    if (fileObj.ToString() == filename)
+                    {
+                        return 0;
+                    }
                 }
             }
             FileList.Add(filename);
@@ -29,16 +32,34 @@ namespace Techtella
             return 1;
         }
 
-        public static int GetFileByName(string search)
+        public static int AddNetFile(string filename)
+        {
+            if (NetFiles != null)
+            {
+                foreach (object fileObj in NetFiles)
+                {
+                    if (fileObj.ToString() == filename)
+                    {
+                        return 0;
+                    }
+                }
+            }
+            NetFiles.Add(filename);
+        }
+
+        public static int GetFileByTitle(string search)
         {
             int index = 0;
-            foreach (object fileObj in FileList)
+            if (FileList != null)
             {
-                if (fileObj.ToString() == search)
+                foreach (object fileObj in FileList)
                 {
-                    return (int)FileIDs.ToArray()[index];
+                    if (fileObj.ToString().Split('*')[1] == search)
+                    {
+                        return (int)FileIDs.ToArray()[index];
+                    }
+                    index++;
                 }
-                index++;
             }
             return 0;
         }
@@ -46,15 +67,33 @@ namespace Techtella
         public static string GetFileByHash(int hash)
         {
             int index = 0;
-            foreach (object fileObj in FileIDs)
+            if (FileIDs != null)
             {
-                if ((int)fileObj == hash)
+                foreach (object fileObj in FileIDs)
                 {
-                    return (string)FileList.ToArray()[index];
+                    if ((int)fileObj == hash)
+                    {
+                        return (string)FileList.ToArray()[index];
+                    }
+                    index++;
                 }
-                index++;
             }
             return "none";
+        }
+
+        public ArrayList GetFileData()
+        {
+            return FileList;
+        }
+
+        public ArrayList GetFileIDs()
+        {
+            return FileIDs;
+        }
+
+        public ArrayList GetNetFiles()
+        {
+            return NetFiles;
         }
 
     }
