@@ -32,6 +32,57 @@ namespace Techtella
             return 1;
         }
 
+        public static int RemoveFile(string filename)
+        {
+            object toRemove = null;
+            if (FileList != null)
+            {
+                foreach (object fileObj in FileList)
+                {
+                    if (fileObj.ToString().Split('*')[1] == filename)
+                    {
+                        toRemove = fileObj;
+                    }
+                }
+                if (toRemove != null)
+                {
+                    FileList.Remove(toRemove);
+                    FileIDs.Remove(toRemove.ToString().GetHashCode());
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            return 0;
+        }
+
+        public static int RemoveNetFile(string filename)
+        {
+            object toRemove = null;
+            if (NetFiles != null)
+            {
+                foreach (object fileObj in NetFiles)
+                {
+                    if (fileObj.ToString().Split('*')[1] == filename)
+                    {
+                        toRemove = fileObj;
+                    }
+                }
+                if (toRemove != null)
+                {
+                    NetFiles.Remove(toRemove);
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            return 0;
+        }
+
         public static int AddNetFile(string filename)
         {
             if (NetFiles != null)
@@ -45,6 +96,7 @@ namespace Techtella
                 }
             }
             NetFiles.Add(filename);
+            return 1;
         }
 
         public static int GetFileByTitle(string search)
@@ -81,17 +133,17 @@ namespace Techtella
             return "none";
         }
 
-        public ArrayList GetFileData()
+        public static ArrayList GetFileData()
         {
             return FileList;
         }
 
-        public ArrayList GetFileIDs()
+        public static ArrayList GetFileIDs()
         {
             return FileIDs;
         }
 
-        public ArrayList GetNetFiles()
+        public static ArrayList GetNetFiles()
         {
             return NetFiles;
         }
