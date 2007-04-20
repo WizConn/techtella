@@ -50,10 +50,9 @@ namespace Techtella
                 writer.WriteLine(msg);
                 writer.Flush();
             }
-            catch
+            catch (Exception e)
             {
-                //client is down
-                Console.WriteLine("this needs to be handled in a more professional manner");
+                Console.WriteLine("this needs to be handled in a more professional manner\n" + e);
             }
             //delete this line
             //Console.WriteLine(reader.ReadLine());
@@ -76,9 +75,9 @@ namespace Techtella
                 writer.WriteLine(msg);
                 writer.Flush();
             }
-            catch
+            catch (Exception e)
             {
-                Console.WriteLine("this needs to be handled in a more professional manner");
+                Console.WriteLine("this needs to be handled in a more professional manner\n" + e);
             }
             //delete this line
             //Console.WriteLine(reader.ReadLine());
@@ -107,9 +106,9 @@ namespace Techtella
                     writer.Flush();
                 }
             }
-            catch
+            catch (Exception e)
             {
-                Console.WriteLine("this needs to be handled in a more professional manner");
+                Console.WriteLine("this needs to be handled in a more professional manner\n" + e);
             }
             //delete this line
            // Console.WriteLine(reader.ReadLine());
@@ -129,9 +128,9 @@ namespace Techtella
                 writer.WriteLine("##" + msg);
                 writer.Flush();
             }
-            catch
+            catch (Exception e)
             {
-                Console.WriteLine("this needs to be handled in a more professional manner");
+                Console.WriteLine("this needs to be handled in a more professional manner\n" + e);
             }
            // Console.WriteLine(reader.ReadLine());
         }
@@ -157,9 +156,9 @@ namespace Techtella
                 writer.WriteLine(msg);
                 writer.Flush();
             }
-            catch
+            catch(Exception e)
             {
-                Console.WriteLine("this needs to be handled in a more professional manner");
+                Console.WriteLine("this needs to be handled in a more professional manner\n" + e);
             }
         }
 
@@ -179,9 +178,9 @@ namespace Techtella
                 writer.WriteLine(msg);
                 writer.Flush();
             }
-            catch
+            catch (Exception e)
             {
-                Console.WriteLine("this needs to be handled in a more professional manner");
+                Console.WriteLine("this needs to be handled in a more professional manner\n" + e);
             }
             //delete this line
             //Console.WriteLine(reader.ReadLine());
