@@ -25,7 +25,15 @@ namespace Techtella
         public String selectedCategory = "ANY";
         public static String[] category = { "ANY", "AUDIO", "VIDEO", "DATA", "TEXT", "IMAGE" };
         public static String[] searchCategory = { "ANY", "AUDIO", "VIDEO", "DATA", "TEXT", "IMAGE" };
-        
+        public static string fileName = "";
+        public static string filePath = "";
+        public static string title = "";
+        public static string sharedCategory = "";
+        public static string file;
+        public static String tempFileName;
+        public static DataGridViewRow removeRow;
+
+
         public Form1(BasicMultiServer m)
         {
             Thread th = new Thread(new ThreadStart(DoSplash));
@@ -163,7 +171,7 @@ namespace Techtella
                 //and with title of: shareTitleBox.Text
                 //from the path: 
                 Console.WriteLine(shareCategoryCombo.SelectedText);
-                String file = category[shareCategoryCombo.SelectedIndex] + "*" + shareTitleBox.Text + "*" + shareFileBox.Text;
+                file = category[shareCategoryCombo.SelectedIndex] + "*" + shareTitleBox.Text + "*" + shareFileBox.Text;
                 FileClass.AddFile(file);
                 try
                 {
@@ -171,10 +179,27 @@ namespace Techtella
                     int i = 0;
                     foreach (string col in file.Split('*'))
                     {
-                        //variables for each col
+                        if (i == 0)
+                        {
+                            sharedCategory = col;
+                        }
+                        else if (i == 1)
+                        {
+                            title = col;
+                        }
+                        else if (i == 2)
+                        {
+                            filePath = col;
+                        }
+                        fileName = filePath.Split('\\')[filePath.Split('\\').Length-1];
+                        i++;
                     }
-                    row.SetValue("0", 2);
-                    peersData.Rows.Add(row);
+                    row.SetValue(fileName, 0);
+                    row.SetValue(sharedCategory, 1);
+                    row.SetValue(title, 2);
+                    row.SetValue("?", 3);
+                    row.SetValue("?", 4);
+                    sharedData.Rows.Add(row);
                     
                 }
                 catch (NullReferenceException) { }
@@ -184,6 +209,20 @@ namespace Techtella
                 String searchQuery = searchCategory[searchCategoryCombo.SelectedIndex] + "*" + searchTitleBox.Text + "*" + searchFileNameBox.Text;
                 Console.WriteLine(searchQuery);
                 server.CreateQuery(searchQuery);
+            }
+            else if (sender == removeButton)
+            {
+                if (tempFileName == null)
+                {
+                    removeRow = sharedData.CurrentRow;
+                    if (removeRow.Cells[0] != null)
+                    {
+                        tempFileName = removeRow.Cells[0].Value.ToString();
+                    }
+                }
+                FileClass.RemoveFile(filePath);
+                sharedData.Rows.Remove(removeRow);
+                
             }
         }
 
