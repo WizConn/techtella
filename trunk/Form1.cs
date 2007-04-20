@@ -95,6 +95,15 @@ namespace Techtella
                 }
 
             }
+            else if (sender == sharedData)
+            {
+                removeRow = sharedData.CurrentRow;
+                if (removeRow.Cells[0] != null)
+                {
+
+                    tempFileName = removeRow.Cells[0].Value.ToString();
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -220,9 +229,10 @@ namespace Techtella
                         tempFileName = removeRow.Cells[0].Value.ToString();
                     }
                 }
+                //removeRow = sharedData.CurrentRow;
                 FileClass.RemoveFile(filePath);
                 sharedData.Rows.Remove(removeRow);
-                
+                //sharedData.CurrentRow.Index = 0;
             }
         }
 
