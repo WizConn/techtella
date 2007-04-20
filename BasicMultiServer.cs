@@ -234,5 +234,12 @@ namespace Techtella
         {
             chatMessages.Add("Message from client at " + from + ":  " + message);
         }
+
+        public void CreateQuery(string host, int port, string criteria)
+        {
+            int descriptor = Client.descriptorHash*100 + Client.pingCount + 1;
+            AddActiveQuery(descriptor);
+            Client.Query(host, port, 10, criteria);
+        }
     }
 }
