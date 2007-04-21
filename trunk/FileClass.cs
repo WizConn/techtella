@@ -79,8 +79,8 @@ namespace Techtella
                 }
                 if (toRemove != null)
                 {
-                    FileCodes.Remove(FileCodes.ToArray()[NetFiles.IndexOf(toRemove)]);
-                    FileHosts.Remove(FileHosts.ToArray()[NetFiles.IndexOf(toRemove)]);
+                    FileCodes.Remove(FileCodes.ToArray()[NetFiles.IndexOf(toRemove)-1]);
+                    FileHosts.Remove(FileHosts.ToArray()[NetFiles.IndexOf(toRemove)-1]);
                     NetFiles.Remove(toRemove);
                     return 1;
                 }
@@ -92,7 +92,7 @@ namespace Techtella
             return 0;
         }
 
-        public static int AddNetFile(string filename, int code, string host)
+        public int AddNetFile(string filename, int code, string host)
         {
             if (NetFiles != null)
             {
