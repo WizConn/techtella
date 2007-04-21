@@ -142,7 +142,7 @@ namespace Techtella
                             //[5] = name of the file
                             //[6] = access code for the file's download
                             string qhitpacket = parsedPacket.msg.Split('?')[5];
-                            FileClass.AddNetFile(qhitpacket.Split('&')[5], Int32.Parse(qhitpacket.Split('&')[6]), qhitpacket.Split('&')[1] + ":" + qhitpacket.Split('&')[0]);
+                            //FileClass.AddNetFile(qhitpacket.Split('&')[5], Int32.Parse(qhitpacket.Split('&')[6]), qhitpacket.Split('&')[1] + ":" + qhitpacket.Split('&')[0]);
                         }
                     }
                     else if (parsedPacket.type == (byte)40)

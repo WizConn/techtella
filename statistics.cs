@@ -68,6 +68,7 @@ namespace Techtella
             get { return numPeers; }
             set { numPeers = value; }
         }
+        /*
         public ArrayList PeerAddr
         {
             get { return peerAddr; }
@@ -91,7 +92,7 @@ namespace Techtella
         public ArrayList AddTimesDownloaded
         {
             set { timesDownloaded.Add(value); }
-        }
+        }*/
         #endregion
 
         public void statisticsUpdate()
