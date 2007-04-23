@@ -70,11 +70,6 @@ namespace Techtella
             }
         }
 
-        public void UpdateFoundPeers() 
-        {
-            //update found peers here
-        }
-
         public void DoSplash()
         {
             Splash sp = new Splash();
@@ -344,17 +339,18 @@ namespace Techtella
                     i++;
                 }
                 row.SetValue("0", 2);
-                knownPeersData.Rows.Add(row);
+                
                 int isInList = 0;
                 foreach (DataGridViewRow ip in knownPeersChatData.Rows)
                 {
-                    if (ip.Cells[0].ToString() == row2[0])
+                    if (ip.Cells[0].Value.ToString() == row2[0])
                     {
                         isInList = 1; // Do Nothing
                     }
                 }
                 if (isInList == 0)
                 {
+                    knownPeersData.Rows.Add(row);
                     knownPeersChatData.Rows.Add(row2);
                 }
             }
