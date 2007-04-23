@@ -32,7 +32,7 @@ namespace Techtella
         {
             int descriptor = Client.descriptorHash * 100 + Client.pingCount + 1;
             AddActivePing(descriptor, "127.0.0.1");
-            Client.Ping(host, portnum);
+            Client.Ping(host, portnum, descriptor);
         }
 
         public void ForwardPing(Packet ping, string ignore)
@@ -197,7 +197,7 @@ namespace Techtella
             bool alreadyknown = false;
             foreach (object host in foundPeers)
             {
-                if (host.ToString().Split('_')[0] == hostname)
+                if (host.ToString().Split('_')[0] == hostname.Split(':')[0].Split('_')[0])
                 {
                     alreadyknown = true;
                     Console.WriteLine("Peer already known");
