@@ -145,9 +145,9 @@ namespace Techtella
 
         public static void SendMsg(string host, int portnum, string msg)
         {
+            TcpClient client = new TcpClient(host.Split(':')[0], portnum);
             try
             {
-                TcpClient client = new TcpClient(host.Split(':')[0], portnum);
                 Console.WriteLine("Client.SendMsg called on " + host + ":" + portnum);
 
                 NetworkStream netStream = client.GetStream();
