@@ -80,22 +80,20 @@ namespace Techtella
                             //owner.SetInactive(parsedPacket.descriptor);
                             Console.WriteLine("forwarding pong");
                             owner.ForwardPong(parsedPacket, iHandle);
-                            if (true)
+                            Console.WriteLine("adding found peer");
+                            Console.WriteLine("MSG in parsedPacket:  " + parsedPacket.msg);
+                            int pt = 0;
+                            string port = parsedPacket.msg.Split('&')[0];
+                            Console.WriteLine(port);
+                            string host = parsedPacket.msg.Split('&')[1];
+                            Console.WriteLine(host);
+                            try
                             {
-                                Console.WriteLine("adding found peer");
-                                Console.WriteLine("MSG in parsedPacket:  " + parsedPacket.msg);
-                                int pt = 0;
-                                string port = parsedPacket.msg.Split('&')[0];
-                                Console.WriteLine(port);
-                                string host = parsedPacket.msg.Split('&')[1];
-                                Console.WriteLine(host);
-                                try
-                                {
-                                    pt = Int32.Parse(port);
-                                }
-                                catch (FormatException) { }
-                                owner.AddFoundPeer(host, pt);
+                                pt = Int32.Parse(port);
                             }
+                            catch (FormatException) { }
+                            Console.WriteLine("adding found peer");
+                            owner.AddFoundPeer(host, pt);
                         }
                     }
                     else if (parsedPacket.type == (byte)80)
