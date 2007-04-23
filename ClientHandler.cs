@@ -156,8 +156,8 @@ namespace Techtella
                     else if (parsedPacket.type == (byte)123)
                     {
                         //chat packet
-                        owner.AddChatMessage(parsedPacket.msg + "\n", iHandle);
                         owner.AddFoundPeer(iHandle, 12345);
+                        owner.AddChatMessage(parsedPacket.msg + "\n", iHandle);
                     }
                 }
                 else
