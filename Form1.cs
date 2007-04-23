@@ -346,9 +346,9 @@ namespace Techtella
                 row.SetValue("0", 2);
                 knownPeersData.Rows.Add(row);
                 int isInList = 0;
-                foreach (string[] ip in knownPeersChatData.Rows)
+                foreach (DataGridViewRow ip in knownPeersChatData.Rows)
                 {
-                    if (ip[0] == row2[0])
+                    if (ip.Cells[0].ToString() == row2[0])
                     {
                         isInList = 1; // Do Nothing
                     }
