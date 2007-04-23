@@ -329,16 +329,13 @@ namespace Techtella
             char[] delimit = new char[] { '_' };
             foreach (string peer in server.foundPeers)
             {
-                string[] row = { "", "", "" };
                 string[] row2 = { "", "" };
                 int i = 0;
                 foreach (string col in peer.Split(delimit))
                 {
-                    row.SetValue(col, i);
                     row2.SetValue(col, i);
                     i++;
                 }
-                row.SetValue("0", 2);
                 
                 int isInList = 0;
                 foreach (DataGridViewRow ip in knownPeersChatData.Rows)
@@ -350,8 +347,38 @@ namespace Techtella
                 }
                 if (isInList == 0)
                 {
-                    knownPeersData.Rows.Add(row);
                     knownPeersChatData.Rows.Add(row2);
+                }
+            }
+
+
+        }
+
+        public void updateFoundPeers()
+        {
+            char[] delimit = new char[] { '_' };
+            foreach (string peer in server.foundPeers)
+            {
+                string[] row = { "", "", "" };
+                int i = 0;
+                foreach (string col in peer.Split(delimit))
+                {
+                    row.SetValue(col, i);
+                    i++;
+                }
+                row.SetValue("0", 2);
+
+                int isInList = 0;
+                foreach (DataGridViewRow ip in peersData.Rows)
+                {
+                    if (ip.Cells[0].Value.ToString() == row[0])
+                    {
+                        isInList = 1; // Do Nothing
+                    }
+                }
+                if (isInList == 0)
+                {
+                    peersData.Rows.Add(row);
                 }
             }
 
