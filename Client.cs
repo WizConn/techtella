@@ -52,7 +52,7 @@ namespace Techtella
             }
             catch (Exception e)
             {
-                Console.WriteLine("this needs to be handled in a more professional manner\n" + e);
+                Console.WriteLine("PING needs to be handled in a more professional manner\n" + e);
             }
             //delete this line
             //Console.WriteLine(reader.ReadLine());
@@ -77,7 +77,7 @@ namespace Techtella
             }
             catch (Exception e)
             {
-                Console.WriteLine("this needs to be handled in a more professional manner\n" + e);
+                Console.WriteLine("REPING needs to be handled in a more professional manner\n" + e);
             }
             //delete this line
             //Console.WriteLine(reader.ReadLine());
@@ -108,7 +108,7 @@ namespace Techtella
             }
             catch (Exception e)
             {
-                Console.WriteLine("this needs to be handled in a more professional manner\n" + e);
+                Console.WriteLine("PONG needs to be handled in a more professional manner\n" + e);
             }
             //delete this line
            // Console.WriteLine(reader.ReadLine());
@@ -130,7 +130,7 @@ namespace Techtella
             }
             catch (Exception e)
             {
-                Console.WriteLine("this needs to be handled in a more professional manner\n" + e);
+                Console.WriteLine("SENDMSG needs to be handled in a more professional manner\n" + e);
             }
            // Console.WriteLine(reader.ReadLine());
         }
@@ -139,6 +139,7 @@ namespace Techtella
         {
             try
             {
+                Console.WriteLine("Client.Query called on " + host + ":" + portnum);
                 pingCount++;
                 int descriptor = descriptorHash * 10 + pingCount;
                 byte type = new byte();
@@ -146,8 +147,7 @@ namespace Techtella
 
                 string msg = descriptor.ToString() + "?" + type.ToString() + "?" + TTL.ToString() + "?0?" + criteria.Length.ToString() + "?" + criteria + "?";
 
-                TcpClient client = new TcpClient(host.Split(':')[0], portnum);
-                Console.WriteLine("Client.Query called on " + host + ":" + portnum);
+                TcpClient client = new TcpClient(host.Split(':')[0].Split('_')[0], portnum);
 
                 NetworkStream netStream = client.GetStream();
                 StreamReader reader = new StreamReader(netStream);
@@ -158,7 +158,7 @@ namespace Techtella
             }
             catch(Exception e)
             {
-                Console.WriteLine("this needs to be handled in a more professional manner\n" + e);
+                Console.WriteLine("QUERY needs to be handled in a more professional manner\n" + e);
             }
         }
 
@@ -180,7 +180,7 @@ namespace Techtella
             }
             catch (Exception e)
             {
-                Console.WriteLine("this needs to be handled in a more professional manner\n" + e);
+                Console.WriteLine("REQUERY needs to be handled in a more professional manner\n" + e);
             }
             //delete this line
             //Console.WriteLine(reader.ReadLine());
