@@ -107,6 +107,7 @@ namespace Techtella
             ArrayList currentPings = (ArrayList)activePings.Clone();
             foreach (object active in currentPings)
             {
+                Console.WriteLine(toCheck.descriptor + " ?= " + Int32.Parse(active.ToString().Split('_')[1]));
                 age = DateTime.Now - DateTime.Parse(active.ToString().Split('_')[2]);
                 if (age.Seconds >= 10)
                 {
