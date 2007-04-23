@@ -81,14 +81,15 @@ namespace Techtella
             activePings.Remove(remove);
         }
         
-        public void SetQInactive(int descriptor)
+        public void SetQInactive(object remove)
         {
-            activeQueries.Remove(descriptor);
+            activeQueries.Remove(remove);
         }
 
         public BasicMultiServer()
         {
             knownPeers = new ArrayList();
+            foundPeers = new ArrayList();
             activePings = new ArrayList();
             activeQueries = new ArrayList();
             chatMessages = new ArrayList();
@@ -121,12 +122,13 @@ namespace Techtella
         {
             TimeSpan age;
             Console.WriteLine("Checking " + activeQueries.Count + " active queries");
-            foreach (object active in activeQueries)
+            ArrayList currentQueries = (ArrayList)activeQueries.Clone();
+            foreach (object active in currentQueries)
             {
                 age = DateTime.Now - DateTime.Parse(active.ToString().Split('_')[1]);
                 if (age.Seconds >= 10)
                 {
-                    SetQInactive(toCheck.descriptor);
+                    SetQInactive(active);
                     Console.WriteLine("Set a query inactive, descriptor:  " + Int32.Parse(active.ToString().Split('_')[0]));
                 }
                 else if (toCheck.descriptor == Int32.Parse(active.ToString().Split('_')[0]))
@@ -187,18 +189,22 @@ namespace Techtella
 
         public void AddFoundPeer(string hostname, int portnum)
         {
+            Console.WriteLine("AddFoundPeer called with args: " + hostname + " " + portnum);
             bool alreadyknown = false;
             foreach (object host in foundPeers)
             {
                 if (host.ToString().Split('_')[0] == hostname)
                 {
                     alreadyknown = true;
+                    Console.WriteLine("Peer already known");
                 }
+                Console.WriteLine(host.ToString());
             }
             if (!alreadyknown)
             {
                 hostname += "_" + portnum.ToString();
                 foundPeers.Add(hostname);
+                Console.WriteLine("ADDED: " + hostname);
             }
         }
 
