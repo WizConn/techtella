@@ -29,12 +29,10 @@ namespace Techtella
         private void InitializeComponent()
         {
             this.ipAddrLabel = new System.Windows.Forms.Label();
-            this.portLabel = new System.Windows.Forms.Label();
             this.connectLabel = new System.Windows.Forms.Label();
             this.connectButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.connectPeerIPBox = new System.Windows.Forms.TextBox();
-            this.connectPeerPortBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // ipAddrLabel
@@ -45,15 +43,6 @@ namespace Techtella
             this.ipAddrLabel.Size = new System.Drawing.Size(61, 13);
             this.ipAddrLabel.TabIndex = 0;
             this.ipAddrLabel.Text = "IP Address:";
-            // 
-            // portLabel
-            // 
-            this.portLabel.AutoSize = true;
-            this.portLabel.Location = new System.Drawing.Point(12, 62);
-            this.portLabel.Name = "portLabel";
-            this.portLabel.Size = new System.Drawing.Size(29, 13);
-            this.portLabel.TabIndex = 1;
-            this.portLabel.Text = "Port:";
             // 
             // connectLabel
             // 
@@ -93,24 +82,15 @@ namespace Techtella
             this.connectPeerIPBox.Size = new System.Drawing.Size(100, 20);
             this.connectPeerIPBox.TabIndex = 1;
             // 
-            // connectPeerPortBox
-            // 
-            this.connectPeerPortBox.Location = new System.Drawing.Point(79, 59);
-            this.connectPeerPortBox.Name = "connectPeerPortBox";
-            this.connectPeerPortBox.Size = new System.Drawing.Size(100, 20);
-            this.connectPeerPortBox.TabIndex = 2;
-            // 
             // ConnectWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(196, 133);
-            this.Controls.Add(this.connectPeerPortBox);
             this.Controls.Add(this.connectPeerIPBox);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.connectButton);
             this.Controls.Add(this.connectLabel);
-            this.Controls.Add(this.portLabel);
             this.Controls.Add(this.ipAddrLabel);
             this.MaximizeBox = false;
             this.Name = "ConnectWindow";
@@ -126,11 +106,9 @@ namespace Techtella
         #endregion
 
         private System.Windows.Forms.Label ipAddrLabel;
-        private System.Windows.Forms.Label portLabel;
         private System.Windows.Forms.Label connectLabel;
         private System.Windows.Forms.Button connectButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.TextBox connectPeerIPBox;
-        private System.Windows.Forms.TextBox connectPeerPortBox;
     }
 }

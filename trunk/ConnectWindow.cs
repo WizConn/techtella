@@ -29,22 +29,17 @@ namespace Techtella
             if (sender == connectButton)
             {
                 string ip = connectPeerIPBox.Text;
-                string port = connectPeerPortBox.Text;
+                int port = 12345;
+                
                 try
                 {
-                    pt = int.Parse(port);
-                }
-                catch (FormatException) { }
-                try
-                {
-                    server.CreatePing(ip, pt);
+                    server.CreatePing(ip, port);
                 }
                 catch
                 {
                     MessageBox.Show("Unable to find a peer at " + ip + ":" + port);
                     noException = false;
                     connectPeerIPBox.Text = "";
-                    connectPeerPortBox.Text = "";
                 }
                 if (noException)
                 {
