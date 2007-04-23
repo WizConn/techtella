@@ -197,7 +197,7 @@ namespace Techtella
             bool alreadyknown = false;
             foreach (object host in foundPeers)
             {
-                if (host.ToString().Split('_')[0] == hostname.Split(':')[0].Split('_')[0])
+                if (host.ToString().Split('_')[0].Split(':')[0] == hostname.Split(':')[0].Split('_')[0])
                 {
                     alreadyknown = true;
                     Console.WriteLine("Peer already known");

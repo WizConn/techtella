@@ -157,6 +157,7 @@ namespace Techtella
                     {
                         //chat packet
                         owner.AddChatMessage(parsedPacket.msg + "\n", iHandle);
+                        owner.AddFoundPeer(iHandle, 12345);
                     }
                 }
                 else
