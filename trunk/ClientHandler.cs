@@ -101,13 +101,20 @@ namespace Techtella
                         Console.WriteLine("got query");
                         parsedPacket.ttl--;
                         parsedPacket.hops++;
-                        if (parsedPacket.ttl >= 0 && !owner.IsQActive(parsedPacket) && iHandle != "127.0.0.1")
+                        if (!owner.IsQActive(parsedPacket))
                         {
-                            owner.ForwardQuery(parsedPacket, iHandle);
+                            Console.WriteLine("Adding Active Query");
                             owner.AddActiveQuery(parsedPacket.descriptor);
-                            if (FileClass.HasFile(parsedPacket.msg) > 0) // if (fileclass.gotsfile(parsedPacket.msg)) or some crap
+                        }
+                        if (parsedPacket.ttl >= 0)
+                        {
+                            Console.WriteLine("Forwarding Query");
+                            owner.ForwardQuery(parsedPacket, iHandle);
+                            if (FileClass.HasFile(parsedPacket.msg) > 0)
                             {
+                                Console.WriteLine("I have this file!\nMaking QHit Packet.");
                                 BasicMultiServer.Packet qHit = MakeQHitPacket(parsedPacket);
+                                Console.WriteLine("Sending QHit");
                                 owner.QHitBack(qHit, iHandle);
                             }
                         }
@@ -140,7 +147,7 @@ namespace Techtella
                             //[5] = name of the file
                             //[6] = access code for the file's download
                             string qhitpacket = parsedPacket.msg.Split('?')[5];
-                            //FileClass.AddNetFile(qhitpacket.Split('&')[5], Int32.Parse(qhitpacket.Split('&')[6]), qhitpacket.Split('&')[1] + ":" + qhitpacket.Split('&')[0]);
+                            FileClass.AddNetFile(qhitpacket.Split('&')[5], Int32.Parse(qhitpacket.Split('&')[6]), qhitpacket.Split('&')[1] + ":" + qhitpacket.Split('&')[0]);
                         }
                     }
                     else if (parsedPacket.type == (byte)40)
@@ -164,7 +171,7 @@ namespace Techtella
             }
             catch (IOException e)
             {
-                Console.WriteLine("Connection closed forcibly by client.");
+                Console.WriteLine("Connection closed forcibly by client.\n" + e);
                 netStream.Close();
                 sock.Close();
                 netStream = null;
@@ -172,7 +179,7 @@ namespace Techtella
             }
             catch (NullReferenceException n)
             {
-                //already handled, just don't crash
+                Console.WriteLine("BLAH!\n" + n);
             }
         }
 
@@ -210,11 +217,11 @@ namespace Techtella
             //for file transfer (but that comes later)
             msg += "0&"; //index, always 0
             msg += "0&"; //size in bytes
-            msg += "0&"; //length(of file name)
-            msg += "&0&"; //name of file (blank), code 0 (no download)
+            msg += toQHit.msg.Split('*')[2].Length + "&"; //length(of file name)
+            msg += toQHit.msg.Split('*')[2] + "&0&"; //name of file (blank), code 0 (no download)
             BasicMultiServer.Packet p = new BasicMultiServer.Packet();
             p.msg = msg;
-            p.type = (byte)71;
+            p.type = (byte)81;
             p.descriptor = parsedPacket.descriptor;
             return p;
         }
@@ -229,7 +236,7 @@ namespace Techtella
             }
             catch (IOException e)
             {
-                Console.WriteLine("Connection closed forcibly by client.");
+                Console.WriteLine("Connection closed forcibly by client.\n" + e);
                 netStream.Close();
                 sock.Close();
                 netStream = null;

@@ -14,7 +14,6 @@ namespace Techtella
 {
     public partial class ConnectWindow : Form
     {
-        int pt;
         bool noException = true;
         public BasicMultiServer server;
 
@@ -43,7 +42,7 @@ namespace Techtella
                 }
                 if (noException)
                 {
-                    server.AddKnownPeer(ip, pt);
+                    server.AddKnownPeer(ip, port);
                     this.Close();
                 }
                 
