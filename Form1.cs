@@ -264,6 +264,11 @@ namespace Techtella
                     
                 }
             }
+            else if (sender == settingsToolStripMenuItem)
+            {
+                Settings settings = new Settings();
+                settings.ShowDialog();
+            }
             
         }
 
