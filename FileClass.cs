@@ -107,6 +107,7 @@ namespace Techtella
             NetFiles.Add(filename);
             NetFiles.Add(code);
             FileHosts.Add(host);
+            Console.WriteLine(filename + " added to NetFiles from " + host + " with download code " + code);
             return 1;
         }
 
@@ -137,15 +138,20 @@ namespace Techtella
 
         public static int HasFile(string criteria)
         {
+            Console.WriteLine("Checking for " + criteria);
             foreach (object File in FileList)
             {
+                Console.WriteLine(File.ToString());
+                Console.WriteLine(File.ToString().Split('*')[0] + " ?= " + criteria.Split('*')[0]);
                 if (File.ToString().Split('*')[0] == criteria.Split('*')[0])
                 {
-                    if (File.ToString().Split('*')[1] == criteria.Split('*')[0])
+                    Console.WriteLine(File.ToString().Split('*')[1] + " ?= " + criteria.Split('*')[1]);
+                    if (File.ToString().Split('*')[1] == criteria.Split('*')[1])
                     {
                         return 1;
                     }
-                    if (File.ToString().Split('*')[2] == criteria.Split('*')[2])
+                    Console.WriteLine(File.ToString().Split('*')[2] + " ?= " + criteria.Split('*')[2].Split('\\')[criteria.Split('*')[2].Split('\\').Length-1]);
+                    if (File.ToString().Split('*')[2].Split('\\')[File.ToString().Split('*')[2].Split('\\').Length-1] == criteria.Split('*')[2].Split('\\')[criteria.Split('*')[2].Split('\\').Length-1])
                     {
                         return 2;
                     }

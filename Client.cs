@@ -186,9 +186,38 @@ namespace Techtella
             //Console.WriteLine(reader.ReadLine());
         }
 
-        public static void QueryHit(string hostname, int port, BasicMultiServer.Packet qhit)
+        public static void QueryHit(string host, int portnum, BasicMultiServer.Packet qhit)
         {
-            Console.WriteLine("Client.QueryHit called on " + hostname + ":" + port);
+            Console.WriteLine("Client.QueryHit called on " + host+ ":" + portnum);
+            //a split('?')[5] will yeild the query hit packet
+            //a split('&')[0] = port
+            //[1] = address
+            //[2] = index (always 0)
+            //[3] = file size in bytes
+            //[4] = length of file name
+            //[5] = name of the file
+            //[6] = access code for the file's download
+            try
+            {
+                Console.WriteLine("Client.Query called on " + host + ":" + portnum);
+                pingCount++;
+                int descriptor = descriptorHash * 10 + pingCount;
+
+                string msg = qhit.descriptor.ToString() + "?" + qhit.type.ToString() + "?" + qhit.ttl.ToString() + "?0?" + qhit.msg.Length.ToString() + "?" + qhit.msg + "?";
+
+                TcpClient client = new TcpClient(host.Split(':')[0].Split('_')[0], portnum);
+
+                NetworkStream netStream = client.GetStream();
+                StreamReader reader = new StreamReader(netStream);
+                StreamWriter writer = new StreamWriter(netStream);
+
+                writer.WriteLine(msg);
+                writer.Flush();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("QUERY HIT needs to be handled in a more professional manner\n" + e);
+            }
         }
 
     }
