@@ -68,11 +68,14 @@ namespace Techtella
             }
         }
 
-        public void ForwardQHit(Packet qHit)
+        public void ForwardQHit(Packet qHit, string ignore)
         {
             foreach (object hostname in knownPeers)
             {
-                Client.QueryHit(ParseHostname((string)hostname), 12345, qHit);
+                if (ParseHostname(hostname.ToString()).Split(':')[0] != ignore.Split(':')[0])
+                {
+                    Client.QueryHit(ParseHostname((string)hostname), 12345, qHit);
+                }
             }
         }
 
