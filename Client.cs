@@ -58,6 +58,35 @@ namespace Techtella
             //Console.WriteLine(reader.ReadLine());
         }
 
+        public static void Ping(string host, int portnum, int descriptor)
+        {
+            try
+            {
+                statPing++;
+                pingCount++;
+                byte type = new byte();
+                type = 0;
+
+                string msg = descriptor.ToString() + "?" + type.ToString() + "?" + TTL.ToString() + "?0?0??";
+
+                TcpClient client = new TcpClient(host.Split(':')[0], portnum);
+                Console.WriteLine("Client.Ping called on " + host + ":" + portnum);
+
+                NetworkStream netStream = client.GetStream();
+                StreamReader reader = new StreamReader(netStream);
+                StreamWriter writer = new StreamWriter(netStream);
+
+                writer.WriteLine(msg);
+                writer.Flush();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("PING needs to be handled in a more professional manner\n" + e);
+            }
+            //delete this line
+            //Console.WriteLine(reader.ReadLine());
+        }
+
         public static void RePing(string host, int portnum, int hops, int timeToLive, int descriptor)
         {
             try
