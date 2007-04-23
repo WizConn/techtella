@@ -53,5 +53,10 @@ namespace Techtella
             }
              
         }
+
+        private void ConnectWindow_Load(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

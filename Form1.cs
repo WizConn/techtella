@@ -329,6 +329,39 @@ namespace Techtella
             pongStat.Text = stats.numPong + "";
         }
 
+        public void updateChatUsers()
+        {
+            char[] delimit = new char[] { '_' };
+            foreach (string peer in server.foundPeers)
+            {
+                string[] row = { "", "", "" };
+                string[] row2 = { "", "" };
+                int i = 0;
+                foreach (string col in peer.Split(delimit))
+                {
+                    row.SetValue(col, i);
+                    row2.SetValue(col, i);
+                    i++;
+                }
+                row.SetValue("0", 2);
+                knownPeersData.Rows.Add(row);
+                int isInList = 0;
+                foreach (string[] ip in knownPeersChatData.Rows)
+                {
+                    if (ip[0] == row2[0])
+                    {
+                        isInList = 1; // Do Nothing
+                    }
+                }
+                if (isInList == 0)
+                {
+                    knownPeersChatData.Rows.Add(row2);
+                }
+            }
+
+
+        }
+
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             shareFileBox.Text = "" + openFileDialog1.FileName;
