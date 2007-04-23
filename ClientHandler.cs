@@ -128,10 +128,9 @@ namespace Techtella
                         Console.WriteLine("got query hit");
                         parsedPacket.ttl--;
                         parsedPacket.hops++;
-                        if (parsedPacket.ttl >= 0 && owner.IsQActive(parsedPacket) && iHandle != "127.0.0.1")
+                        if (owner.IsQActive(parsedPacket))
                         {
-                            owner.SetQInactive(parsedPacket.descriptor);
-                            owner.ForwardQHit(parsedPacket);
+                            owner.ForwardQHit(parsedPacket, iHandle);
                         }
                         if (parsedPacket.descriptor == Client.MyQuery)
                         {
