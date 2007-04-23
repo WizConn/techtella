@@ -54,6 +54,27 @@ namespace Techtella
             chatOutputBox.Text = output;
         }
 
+        public void SearchFiller(ArrayList list)
+        {
+            foreach (string result in list)
+            {
+                string[] row = { "", "", "", "" };
+                int i = 0;
+                foreach (string col in result.Split('*'))
+                {
+                    row.SetValue(col, i);
+                    i++;
+                }
+                //row.SetValue("0", 2);
+                searchData.Rows.Add(row);
+            }
+        }
+
+        public void UpdateFoundPeers() 
+        {
+            //update found peers here
+        }
+
         public void DoSplash()
         {
             Splash sp = new Splash();
