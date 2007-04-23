@@ -16,6 +16,7 @@ namespace Techtella
             Application.SetCompatibleTextRenderingDefault(false);
             BasicMultiServer TechServer = new BasicMultiServer();
             TechServer.RunThreaded();
+            FileClass fcInit = new FileClass();
             Client InitClientData = new Client();
             Application.Run(new Form1(TechServer));
         }
