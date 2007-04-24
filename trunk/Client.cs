@@ -28,7 +28,7 @@ namespace Techtella
             Console.WriteLine(colMObj.GetHashCode());
         }
 
-        public static void Ping(string host, int portnum)
+        public static int Ping(string host, int portnum)
         {
             try
             {
@@ -49,10 +49,12 @@ namespace Techtella
 
                 writer.WriteLine(msg);
                 writer.Flush();
+                return 1;
             }
             catch (Exception e)
             {
                 Console.WriteLine("PING needs to be handled in a more professional manner\n" + e);
+                return 0;
             }
             //delete this line
             //Console.WriteLine(reader.ReadLine());
