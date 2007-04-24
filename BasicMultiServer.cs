@@ -53,7 +53,7 @@ namespace Techtella
                 if (ParseHostname((string)hostname) != ignore)
                 {
                     //Client.ReQuery(ParseHostname((string)hostname), 12345, query.hops, query.ttl, query.descriptor, query.msg);
-                    Client.Query(ParseHostname((string)hostname), 12345, query.ttl, query.msg, false);
+                    Client.Query(ParseHostname((string)hostname), 12345, query.ttl, query.msg, false, query.descriptor);
                 }
             }
         }
