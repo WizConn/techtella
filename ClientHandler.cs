@@ -147,6 +147,7 @@ namespace Techtella
                             //[6] = access code for the file's download
                             string qhitpacket = parsedPacket.msg.Split('?')[5];
                             owner.AddQueryHit(parsedPacket.msg);
+                            Console.WriteLine("Told bms to add qhit");
                             FileClass.AddNetFile(qhitpacket.Split('&')[5], Int32.Parse(qhitpacket.Split('&')[6]), qhitpacket.Split('&')[1] + ":" + qhitpacket.Split('&')[0]);
                         }
                     }

@@ -27,7 +27,7 @@ namespace Techtella
             public string msg;
             public string from;
         }
-
+        
         public void CreatePing(string host, int port)
         {
             int descriptor = Client.descriptorHash * 100 + Client.pingCount + 1;
@@ -249,6 +249,7 @@ namespace Techtella
 
         public void AddQueryHit(string qhit)
         {
+            Console.WriteLine("Adding qhit to list");
             queryHits.Add(qhit);
         }
 

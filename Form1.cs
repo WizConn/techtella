@@ -49,6 +49,18 @@ namespace Techtella
             updater.RunThreaded();
         }
 
+        public struct Transfer
+        {
+            public string type;         //either download or upload
+            public string filename;
+            public string status;       //either downloading, uploading, finished, or aborted
+            public int size;            //size of file
+            public int completed;       //bytes downloaded/uploaded
+            public decimal speed;       //speed in kBps
+            public string ip;           //ip of other person
+            public string port;         //port of other
+        }
+
         public void DoSplash()
         {
             Splash sp = new Splash();
@@ -73,6 +85,7 @@ namespace Techtella
                 }
                 //row.SetValue("0", 2);
                 searchData.Rows.Add(row);
+                Console.WriteLine("Should have added a row");
             }
         }
 
@@ -102,8 +115,6 @@ namespace Techtella
                     knownPeersChatData.Rows.Add(row2);
                 }
             }
-
-
         }
 
         public void updateFoundPeers()
@@ -134,8 +145,18 @@ namespace Techtella
                     peersData.Rows.Add(row);
                 }
             }
+        }
 
-
+        public void updateTransfers(Transfer transfer)
+        {
+            if (transfer.type == "download")
+            {
+                //add data to downloading datagrid
+            }
+            else if (transfer.type == "upload") 
+            {
+                //add data to uploading datagrid
+            }
         }
 
         public void updateStats()
@@ -305,6 +326,10 @@ namespace Techtella
                 tempFilePath = listFiles[sharedData.CurrentRow.Index].ToString();
                 sharedData.Rows.Remove(sharedData.CurrentRow);
                 FileClass.RemoveFile(tempFilePath);
+            }
+            else if (sender == downloadButton)
+            {
+                //do downloading stuff
             }
         }
 
