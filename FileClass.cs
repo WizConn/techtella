@@ -105,7 +105,7 @@ namespace Techtella
                 }
             }
             NetFiles.Add(filename);
-            NetFiles.Add(code);
+            FileCodes.Add(code);
             FileHosts.Add(host);
             Console.WriteLine(filename + " added to NetFiles from " + host + " with download code " + code);
             return 1;
