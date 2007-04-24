@@ -153,6 +153,7 @@ namespace Techtella
             this.chatInputBox = new System.Windows.Forms.TextBox();
             this.chatOutputBox = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.downloadButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -236,7 +237,7 @@ namespace Techtella
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
@@ -725,6 +726,7 @@ namespace Techtella
             // 
             // searchTab
             // 
+            this.searchTab.Controls.Add(this.downloadButton);
             this.searchTab.Controls.Add(this.searchData);
             this.searchTab.Controls.Add(this.searchButton);
             this.searchTab.Controls.Add(this.searchCategoryCombo);
@@ -789,7 +791,7 @@ namespace Techtella
             // 
             // searchButton
             // 
-            this.searchButton.Location = new System.Drawing.Point(683, 10);
+            this.searchButton.Location = new System.Drawing.Point(623, 10);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(75, 23);
             this.searchButton.TabIndex = 6;
@@ -1403,6 +1405,16 @@ namespace Techtella
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
+            // downloadButton
+            // 
+            this.downloadButton.Location = new System.Drawing.Point(732, 10);
+            this.downloadButton.Name = "downloadButton";
+            this.downloadButton.Size = new System.Drawing.Size(108, 23);
+            this.downloadButton.TabIndex = 8;
+            this.downloadButton.Text = "Download Selected";
+            this.downloadButton.UseVisualStyleBackColor = true;
+            this.downloadButton.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1580,6 +1592,7 @@ namespace Techtella
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.Button forcePingButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button downloadButton;
     }
 }
 
