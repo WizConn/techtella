@@ -164,7 +164,7 @@ namespace Techtella
            // Console.WriteLine(reader.ReadLine());
         }
 
-        public static void Query(string host, int portnum, int TTL, string criteria)
+        public static void Query(string host, int portnum, int TTL, string criteria, bool myQuery)
         {
             try
             {
@@ -175,6 +175,11 @@ namespace Techtella
                 type = 80;
 
                 string msg = descriptor.ToString() + "?" + type.ToString() + "?" + TTL.ToString() + "?0?" + criteria.Length.ToString() + "?" + criteria + "?";
+
+                if (myQuery)
+                {
+                    MyQuery = descriptor;
+                }
 
                 TcpClient client = new TcpClient(host.Split(':')[0].Split('_')[0], portnum);
 

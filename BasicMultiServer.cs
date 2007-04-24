@@ -52,7 +52,8 @@ namespace Techtella
             {
                 if (ParseHostname((string)hostname) != ignore)
                 {
-                    Client.ReQuery(ParseHostname((string)hostname), 12345, query.hops, query.ttl, query.descriptor, query.msg);
+                    //Client.ReQuery(ParseHostname((string)hostname), 12345, query.hops, query.ttl, query.descriptor, query.msg);
+                    Client.Query(ParseHostname((string)hostname), 12345, query.ttl, query.msg, false);
                 }
             }
         }
@@ -117,9 +118,11 @@ namespace Techtella
                 }
                 else if (toCheck.descriptor == Int32.Parse(active.ToString().Split('_')[1]))
                 {
+                    Console.WriteLine("Active");
                     return true;
                 }
             }
+            Console.WriteLine("Inactive");
             return false;
         }
 
@@ -257,9 +260,10 @@ namespace Techtella
         {
             int descriptor = Client.descriptorHash*100 + Client.pingCount + 1;
             AddActiveQuery(descriptor);
+            Client.MyQuery = descriptor;
             foreach (object host in knownPeers)
             {
-                Client.Query(host.ToString().Split(':')[0], 12345, 10, criteria);
+                Client.Query(host.ToString().Split(':')[0], 12345, 10, criteria, true);
             }
         }
     }

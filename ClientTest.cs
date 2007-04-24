@@ -32,7 +32,7 @@ namespace Techtella
         [Test]
         public void QueryTest()
         {
-            Client.Query("127.0.0.1", 12345, 1, "Stuff");
+            Client.Query("127.0.0.1", 12345, 1, "Stuff", false);
             Assert.AreEqual(Client.pingCount, 1);
         }
 
