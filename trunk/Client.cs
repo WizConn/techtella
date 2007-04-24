@@ -173,7 +173,6 @@ namespace Techtella
                 int descriptor = descriptorHash * 10 + pingCount;
                 byte type = new byte();
                 type = 80;
-
                 string msg = descriptor.ToString() + "?" + type.ToString() + "?" + TTL.ToString() + "?0?" + criteria.Length.ToString() + "?" + criteria + "?";
 
                 if (myQuery)
@@ -191,6 +190,37 @@ namespace Techtella
                 writer.Flush();
             }
             catch(Exception e)
+            {
+                Console.WriteLine("QUERY needs to be handled in a more professional manner\n" + e);
+            }
+        }
+
+        public static void Query(string host, int portnum, int TTL, string criteria, bool myQuery, int descript)
+        {
+            try
+            {
+                Console.WriteLine("Client.Query called on " + host + ":" + portnum);
+                pingCount++;
+                int descriptor = descript;
+                byte type = new byte();
+                type = 80;
+                string msg = descriptor.ToString() + "?" + type.ToString() + "?" + TTL.ToString() + "?0?" + criteria.Length.ToString() + "?" + criteria + "?";
+
+                if (myQuery)
+                {
+                    MyQuery = descriptor;
+                }
+
+                TcpClient client = new TcpClient(host.Split(':')[0].Split('_')[0], portnum);
+
+                NetworkStream netStream = client.GetStream();
+                StreamReader reader = new StreamReader(netStream);
+                StreamWriter writer = new StreamWriter(netStream);
+
+                writer.WriteLine(msg);
+                writer.Flush();
+            }
+            catch (Exception e)
             {
                 Console.WriteLine("QUERY needs to be handled in a more professional manner\n" + e);
             }
