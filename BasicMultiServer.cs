@@ -244,7 +244,7 @@ namespace Techtella
 
         public void AddChatMessage(string message, string from)
         {
-            chatMessages.Add("Message from client at " + from.Split(':')[0] + ":  " + message.Substring(2));
+            chatMessages.Add("Message from client at " + from.Split(':')[0] + ":  " + message.Substring(2, message.Length-3));
         }
 
         public void AddQueryHit(string qhit)
