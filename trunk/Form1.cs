@@ -74,11 +74,11 @@ namespace Techtella
 
         public void SearchFiller(ArrayList list)
         {
-            foreach (string result in list)
+            foreach (object result in list)
             {
                 string[] row = { "", "", "", "" };
                 int i = 0;
-                foreach (string col in result.Split('&'))
+                foreach (string col in result.ToString().Split('&'))
                 {
                     row.SetValue(col, i);
                     i++;
