@@ -59,7 +59,7 @@ namespace Techtella
             this.connectButton.Location = new System.Drawing.Point(12, 96);
             this.connectButton.Name = "connectButton";
             this.connectButton.Size = new System.Drawing.Size(75, 23);
-            this.connectButton.TabIndex = 3;
+            this.connectButton.TabIndex = 2;
             this.connectButton.Text = "Connect";
             this.connectButton.UseVisualStyleBackColor = true;
             this.connectButton.Enter += new System.EventHandler(this.Button_Click);

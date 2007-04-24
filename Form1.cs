@@ -49,6 +49,12 @@ namespace Techtella
             updater.RunThreaded();
         }
 
+        public void DoSplash()
+        {
+            Splash sp = new Splash();
+            sp.ShowDialog();
+        }
+
         public void SetText(string output)
         {
             chatOutputBox.Text = output;
@@ -60,7 +66,7 @@ namespace Techtella
             {
                 string[] row = { "", "", "", "" };
                 int i = 0;
-                foreach (string col in result.Split('*'))
+                foreach (string col in result.Split('&'))
                 {
                     row.SetValue(col, i);
                     i++;
@@ -70,10 +76,72 @@ namespace Techtella
             }
         }
 
-        public void DoSplash()
+        public void updateChatUsers()
         {
-            Splash sp = new Splash();
-            sp.ShowDialog();
+            char[] delimit = new char[] { '_' };
+            foreach (string peer in server.foundPeers)
+            {
+                string[] row2 = { "", "" };
+                int i = 0;
+                foreach (string col in peer.Split(delimit))
+                {
+                    row2.SetValue(col, i);
+                    i++;
+                }
+
+                int isInList = 0;
+                foreach (DataGridViewRow ip in knownPeersChatData.Rows)
+                {
+                    if (ip.Cells[0].Value.ToString() == row2[0])
+                    {
+                        isInList = 1; // Do Nothing
+                    }
+                }
+                if (isInList == 0)
+                {
+                    knownPeersChatData.Rows.Add(row2);
+                }
+            }
+
+
+        }
+
+        public void updateFoundPeers()
+        {
+            char[] delimit = new char[] { '_' };
+            foreach (string peer in server.foundPeers)
+            {
+                string[] row = { "", "", "" };
+                int i = 0;
+                foreach (string col in peer.Split(delimit))
+                {
+                    row.SetValue(col, i);
+                    i++;
+                }
+                row.SetValue("0", 2);
+                Console.WriteLine(row[0]);
+                int isInList = 0;
+                foreach (DataGridViewRow ip in peersData.Rows)
+                {
+                    if (ip.Cells[0].Value.ToString() == row[0])
+                    {
+                        isInList = 1; // Do Nothing
+                    }
+                }
+                if (isInList == 0)
+                {
+                    Console.WriteLine("should be adding");
+                    peersData.Rows.Add(row);
+                }
+            }
+
+
+        }
+
+        public void updateStats()
+        {
+            pingStat.Text = stats.numPing + "";
+            pongStat.Text = stats.numPong + "";
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -316,73 +384,6 @@ namespace Techtella
                 }
             }
         */
-        }
-
-        public void updateStats()
-        {
-            pingStat.Text = stats.numPing + "";
-            pongStat.Text = stats.numPong + "";
-        }
-
-        public void updateChatUsers()
-        {
-            char[] delimit = new char[] { '_' };
-            foreach (string peer in server.foundPeers)
-            {
-                string[] row2 = { "", "" };
-                int i = 0;
-                foreach (string col in peer.Split(delimit))
-                {
-                    row2.SetValue(col, i);
-                    i++;
-                }
-                
-                int isInList = 0;
-                foreach (DataGridViewRow ip in knownPeersChatData.Rows)
-                {
-                    if (ip.Cells[0].Value.ToString() == row2[0])
-                    {
-                        isInList = 1; // Do Nothing
-                    }
-                }
-                if (isInList == 0)
-                {
-                    knownPeersChatData.Rows.Add(row2);
-                }
-            }
-
-
-        }
-
-        public void updateFoundPeers()
-        {
-            char[] delimit = new char[] { '_' };
-            foreach (string peer in server.foundPeers)
-            {
-                string[] row = { "", "", "" };
-                int i = 0;
-                foreach (string col in peer.Split(delimit))
-                {
-                    row.SetValue(col, i);
-                    i++;
-                }
-                row.SetValue("0", 2);
-
-                int isInList = 0;
-                foreach (DataGridViewRow ip in peersData.Rows)
-                {
-                    if (ip.Cells[0].Value.ToString() == row[0])
-                    {
-                        isInList = 1; // Do Nothing
-                    }
-                }
-                if (isInList == 0)
-                {
-                    peersData.Rows.Add(row);
-                }
-            }
-
-
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
