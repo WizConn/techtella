@@ -132,6 +132,7 @@ namespace Techtella
                         {
                             owner.ForwardQHit(parsedPacket, iHandle);
                         }
+                        Console.WriteLine("MyQuery = " + Client.MyQuery + " descriptor = " + parsedPacket.descriptor);
                         if (parsedPacket.descriptor == Client.MyQuery)
                         {
                             //**IMPLIMENT THIS**
@@ -145,9 +146,9 @@ namespace Techtella
                             //[4] = length of file name
                             //[5] = name of the file
                             //[6] = access code for the file's download
-                            string qhitpacket = parsedPacket.msg.Split('?')[5];
-                            owner.AddQueryHit(parsedPacket.msg);
-                            Console.WriteLine("Told bms to add qhit");
+                            string qhitpacket = parsedPacket.msg;
+                            //owner.AddQueryHit(parsedPacket.msg);
+                            Console.WriteLine("Added a network file. GG MOTHAFUCKA!!");
                             FileClass.AddNetFile(qhitpacket.Split('&')[5], Int32.Parse(qhitpacket.Split('&')[6]), qhitpacket.Split('&')[1] + ":" + qhitpacket.Split('&')[0]);
                         }
                     }
