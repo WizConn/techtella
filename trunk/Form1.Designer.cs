@@ -90,10 +90,6 @@ namespace Techtella
             this.dlPortCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.searchTab = new System.Windows.Forms.TabPage();
             this.searchData = new System.Windows.Forms.DataGridView();
-            this.searchFileNameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.searchSizeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.searchIPCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.searchHopCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.searchButton = new System.Windows.Forms.Button();
             this.searchCategoryCombo = new System.Windows.Forms.ComboBox();
             this.categoryLabel = new System.Windows.Forms.Label();
@@ -154,6 +150,10 @@ namespace Techtella
             this.chatOutputBox = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.downloadButton = new System.Windows.Forms.Button();
+            this.searchFileNameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.searchSizeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.searchIPCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.searchHopCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -764,30 +764,6 @@ namespace Techtella
             this.searchData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.searchData.Size = new System.Drawing.Size(848, 459);
             this.searchData.TabIndex = 7;
-            // 
-            // searchFileNameCol
-            // 
-            this.searchFileNameCol.HeaderText = "File Name";
-            this.searchFileNameCol.Name = "searchFileNameCol";
-            this.searchFileNameCol.ReadOnly = true;
-            // 
-            // searchSizeCol
-            // 
-            this.searchSizeCol.HeaderText = "File Size";
-            this.searchSizeCol.Name = "searchSizeCol";
-            this.searchSizeCol.ReadOnly = true;
-            // 
-            // searchIPCol
-            // 
-            this.searchIPCol.HeaderText = "IP Address";
-            this.searchIPCol.Name = "searchIPCol";
-            this.searchIPCol.ReadOnly = true;
-            // 
-            // searchHopCol
-            // 
-            this.searchHopCol.HeaderText = "Hop Count";
-            this.searchHopCol.Name = "searchHopCol";
-            this.searchHopCol.ReadOnly = true;
             // 
             // searchButton
             // 
@@ -1415,6 +1391,30 @@ namespace Techtella
             this.downloadButton.UseVisualStyleBackColor = true;
             this.downloadButton.Click += new System.EventHandler(this.button1_Click);
             // 
+            // searchFileNameCol
+            // 
+            this.searchFileNameCol.HeaderText = "File Name";
+            this.searchFileNameCol.Name = "searchFileNameCol";
+            this.searchFileNameCol.ReadOnly = true;
+            // 
+            // searchSizeCol
+            // 
+            this.searchSizeCol.HeaderText = "File Size";
+            this.searchSizeCol.Name = "searchSizeCol";
+            this.searchSizeCol.ReadOnly = true;
+            // 
+            // searchIPCol
+            // 
+            this.searchIPCol.HeaderText = "IP Address";
+            this.searchIPCol.Name = "searchIPCol";
+            this.searchIPCol.ReadOnly = true;
+            // 
+            // searchHopCol
+            // 
+            this.searchHopCol.HeaderText = "Download Code";
+            this.searchHopCol.Name = "searchHopCol";
+            this.searchHopCol.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1529,10 +1529,6 @@ namespace Techtella
         private System.Windows.Forms.DataGridView searchData;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.ComboBox searchCategoryCombo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn searchFileNameCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn searchSizeCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn searchIPCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn searchHopCol;
         private System.Windows.Forms.ComboBox shareCategoryCombo;
         private System.Windows.Forms.Button browseButton;
         private System.Windows.Forms.Button addSharedFileButton;
@@ -1593,6 +1589,10 @@ namespace Techtella
         private System.Windows.Forms.Button forcePingButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button downloadButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn searchFileNameCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn searchSizeCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn searchIPCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn searchHopCol;
     }
 }
 
