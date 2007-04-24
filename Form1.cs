@@ -72,20 +72,28 @@ namespace Techtella
             chatOutputBox.Text = output;
         }
 
-        public void SearchFiller(ArrayList list)
+        public void SearchFiller(ArrayList filenamelist, ArrayList hostlist, ArrayList codeslist)
         {
-            foreach (object result in list)
+            int i = 0;
+            foreach (object result in filenamelist)
             {
                 string[] row = { "", "", "", "" };
-                int i = 0;
-                foreach (string col in result.ToString().Split('&'))
+                row.SetValue(result.ToString(), 0);
+                row.SetValue(hostlist[i].ToString(), 2);
+                row.SetValue(codeslist[i].ToString(), 3);
+                int isInList = 0;
+                i++;
+                foreach (DataGridViewRow code in searchData.Rows)
                 {
-                    row.SetValue(col, i);
-                    i++;
+                    if (code.Cells[3].Value.ToString() == row[3])
+                    {
+                        isInList = 1; // Do Nothing
+                    }
                 }
-                //row.SetValue("0", 2);
-                searchData.Rows.Add(row);
-                Console.WriteLine("Should have added a row");
+                if (isInList == 0)
+                {
+                    searchData.Rows.Add(row);
+                }
             }
         }
 
