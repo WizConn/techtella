@@ -128,30 +128,37 @@ namespace Techtella
         public void updateFoundPeers()
         {
             char[] delimit = new char[] { '_' };
-            foreach (string peer in server.foundPeers)
+            try
             {
-                string[] row = { "", "", "" };
-                int i = 0;
-                foreach (string col in peer.Split(delimit))
+                foreach (string peer in server.foundPeers)
                 {
-                    row.SetValue(col, i);
-                    i++;
-                }
-                row.SetValue("0", 2);
-                Console.WriteLine(row[0]);
-                int isInList = 0;
-                foreach (DataGridViewRow ip in peersData.Rows)
-                {
-                    if (ip.Cells[0].Value.ToString() == row[0])
+                    string[] row = { "", "", "" };
+                    int i = 0;
+                    foreach (string col in peer.Split(delimit))
                     {
-                        isInList = 1; // Do Nothing
+                        row.SetValue(col, i);
+                        i++;
+                    }
+                    row.SetValue("0", 2);
+                    //Console.WriteLine(row[0]);
+                    int isInList = 0;
+                    foreach (DataGridViewRow ip in peersData.Rows)
+                    {
+                        if (ip.Cells[0].Value.ToString() == row[0])
+                        {
+                            isInList = 1; // Do Nothing
+                        }
+                    }
+                    if (isInList == 0)
+                    {
+                        Console.WriteLine("should be adding");
+                        peersData.Rows.Add(row);
                     }
                 }
-                if (isInList == 0)
-                {
-                    Console.WriteLine("should be adding");
-                    peersData.Rows.Add(row);
-                }
+            }
+            catch (InvalidOperationException e)
+            {
+                Console.WriteLine("updateFoundPeersOopsException: " + e);
             }
         }
 

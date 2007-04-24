@@ -164,7 +164,7 @@ namespace Techtella
 
         public void QHitBack(Packet p, string ignore)
         {
-            foreach (object hostname in knownPeers)
+            foreach (object hostname in foundPeers)
             {
                 if (ParseHostname((string)hostname) != ignore)
                 {
@@ -197,6 +197,7 @@ namespace Techtella
 
         public void AddFoundPeer(string hostname, int portnum)
         {
+            hostname = hostname.Split(':')[0];
             Console.WriteLine("AddFoundPeer called with args: " + hostname + " " + portnum);
             bool alreadyknown = false;
             foreach (object host in foundPeers)

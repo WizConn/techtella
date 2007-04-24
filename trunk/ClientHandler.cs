@@ -54,6 +54,7 @@ namespace Techtella
                     ParsePacket(s);
                     if (parsedPacket.type == (byte)0)
                     {
+                        owner.AddFoundPeer(iHandle, 12345);
                         Console.WriteLine("got ping");
                         parsedPacket.ttl--;
                         parsedPacket.hops++;
@@ -74,13 +75,13 @@ namespace Techtella
                         Console.WriteLine("got pong");
                         parsedPacket.ttl--;
                         parsedPacket.hops++;
+                        owner.AddFoundPeer(iHandle, 12345);
                         if (owner.IsActive(parsedPacket))
                         {
                             //Console.WriteLine("setting corresponding ping inactive");
                             //owner.SetInactive(parsedPacket.descriptor);
                             Console.WriteLine("forwarding pong");
                             owner.ForwardPong(parsedPacket, iHandle);
-                            Console.WriteLine("adding found peer");
                             Console.WriteLine("MSG in parsedPacket:  " + parsedPacket.msg);
                             int pt = 0;
                             string port = parsedPacket.msg.Split('&')[0];
@@ -93,7 +94,6 @@ namespace Techtella
                             }
                             catch (FormatException) { }
                             Console.WriteLine("adding found peer");
-                            owner.AddFoundPeer(host, pt);
                         }
                     }
                     else if (parsedPacket.type == (byte)80)
@@ -101,6 +101,7 @@ namespace Techtella
                         Console.WriteLine("got query");
                         parsedPacket.ttl--;
                         parsedPacket.hops++;
+                        owner.AddFoundPeer(iHandle, 12345);
                         if (!owner.IsQActive(parsedPacket))
                         {
                             Console.WriteLine("Adding Active Query");
@@ -128,6 +129,7 @@ namespace Techtella
                         Console.WriteLine("got query hit");
                         parsedPacket.ttl--;
                         parsedPacket.hops++;
+                        owner.AddFoundPeer(iHandle, 12345);
                         if (owner.IsQActive(parsedPacket))
                         {
                             owner.ForwardQHit(parsedPacket, iHandle);
