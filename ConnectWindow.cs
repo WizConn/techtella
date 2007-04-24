@@ -29,10 +29,15 @@ namespace Techtella
             {
                 string ip = connectPeerIPBox.Text;
                 int port = 12345;
+                int successCode = 0;
                 
                 try
                 {
-                    server.CreatePing(ip, port);
+                    successCode = server.CreatePing(ip, port);
+                    if (successCode == 0)
+                    {
+                        throw new SocketException();
+                    }
                 }
                 catch
                 {
