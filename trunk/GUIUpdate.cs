@@ -22,6 +22,7 @@ namespace Techtella
             {
                 string chatOutput = "";
                 ArrayList currentMessages = (ArrayList)owner.chatMessages.Clone();
+                ArrayList qhits = (ArrayList)owner.queryHits.Clone();
                 foreach(object message in currentMessages)
                 {
                     chatOutput += message.ToString();
@@ -29,7 +30,10 @@ namespace Techtella
                 target.SetText(chatOutput);
                 target.stats.statisticsUpdate();
                 target.updateStats();
+                target.updateFoundPeers();
                 target.updateChatUsers();
+                target.SearchFiller(qhits);
+                
             }
         }
 

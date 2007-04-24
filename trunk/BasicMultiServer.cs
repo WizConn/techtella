@@ -12,7 +12,7 @@ namespace Techtella
     public class BasicMultiServer
     {
         public static string immediateIP;
-        public ArrayList knownPeers, foundPeers, activePings, activeQueries, chatMessages;
+        public ArrayList knownPeers, foundPeers, activePings, activeQueries, chatMessages, queryHits;
         public int portnum;
         public static int filePort;
         public DateTime starttime, now;
@@ -96,6 +96,7 @@ namespace Techtella
             activePings = new ArrayList();
             activeQueries = new ArrayList();
             chatMessages = new ArrayList();
+            queryHits = new ArrayList();
             starttime = DateTime.Now;
             filePort = 23456;
         }
@@ -243,7 +244,12 @@ namespace Techtella
 
         public void AddChatMessage(string message, string from)
         {
-            chatMessages.Add("Message from client at " + from + ":  " + message);
+            chatMessages.Add("Message from client at " + from.Split(':')[0] + ":  " + message.Substring(2));
+        }
+
+        public void AddQueryHit(string qhit)
+        {
+            queryHits.Add(qhit);
         }
 
         public void CreateQuery(string criteria)

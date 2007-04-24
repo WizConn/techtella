@@ -146,6 +146,7 @@ namespace Techtella
                             //[5] = name of the file
                             //[6] = access code for the file's download
                             string qhitpacket = parsedPacket.msg.Split('?')[5];
+                            owner.AddQueryHit(parsedPacket.msg);
                             FileClass.AddNetFile(qhitpacket.Split('&')[5], Int32.Parse(qhitpacket.Split('&')[6]), qhitpacket.Split('&')[1] + ":" + qhitpacket.Split('&')[0]);
                         }
                     }
@@ -156,7 +157,7 @@ namespace Techtella
                     else if (parsedPacket.type == (byte)123)
                     {
                         //chat packet
-                        owner.AddFoundPeer(iHandle, 12345);
+                        owner.AddFoundPeer(iHandle.Split(':')[0], 12345);
                         owner.AddChatMessage(parsedPacket.msg + "\n", iHandle);
                     }
                 }
