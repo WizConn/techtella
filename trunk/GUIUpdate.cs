@@ -32,7 +32,7 @@ namespace Techtella
                 target.updateStats();
                 target.updateFoundPeers();
                 target.updateChatUsers();
-                target.SearchFiller(qhits);
+                target.SearchFiller(FileClass.GetNetFiles());
                 
             }
         }
