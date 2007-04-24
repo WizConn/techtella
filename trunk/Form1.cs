@@ -100,28 +100,35 @@ namespace Techtella
         public void updateChatUsers()
         {
             char[] delimit = new char[] { '_' };
-            foreach (string peer in server.foundPeers)
+            try
             {
-                string[] row2 = { "", "" };
-                int i = 0;
-                foreach (string col in peer.Split(delimit))
+                foreach (string peer in server.foundPeers)
                 {
-                    row2.SetValue(col, i);
-                    i++;
-                }
-
-                int isInList = 0;
-                foreach (DataGridViewRow ip in knownPeersChatData.Rows)
-                {
-                    if (ip.Cells[0].Value.ToString() == row2[0])
+                    string[] row2 = { "", "" };
+                    int i = 0;
+                    foreach (string col in peer.Split(delimit))
                     {
-                        isInList = 1; // Do Nothing
+                        row2.SetValue(col, i);
+                        i++;
+                    }
+
+                    int isInList = 0;
+                    foreach (DataGridViewRow ip in knownPeersChatData.Rows)
+                    {
+                        if (ip.Cells[0].Value.ToString() == row2[0])
+                        {
+                            isInList = 1; // Do Nothing
+                        }
+                    }
+                    if (isInList == 0)
+                    {
+                        knownPeersChatData.Rows.Add(row2);
                     }
                 }
-                if (isInList == 0)
-                {
-                    knownPeersChatData.Rows.Add(row2);
-                }
+            }
+            catch (InvalidOperationException e)
+            {
+                Console.WriteLine("updateChatUsersOopsException: " + e);
             }
         }
 
