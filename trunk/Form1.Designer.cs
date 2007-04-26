@@ -40,9 +40,6 @@ namespace Techtella
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutTechtellaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.startTab = new System.Windows.Forms.TabPage();
             this.startBox = new System.Windows.Forms.TextBox();
@@ -117,7 +114,6 @@ namespace Techtella
             this.sharedFileSizeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sharedIdentifierCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statsTab = new System.Windows.Forms.TabPage();
-            this.statsPeersLabel = new System.Windows.Forms.Label();
             this.downloadersBox = new System.Windows.Forms.ListBox();
             this.transferGroup = new System.Windows.Forms.GroupBox();
             this.bytesdlStat = new System.Windows.Forms.Label();
@@ -147,8 +143,10 @@ namespace Techtella
             this.chatOutputBox = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menuStrip1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.startTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -167,6 +165,7 @@ namespace Techtella
             this.messagesGroup.SuspendLayout();
             this.chatTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.knownPeersChatData)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -247,30 +246,6 @@ namespace Techtella
             this.aboutTechtellaToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.aboutTechtellaToolStripMenuItem.Text = "About Techtella";
             this.aboutTechtellaToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusLabel,
-            this.statusLabel2});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 574);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(856, 22);
-            this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // statusLabel
-            // 
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(122, 17);
-            this.statusLabel.Text = "0 Downloads, 0 Uploads";
-            // 
-            // statusLabel2
-            // 
-            this.statusLabel2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.statusLabel2.Name = "statusLabel2";
-            this.statusLabel2.Size = new System.Drawing.Size(146, 17);
-            this.statusLabel2.Text = "-  Sharing 0 files with 0 peers";
             // 
             // tabControl
             // 
@@ -1008,7 +983,6 @@ namespace Techtella
             // 
             // statsTab
             // 
-            this.statsTab.Controls.Add(this.statsPeersLabel);
             this.statsTab.Controls.Add(this.downloadersBox);
             this.statsTab.Controls.Add(this.transferGroup);
             this.statsTab.Controls.Add(this.messagesGroup);
@@ -1019,15 +993,6 @@ namespace Techtella
             this.statsTab.TabIndex = 5;
             this.statsTab.Text = "Statistics";
             this.statsTab.UseVisualStyleBackColor = true;
-            // 
-            // statsPeersLabel
-            // 
-            this.statsPeersLabel.AutoSize = true;
-            this.statsPeersLabel.Location = new System.Drawing.Point(8, 371);
-            this.statsPeersLabel.Name = "statsPeersLabel";
-            this.statsPeersLabel.Size = new System.Drawing.Size(90, 13);
-            this.statsPeersLabel.TabIndex = 14;
-            this.statsPeersLabel.Text = "0 Peers Detected";
             // 
             // downloadersBox
             // 
@@ -1339,6 +1304,29 @@ namespace Techtella
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
             // 
+            // statusLabel
+            // 
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(264, 17);
+            this.statusLabel.Text = "0 Downloads, 0 Uploads -  Sharing 0 files with 0 peers";
+            // 
+            // statusLabel2
+            // 
+            this.statusLabel2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.statusLabel2.Name = "statusLabel2";
+            this.statusLabel2.Size = new System.Drawing.Size(0, 17);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabel,
+            this.statusLabel2});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 574);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(856, 22);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1356,8 +1344,6 @@ namespace Techtella
             this.Text = "Techtella";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.tabControl.ResumeLayout(false);
             this.startTab.ResumeLayout(false);
             this.startTab.PerformLayout();
@@ -1385,6 +1371,8 @@ namespace Techtella
             this.chatTab.ResumeLayout(false);
             this.chatTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.knownPeersChatData)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1393,7 +1381,6 @@ namespace Techtella
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage startTab;
         private System.Windows.Forms.TabPage connectionsTab;
@@ -1406,7 +1393,6 @@ namespace Techtella
         private System.Windows.Forms.ToolStripMenuItem aboutTechtellaToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox startBox;
-        private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.DataGridView knownPeersData;
         private System.Windows.Forms.DataGridView peersData;
         private System.Windows.Forms.DataGridViewTextBoxColumn ipColumnB;
@@ -1466,7 +1452,6 @@ namespace Techtella
         private System.Windows.Forms.DataGridViewTextBoxColumn sharedFileSizeCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn sharedIdentifierCol;
         private System.Windows.Forms.Button removeButton;
-        private System.Windows.Forms.ToolStripStatusLabel statusLabel2;
         private System.Windows.Forms.GroupBox transferGroup;
         private System.Windows.Forms.GroupBox messagesGroup;
         private System.Windows.Forms.Label pingLabel;
@@ -1479,7 +1464,6 @@ namespace Techtella
         private System.Windows.Forms.Label filesulLabel;
         private System.Windows.Forms.Label queryHitLabel;
         private System.Windows.Forms.ListBox downloadersBox;
-        private System.Windows.Forms.Label statsPeersLabel;
         private System.Windows.Forms.Label pingStat;
         private System.Windows.Forms.Label bytesdlStat;
         private System.Windows.Forms.Label bytesulStat;
@@ -1509,6 +1493,9 @@ namespace Techtella
         private System.Windows.Forms.DataGridViewTextBoxColumn searchIPCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn searchHopCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabel2;
+        private System.Windows.Forms.StatusStrip statusStrip1;
     }
 }
 
