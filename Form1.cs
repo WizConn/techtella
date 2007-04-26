@@ -78,7 +78,8 @@ namespace Techtella
         public void SearchFiller(ArrayList filenamelist, ArrayList hostlist, ArrayList codeslist)
         {
             int i = 0;
-            foreach (object result in filenamelist)
+            ArrayList filenames = (ArrayList)filenamelist.Clone();
+            foreach (object result in filenames)
             {
                 string[] row = { "", "", "", "" };
                 row.SetValue(result.ToString().Split('|')[0], 0);
