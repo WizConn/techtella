@@ -50,7 +50,7 @@ namespace Techtella
         {
             foreach (object hostname in knownPeers)
             {
-                if (ParseHostname((string)hostname) != ignore)
+                if (ParseHostname((string)hostname).Split(':')[0] != ignore.Split('_')[0].Split(':')[0])
                 {
                     //Client.ReQuery(ParseHostname((string)hostname), 12345, query.hops, query.ttl, query.descriptor, query.msg);
                     Client.Query(ParseHostname((string)hostname), 12345, query.ttl, query.msg, false, query.descriptor);
