@@ -187,6 +187,8 @@ namespace Techtella
         {
             pingStat.Text = stats.numPing + "";
             pongStat.Text = stats.numPong + "";
+            queryStat.Text = stats.numQuery + "";
+            queryHitStat.Text = stats.numQueryHit + "";
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -284,8 +286,7 @@ namespace Techtella
                 openFileDialog1.ShowDialog();
             }
             else if (sender == addSharedFileButton)
-            {
-                if (shareCategoryCombo.SelectedIndex == -1)
+            {                if (shareCategoryCombo.SelectedIndex == -1)
                 {
                     shareCategoryCombo.SelectedIndex = 0;
                 }
