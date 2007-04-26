@@ -1061,6 +1061,7 @@ namespace Techtella
             this.bytesdlStat.AutoSize = true;
             this.bytesdlStat.Location = new System.Drawing.Point(181, 55);
             this.bytesdlStat.Name = "bytesdlStat";
+            this.bytesdlStat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.bytesdlStat.Size = new System.Drawing.Size(13, 13);
             this.bytesdlStat.TabIndex = 23;
             this.bytesdlStat.Text = "0";
@@ -1081,6 +1082,7 @@ namespace Techtella
             this.bytesulStat.AutoSize = true;
             this.bytesulStat.Location = new System.Drawing.Point(181, 42);
             this.bytesulStat.Name = "bytesulStat";
+            this.bytesulStat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.bytesulStat.Size = new System.Drawing.Size(13, 13);
             this.bytesulStat.TabIndex = 22;
             this.bytesulStat.Text = "0";
@@ -1101,6 +1103,7 @@ namespace Techtella
             this.filesdlStat.AutoSize = true;
             this.filesdlStat.Location = new System.Drawing.Point(181, 29);
             this.filesdlStat.Name = "filesdlStat";
+            this.filesdlStat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.filesdlStat.Size = new System.Drawing.Size(13, 13);
             this.filesdlStat.TabIndex = 21;
             this.filesdlStat.Text = "0";
@@ -1121,6 +1124,7 @@ namespace Techtella
             this.filesulStat.AutoSize = true;
             this.filesulStat.Location = new System.Drawing.Point(181, 16);
             this.filesulStat.Name = "filesulStat";
+            this.filesulStat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.filesulStat.Size = new System.Drawing.Size(13, 13);
             this.filesulStat.TabIndex = 20;
             this.filesulStat.Text = "0";
@@ -1195,6 +1199,7 @@ namespace Techtella
             this.queryHitStat.AutoSize = true;
             this.queryHitStat.Location = new System.Drawing.Point(181, 55);
             this.queryHitStat.Name = "queryHitStat";
+            this.queryHitStat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.queryHitStat.Size = new System.Drawing.Size(13, 13);
             this.queryHitStat.TabIndex = 18;
             this.queryHitStat.Text = "0";
@@ -1206,6 +1211,7 @@ namespace Techtella
             this.pingStat.AutoSize = true;
             this.pingStat.Location = new System.Drawing.Point(181, 16);
             this.pingStat.Name = "pingStat";
+            this.pingStat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.pingStat.Size = new System.Drawing.Size(13, 13);
             this.pingStat.TabIndex = 15;
             this.pingStat.Text = "0";
@@ -1217,6 +1223,7 @@ namespace Techtella
             this.queryStat.AutoSize = true;
             this.queryStat.Location = new System.Drawing.Point(181, 42);
             this.queryStat.Name = "queryStat";
+            this.queryStat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.queryStat.Size = new System.Drawing.Size(13, 13);
             this.queryStat.TabIndex = 17;
             this.queryStat.Text = "0";
@@ -1228,6 +1235,7 @@ namespace Techtella
             this.pongStat.AutoSize = true;
             this.pongStat.Location = new System.Drawing.Point(181, 29);
             this.pongStat.Name = "pongStat";
+            this.pongStat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.pongStat.Size = new System.Drawing.Size(13, 13);
             this.pongStat.TabIndex = 16;
             this.pongStat.Text = "0";
