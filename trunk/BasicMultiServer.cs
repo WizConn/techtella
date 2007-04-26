@@ -71,11 +71,13 @@ namespace Techtella
 
         public void ForwardQHit(Packet qHit, string ignore)
         {
+            Console.WriteLine("ForwardQhit called");
             foreach (object hostname in foundPeers)
             {
                 if (ParseHostname(hostname.ToString()).Split(':')[0] != ignore.Split(':')[0])
                 {
                     Client.QueryHit(ParseHostname((string)hostname), 12345, qHit);
+                    Console.WriteLine("Forwarding to " + ParseHostname((string)hostname) + ":" + 12345 + " - " + qHit.msg);
                 }
             }
         }
