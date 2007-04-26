@@ -133,7 +133,7 @@ namespace Techtella
                         Console.WriteLine("got query hit");
                         parsedPacket.ttl--;
                         parsedPacket.hops++;
-                        owner.AddFoundPeer(iHandle, 12345);
+                        owner.AddFoundPeer(parsedPacket.msg.Split('&')[1] + ":" + parsedPacket.msg.Split('&')[0], 12345);
                         if (owner.IsQActive(parsedPacket))
                         {
                             owner.ForwardQHit(parsedPacket, iHandle);
