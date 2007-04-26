@@ -71,7 +71,7 @@ namespace Techtella
 
         public void ForwardQHit(Packet qHit, string ignore)
         {
-            foreach (object hostname in knownPeers)
+            foreach (object hostname in foundPeers)
             {
                 if (ParseHostname(hostname.ToString()).Split(':')[0] != ignore.Split(':')[0])
                 {
