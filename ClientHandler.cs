@@ -77,7 +77,6 @@ namespace Techtella
                         Console.WriteLine("got pong");
                         parsedPacket.ttl--;
                         parsedPacket.hops++;
-                        owner.AddFoundPeer(iHandle, 12345);
                         if (owner.IsActive(parsedPacket))
                         {
                             //Console.WriteLine("setting corresponding ping inactive");
@@ -96,6 +95,7 @@ namespace Techtella
                             }
                             catch (FormatException) { }
                             Console.WriteLine("adding found peer");
+                            owner.AddFoundPeer(parsedPacket.msg.Split('&')[1] + ":" + parsedPacket.msg.Split('&')[0], 12345);
                         }
                     }
                     else if (parsedPacket.type == (byte)80)
