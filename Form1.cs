@@ -77,28 +77,35 @@ namespace Techtella
 
         public void SearchFiller(ArrayList filenamelist, ArrayList hostlist, ArrayList codeslist)
         {
-            int i = 0;
-            ArrayList filenames = (ArrayList)filenamelist.Clone();
-            foreach (object result in filenames)
+            try
             {
-                string[] row = { "", "", "", "" };
-                row.SetValue(result.ToString().Split('|')[0], 0);
-                row.SetValue(result.ToString().Split('|')[1], 1);
-                row.SetValue(hostlist[i].ToString(), 2);
-                row.SetValue(codeslist[i].ToString(), 3);
-                int isInList = 0;
-                i++;
-                foreach (DataGridViewRow code in searchData.Rows)
+                int i = 0;
+                //ArrayList filenames = (ArrayList)filenamelist.Clone();
+                foreach (object result in filenamelist)
                 {
-                    if (code.Cells[3].Value.ToString() == row[3])
+                    string[] row = { "", "", "", "" };
+                    row.SetValue(result.ToString().Split('|')[0], 0);
+                    row.SetValue(result.ToString().Split('|')[1], 1);
+                    row.SetValue(hostlist[i].ToString(), 2);
+                    row.SetValue(codeslist[i].ToString(), 3);
+                    int isInList = 0;
+                    i++;
+                    foreach (DataGridViewRow code in searchData.Rows)
                     {
-                        isInList = 1; // Do Nothing
+                        if (code.Cells[3].Value.ToString() == row[3])
+                        {
+                            isInList = 1; // Do Nothing
+                        }
+                    }
+                    if (isInList == 0)
+                    {
+                        searchData.Rows.Add(row);
                     }
                 }
-                if (isInList == 0)
-                {
-                    searchData.Rows.Add(row);
-                }
+            }
+            catch
+            {
+                throw new Exception();
             }
         }
 
