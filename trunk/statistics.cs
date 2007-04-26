@@ -12,7 +12,8 @@ namespace Techtella
         #region InstanceVariables
         public int numPing;
         public int numPong;
-        public int numQuery;  //NOTE: also need a queryhit stat and a push stat
+        public int numQuery;
+        public int numQueryHit;
         public int numFilesSent;
         public int numBytesSent;
         public int numBytesReceived;
@@ -99,6 +100,8 @@ namespace Techtella
         {
             numPing = Client.statPing;
             numPong = Client.statPong;
+            numQuery = ClientHandler.statQuery;
+            numQueryHit = ClientHandler.statQueryHit;
         }
     }
 }

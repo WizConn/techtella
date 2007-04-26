@@ -19,6 +19,8 @@ namespace Techtella
         private BasicMultiServer owner;
         private BasicMultiServer.Packet parsedPacket;
         public static int pongs = 0;
+        public static int statQuery = 0;
+        public static int statQueryHit = 0;
 
         public ClientHandler(Socket s, BasicMultiServer own)
         {
@@ -98,6 +100,7 @@ namespace Techtella
                     }
                     else if (parsedPacket.type == (byte)80)
                     {
+                        statQuery++;
                         Console.WriteLine("got query");
                         parsedPacket.ttl--;
                         parsedPacket.hops++;
@@ -126,6 +129,7 @@ namespace Techtella
                     }
                     else if (parsedPacket.type == (byte)81)
                     {
+                        statQueryHit++;
                         Console.WriteLine("got query hit");
                         parsedPacket.ttl--;
                         parsedPacket.hops++;
