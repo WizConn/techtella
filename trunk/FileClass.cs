@@ -94,12 +94,14 @@ namespace Techtella
 
         public static int AddNetFile(string filename, int code, string host)
         {
+            Console.WriteLine("AddNetFile called: " + filename + " " + code + " " + host);
             if (NetFiles != null)
             {
                 foreach (object fileObj in NetFiles)
                 {
                     if (fileObj.ToString() == filename)
                     {
+                        Console.WriteLine("I already have this file: " + fileObj.ToString());
                         return 0;
                     }
                 }
