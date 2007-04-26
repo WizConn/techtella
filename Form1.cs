@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using System.IO;
 
 namespace Techtella
 {
@@ -80,7 +81,8 @@ namespace Techtella
             foreach (object result in filenamelist)
             {
                 string[] row = { "", "", "", "" };
-                row.SetValue(result.ToString(), 0);
+                row.SetValue(result.ToString().Split('|')[0], 0);
+                row.SetValue(result.ToString().Split('|')[1], 1);
                 row.SetValue(hostlist[i].ToString(), 2);
                 row.SetValue(codeslist[i].ToString(), 3);
                 int isInList = 0;
@@ -287,11 +289,30 @@ namespace Techtella
             }
             else if (sender == addSharedFileButton)
             {
+                FileInfo info = new FileInfo(shareFileBox.Text);
+                long filesize = info.Length;
+                string filesizeConverted = "";
                 if (shareCategoryCombo.SelectedIndex == -1)
                 {
                     shareCategoryCombo.SelectedIndex = 0;
                 }
-                file = category[shareCategoryCombo.SelectedIndex] + "*" + shareTitleBox.Text + "*" + shareFileBox.Text;
+                if (filesize > 1024 && filesize < 1048576)
+                {
+                    filesize = filesize / 1024;
+                    filesizeConverted = filesize.ToString() + "KB";
+                }
+                else if (filesize > 1048576 && filesize < 1073741824)
+                {
+                    filesize = filesize / 1048576;
+                    filesizeConverted = filesize.ToString() + "MB";
+                }
+                else if (filesize > 1073741824)
+                {
+                    filesize = filesize / 1073741824;
+                    filesizeConverted = filesize.ToString() + "GB";
+                }
+                file = category[shareCategoryCombo.SelectedIndex] + "*" + shareTitleBox.Text + "*" + shareFileBox.Text + "|" + filesizeConverted;
+                
                 FileClass.AddFile(file);
                 try
                 {
@@ -310,6 +331,7 @@ namespace Techtella
                         else if (i == 2)
                         {
                             filePath = col;
+                            filePath = filePath.Split('|')[0];
                         }
                         fileName = filePath.Split('\\')[filePath.Split('\\').Length-1];
                         i++;
@@ -317,7 +339,8 @@ namespace Techtella
                     row.SetValue(fileName, 0);
                     row.SetValue(sharedCategory, 1);
                     row.SetValue(title, 2);
-                    row.SetValue("?", 3);
+                    
+                    row.SetValue(filesizeConverted, 3);
                     row.SetValue("?", 4);
                     sharedData.Rows.Add(row);
                     
@@ -390,6 +413,7 @@ namespace Techtella
                 }
                 server.AddKnownPeer(movePeerIP, movePeerPort);
                 peersData.Rows.Remove(peersData.CurrentRow);
+                
                 //might need to manually update knownPeersData
             }
         }
