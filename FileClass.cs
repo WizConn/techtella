@@ -142,22 +142,45 @@ namespace Techtella
             foreach (object File in FileList)
             {
                 Console.WriteLine(File.ToString());
-                Console.WriteLine(File.ToString().Split('*')[0] + " ?= " + criteria.Split('*')[0]);
-                if (File.ToString().Split('*')[0] == criteria.Split('*')[0])
+                Console.WriteLine(File.ToString().Split('*')[0] + " ?= " + criteria.Split('*')[0].Split('|'));
+                if (File.ToString().Split('*')[0] == criteria.Split('*')[0].Split('|')[0] || File.ToString().Split('*')[0] == "ANY")
                 {
-                    Console.WriteLine(File.ToString().Split('*')[1] + " ?= " + criteria.Split('*')[1]);
-                    if (File.ToString().Split('*')[1] == criteria.Split('*')[1])
+                    Console.WriteLine(File.ToString().Split('*')[1].Split('|')[0] + " ?= " + criteria.Split('*')[1].Split('|'));
+                    if (File.ToString().Split('*')[1].Split('|')[0] == criteria.Split('*')[1].Split('|')[0])
                     {
                         return 1;
                     }
-                    Console.WriteLine(File.ToString().Split('*')[2] + " ?= " + criteria.Split('*')[2].Split('\\')[criteria.Split('*')[2].Split('\\').Length-1]);
-                    if (File.ToString().Split('*')[2].Split('\\')[File.ToString().Split('*')[2].Split('\\').Length-1] == criteria.Split('*')[2].Split('\\')[criteria.Split('*')[2].Split('\\').Length-1])
+                    Console.WriteLine(File.ToString().Split('*')[2].Split('|')[0] + " ?= " + criteria.Split('*')[2].Split('\\')[criteria.Split('*')[2].Split('\\').Length-1].Split('|')[0]);
+                    if (File.ToString().Split('*')[2].Split('\\')[File.ToString().Split('*')[2].Split('\\').Length-1].Split('|')[0] == criteria.Split('*')[2].Split('\\')[criteria.Split('*')[2].Split('\\').Length-1].Split('|')[0])
                     {
                         return 2;
                     }
                 }
             }
             return 0;
+        }
+
+        public static string CorrectFileName(string criteria)
+        {
+            Console.WriteLine("Correcting " + criteria);
+            foreach (object File in FileList)
+            {
+                if (File.ToString().Split('*')[0] == criteria.Split('*')[0] || File.ToString().Split('*')[0] == "ANY")
+                {
+                    if (File.ToString().Split('*')[1].Split('|')[0] == criteria.Split('*')[1].Split('|')[0])
+                    {
+                        Console.WriteLine(File.ToString().Split('*')[2].Split('\\')[File.ToString().Split('*')[2].Split('\\').Length - 1]);
+                        return File.ToString().Split('*')[2].Split('\\')[File.ToString().Split('*')[2].Split('\\').Length - 1];
+                    }
+                    if (File.ToString().Split('*')[2].Split('\\')[File.ToString().Split('*')[2].Split('\\').Length - 1].Split('|')[0] == criteria.Split('*')[2].Split('\\')[criteria.Split('*')[2].Split('\\').Length - 1].Split('|')[0])
+                    {
+                        Console.WriteLine(File.ToString().Split('*')[2].Split('\\')[File.ToString().Split('*')[2].Split('\\').Length-1]);
+                        return File.ToString().Split('*')[2].Split('\\')[File.ToString().Split('*')[2].Split('\\').Length-1];
+                    }
+                }
+            }
+            Console.WriteLine("Um... couldn't... correct... filename?... wtf?");
+            return "OMFG!";
         }
 
     }

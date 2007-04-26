@@ -227,7 +227,7 @@ namespace Techtella
             msg += "0&"; //index, always 0
             msg += "0&"; //size in bytes
             msg += toQHit.msg.Split('*')[2].Length + "&"; //length(of file name)
-            msg += toQHit.msg.Split('*')[2] + "&0&"; //name of file (blank), code 0 (no download)
+            msg += FileClass.CorrectFileName(toQHit.msg) + "&0&"; //name of file (blank), code 0 (no download)
             BasicMultiServer.Packet p = new BasicMultiServer.Packet();
             p.msg = msg;
             p.type = (byte)81;
