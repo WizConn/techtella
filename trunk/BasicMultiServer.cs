@@ -139,7 +139,7 @@ namespace Techtella
                     SetQInactive(active);
                     Console.WriteLine("Set a query inactive, descriptor:  " + Int32.Parse(active.ToString().Split('_')[0]));
                 }
-                else if (toCheck.descriptor == Int32.Parse(active.ToString().Split('_')[0]))
+                else if (toCheck.descriptor == Int32.Parse(active.ToString().Split('_')[0].Split(':')[0]))
                 {
                     return true;
                 }
