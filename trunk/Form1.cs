@@ -286,7 +286,8 @@ namespace Techtella
                 openFileDialog1.ShowDialog();
             }
             else if (sender == addSharedFileButton)
-            {                if (shareCategoryCombo.SelectedIndex == -1)
+            {
+                if (shareCategoryCombo.SelectedIndex == -1)
                 {
                     shareCategoryCombo.SelectedIndex = 0;
                 }
