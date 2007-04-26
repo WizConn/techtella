@@ -786,6 +786,7 @@ namespace Techtella
             this.searchCategoryCombo.Name = "searchCategoryCombo";
             this.searchCategoryCombo.Size = new System.Drawing.Size(121, 21);
             this.searchCategoryCombo.TabIndex = 5;
+            this.searchCategoryCombo.Text = "ANY";
             // 
             // categoryLabel
             // 
@@ -872,6 +873,7 @@ namespace Techtella
             this.shareCategoryCombo.Name = "shareCategoryCombo";
             this.shareCategoryCombo.Size = new System.Drawing.Size(121, 21);
             this.shareCategoryCombo.TabIndex = 10;
+            this.shareCategoryCombo.Text = "ANY";
             // 
             // browseButton
             // 

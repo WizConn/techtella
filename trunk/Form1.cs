@@ -285,6 +285,10 @@ namespace Techtella
             }
             else if (sender == addSharedFileButton)
             {
+                if (shareCategoryCombo.SelectedIndex == -1)
+                {
+                    shareCategoryCombo.SelectedIndex = 0;
+                }
                 file = category[shareCategoryCombo.SelectedIndex] + "*" + shareTitleBox.Text + "*" + shareFileBox.Text;
                 FileClass.AddFile(file);
                 try
@@ -320,6 +324,9 @@ namespace Techtella
             }
             else if (sender == searchButton)
             {
+                if(searchCategoryCombo.SelectedIndex == -1) {
+                    searchCategoryCombo.SelectedIndex = 0;
+                }
                 String searchQuery = searchCategory[searchCategoryCombo.SelectedIndex] + "*" + searchTitleBox.Text + "*" + searchFileNameBox.Text;
                 Console.WriteLine(searchQuery);
                 server.CreateQuery(searchQuery);
