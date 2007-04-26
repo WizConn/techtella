@@ -22,6 +22,8 @@ namespace Techtella
         public static int knownPeerPort;
         public static String foundPeerIP;
         public static int foundPeerPort;
+        public static String movePeerIP;
+        public static int movePeerPort;
         public GUIUpdate updater;
         public String selectedCategory = "ANY";
         public static String[] category = { "ANY", "AUDIO", "VIDEO", "DATA", "TEXT", "IMAGE" };
@@ -235,27 +237,7 @@ namespace Techtella
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (sender == peersRefreshButton)
-            {
-                try
-                {
-                    foreach (string peer in server.foundPeers)
-                    {
-                        string[] row = { "", "", "" };
-                        int i = 0;
-                        foreach (string col in peer.Split('_'))
-                        {
-                            row.SetValue(col, i);
-                            i++;
-                        }
-                        row.SetValue("0", 2);
-                        peersData.Rows.Add(row);
-                    }
-                }
-                catch (NullReferenceException) { }
-            }
-
-            else if (sender == chatSendButton)
+            if (sender == chatSendButton)
             {
                 if (chatIP == null)
                 {
@@ -353,6 +335,54 @@ namespace Techtella
             {
                 //do downloading stuff
             }
+            else if (sender == addPeerButton)
+            {
+                bool noException = true;
+                string ip = ipBox.Text;
+                int port = 12345;
+                int successCode = 0;
+
+                try
+                {
+                    successCode = server.CreatePing(ip, port);
+                    if (successCode == 0)
+                    {
+                        throw new Exception();
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Unable to find a peer at " + ip + ":" + port);
+                    noException = false;
+                }
+                if (noException)
+                {
+                    server.AddKnownPeer(ip, port);
+                    ipBox.Text = "";
+                    //might need to manually update knownPeersData
+                }
+            }
+            else if (sender == movePeerButton)
+            {
+                if (movePeerIP == null)
+                {
+                    DataGridViewCellCollection tempRow = peersData.CurrentRow.Cells;
+                    if (tempRow[0] != null && tempRow[1] != null)
+                    {
+
+                        movePeerIP = tempRow[0].Value.ToString();
+                        string temp = tempRow[1].Value.ToString();
+                        try
+                        {
+                            movePeerPort = int.Parse(temp);
+                        }
+                        catch { }
+                    }
+                }
+                server.AddKnownPeer(movePeerIP, movePeerPort);
+                peersData.Rows.Remove(peersData.CurrentRow);
+                //might need to manually update knownPeersData
+            }
         }
 
         private void ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -370,7 +400,7 @@ namespace Techtella
             {
                 ConnectWindow connectWindow = new ConnectWindow(server);
                 connectWindow.ShowDialog();
-                if (Client.pingCount > 0)
+                if (stats.numPing > 0 || stats.numQuery > 0) //CHANGE THIS TO PONGS || QUERY @ DEMO
                 {
                     tabControl.Enabled = true;
                     connectToolStripMenuItem.Enabled = false;
