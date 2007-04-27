@@ -46,7 +46,6 @@ namespace Techtella
         public static String tempFilePath;
         public static DataGridViewRow removeRow;
 
-
         public Form1(BasicMultiServer m)
         {
             Thread th = new Thread(new ThreadStart(DoSplash));
@@ -279,17 +278,7 @@ namespace Techtella
             pushStat.Text = stats.numPush + "";
             bytesdlStat.Text = stats.numBytesReceived + "";
             bytesulStat.Text = stats.numBytesSent + "";
-            int dls, uls, files = 0;
-            foreach(DataGridViewRow row in downloadData){
-                dls++;
-            }
-            foreach(DataGridViewRow row in uploadData){
-                uls++;
-            }
-            foreach(DataGridViewRow row in sharedData){
-                files++;
-            }
-            statusLabel = dls + " Downloads / " + uls + " Uploads - Sharing " + files + " files with " + stats.numPeers + ".";
+            statusLabel.Text = downloadData.RowCount + " Downloads / " + uploadData.RowCount + " Uploads - Sharing " + sharedData.RowCount + " files with " + stats.numPeers + " peers.";
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
