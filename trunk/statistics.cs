@@ -27,8 +27,6 @@ namespace Techtella
         {
             numPing=numPong=numQuery=numFilesSent=numBytesSent=numBytesReceived=numPeers = 0;
             peerAddr = new ArrayList();
-            filesToDownload = new ArrayList();
-            timesDownloaded = new ArrayList();
         }
         #endregion
 
@@ -77,9 +75,8 @@ namespace Techtella
             numQuery = ClientHandler.statQuery;
             numQueryHit = ClientHandler.statQueryHit;
             numPush = Client.statPush;
-            numPeers = BasicMultiServer.foundPeers.Count + BasicMultiServer.knownPeers.Count;
-            numBytesSent = FileSender.totalSent.ToString();
-            numBytesReceived = FileReceiver.totalReceived.ToString();
+            numBytesSent = (int)FileSender.totalSent;
+            numBytesReceived = (int)FileReceiver.totalReceived;
         }
     }
 }
