@@ -89,7 +89,7 @@ namespace Techtella
 
         public void UpdateDownloaders()
         {
-            downloadersBox.Text += ClientHandler.pushIP;
+            downloadersBox.Text = FileSender.clientIP + "\n";
         }
 
         public void UpdateDownloads()
