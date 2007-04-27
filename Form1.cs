@@ -410,7 +410,7 @@ namespace Techtella
                         senderFilename = tempRow[0].Value.ToString();
                     }
                 }
-                Client.Push(senderIP, senderPort, senderFilename, 0);
+                server.CreatePush(senderIP, senderPort, senderFilename);
             }
             else if (sender == addPeerButton)
             {
