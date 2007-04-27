@@ -15,6 +15,8 @@ namespace Techtella
         private int filePort;
         public static long bytesPerSecond;
         public static long fileCompleteness;
+        public static int attempted = 0;
+        public static int completed = 0;
         public FileReceiver(string myClientIpAddr, int portnum, string filename)
         {
             clientIP = myClientIpAddr;
@@ -63,6 +65,7 @@ namespace Techtella
             DateTime then = DateTime.Now;
             DateTime now = DateTime.Now;
             long bytesthen = 0;
+            attempted++;
             while (bytesGot < fileLength)
             {
                 then = now;
@@ -90,6 +93,7 @@ namespace Techtella
             if (bytesGot == fileLength)
             {
                 Console.WriteLine("Received Entire File: " + bytesGot + " vs " + fileLength);
+                completed++;
             }
             else if (bytesGot > fileLength)
             {
