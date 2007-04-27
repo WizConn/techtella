@@ -94,7 +94,7 @@ namespace Techtella
                     row[1] = "Downloading";
                 else
                     row[1] = "n/a";
-                row[2] = "" + ((int)(((double)FileReceiver.fileCompleteness / FileSender.fileSize) * 100) + "%");
+                row[2] = "" + (((int)(((double)FileReceiver.fileCompleteness / FileSender.fileSize) * 100)) + "%");
                 row[3] = FileReceiver.fileSize + " bytes";
                 row[4] = FileReceiver.fileCompleteness + " bytes";
                 row[5] = "" + FileReceiver.bytesPerSecond;
@@ -124,12 +124,12 @@ namespace Techtella
             {
                 string[] row = { "", "", "", "", "", "", "", "" };
 
-                row[0] = FileReceiver.myFile;
+                row[0] = FileSender.myFile;
                 if (ClientHandler.uploadInProgress == 1)
                     row[1] = "Uploading";
                 else
                     row[1] = "n/a";
-                row[2] = "" + ((int)(((double)FileSender.fileCompleteness / FileSender.fileSize) * 100) + "%");
+                row[2] = "" + (((int)(((double)FileSender.fileCompleteness / FileSender.fileSize) * 100)) + "%");
                 row[3] = FileSender.fileSize + " bytes";
                 row[4] = FileSender.fileCompleteness + " bytes";
                 row[5] = "" + FileSender.bytesPerSecond;
