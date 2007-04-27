@@ -95,7 +95,7 @@ namespace Techtella
         public static int AddNetFile(string filename, int code, string host)
         {
             Console.WriteLine("AddNetFile called: " + filename + " " + code + " " + host);
-            if (NetFiles != null)
+            if (NetFiles != null && filename != "OMFG!")
             {
                 foreach (object fileObj in NetFiles)
                 {
