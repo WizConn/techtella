@@ -1033,7 +1033,7 @@ namespace Techtella
             // 
             this.bytesdlStat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bytesdlStat.AutoSize = true;
-            this.bytesdlStat.Location = new System.Drawing.Point(181, 55);
+            this.bytesdlStat.Location = new System.Drawing.Point(131, 55);
             this.bytesdlStat.Name = "bytesdlStat";
             this.bytesdlStat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.bytesdlStat.Size = new System.Drawing.Size(13, 13);
@@ -1054,7 +1054,7 @@ namespace Techtella
             // 
             this.bytesulStat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bytesulStat.AutoSize = true;
-            this.bytesulStat.Location = new System.Drawing.Point(181, 42);
+            this.bytesulStat.Location = new System.Drawing.Point(131, 42);
             this.bytesulStat.Name = "bytesulStat";
             this.bytesulStat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.bytesulStat.Size = new System.Drawing.Size(13, 13);
@@ -1075,7 +1075,7 @@ namespace Techtella
             // 
             this.filesdlStat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.filesdlStat.AutoSize = true;
-            this.filesdlStat.Location = new System.Drawing.Point(181, 29);
+            this.filesdlStat.Location = new System.Drawing.Point(131, 29);
             this.filesdlStat.Name = "filesdlStat";
             this.filesdlStat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.filesdlStat.Size = new System.Drawing.Size(13, 13);
@@ -1096,7 +1096,7 @@ namespace Techtella
             // 
             this.filesulStat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.filesulStat.AutoSize = true;
-            this.filesulStat.Location = new System.Drawing.Point(181, 16);
+            this.filesulStat.Location = new System.Drawing.Point(131, 16);
             this.filesulStat.Name = "filesulStat";
             this.filesulStat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.filesulStat.Size = new System.Drawing.Size(13, 13);
@@ -1173,7 +1173,7 @@ namespace Techtella
             // 
             this.queryHitStat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.queryHitStat.AutoSize = true;
-            this.queryHitStat.Location = new System.Drawing.Point(181, 55);
+            this.queryHitStat.Location = new System.Drawing.Point(162, 55);
             this.queryHitStat.Name = "queryHitStat";
             this.queryHitStat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.queryHitStat.Size = new System.Drawing.Size(13, 13);
@@ -1185,7 +1185,7 @@ namespace Techtella
             // 
             this.pingStat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pingStat.AutoSize = true;
-            this.pingStat.Location = new System.Drawing.Point(181, 16);
+            this.pingStat.Location = new System.Drawing.Point(162, 16);
             this.pingStat.Name = "pingStat";
             this.pingStat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.pingStat.Size = new System.Drawing.Size(13, 13);
@@ -1197,7 +1197,7 @@ namespace Techtella
             // 
             this.queryStat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.queryStat.AutoSize = true;
-            this.queryStat.Location = new System.Drawing.Point(181, 42);
+            this.queryStat.Location = new System.Drawing.Point(162, 42);
             this.queryStat.Name = "queryStat";
             this.queryStat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.queryStat.Size = new System.Drawing.Size(13, 13);
@@ -1209,7 +1209,7 @@ namespace Techtella
             // 
             this.pongStat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pongStat.AutoSize = true;
-            this.pongStat.Location = new System.Drawing.Point(181, 29);
+            this.pongStat.Location = new System.Drawing.Point(162, 29);
             this.pongStat.Name = "pongStat";
             this.pongStat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.pongStat.Size = new System.Drawing.Size(13, 13);
@@ -1344,7 +1344,7 @@ namespace Techtella
             // pushStat
             // 
             this.pushStat.AutoSize = true;
-            this.pushStat.Location = new System.Drawing.Point(181, 68);
+            this.pushStat.Location = new System.Drawing.Point(162, 68);
             this.pushStat.Name = "pushStat";
             this.pushStat.Size = new System.Drawing.Size(13, 13);
             this.pushStat.TabIndex = 13;

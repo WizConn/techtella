@@ -544,6 +544,7 @@ namespace Techtella
                 server.AddKnownPeer(movePeerIP, movePeerPort);
                 peersData.Rows.Remove(peersData.CurrentRow);
                 
+                
                 //might need to manually update knownPeersData
             }
         }
