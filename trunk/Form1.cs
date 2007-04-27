@@ -94,35 +94,22 @@ namespace Techtella
                     row[1] = "Downloading";
                 else
                     row[1] = "n/a";
-                row[2] = "" + ((FileReceiver.fileCompleteness / FileReceiver.fileSize) * 100 + "%");
+                row[2] = "" + (((double)FileReceiver.fileCompleteness / FileReceiver.fileSize) * 100 + "%");
                 row[3] = FileReceiver.fileSize + " bytes";
                 row[4] = FileReceiver.fileCompleteness + " bytes";
                 row[5] = "" + FileReceiver.bytesPerSecond;
                 row[6] = FileReceiver.clientIP;
-                row[7] = "" + BasicMultiServer.filePort;
-                int isInList = 0;
-                foreach (DataGridViewRow code in downloadData.Rows)
+                row[7] = "" + FileReceiver.filePort;
+                if (downloadData.Rows.Count < 1)
                 {
-                    if (code.Cells[0].Value.ToString() == row[0])
-                    {
-                        //isInList = 1; // Do Nothing
-                        row[0] = FileReceiver.myFile;
-                        if (ClientHandler.downloadInProgress == 1)
-                            row[1] = "Downloading";
-                        else
-                            row[1] = "n/a";
-                        row[2] = "" + ((FileReceiver.fileCompleteness / FileReceiver.fileSize) * 100 + "%");
-                        row[3] = FileReceiver.fileSize + " bytes";
-                        row[4] = FileReceiver.fileCompleteness + " bytes";
-                        row[5] = "" + FileReceiver.bytesPerSecond;
-                        row[6] = FileReceiver.clientIP;
-                        row[7] = "" + BasicMultiServer.filePort;
-                    }
-                }
-                if (isInList == 0)
-                {
-                    downloadData.Rows.Remove(downloadData.CurrentRow);
                     downloadData.Rows.Add(row);
+                }
+                foreach (DataGridViewRow currentRow in downloadData.Rows)
+                {
+                    if (currentRow.Cells[0].Value.ToString() == row[0])
+                    {
+                        currentRow.SetValues(row);
+                    }
                 }
             }
             catch
@@ -137,39 +124,27 @@ namespace Techtella
             {
                 string[] row = { "", "", "", "", "", "", "", "" };
 
-                row[0] = FileSender.myFile;
+                row[0] = FileReceiver.myFile;
                 if (ClientHandler.uploadInProgress == 1)
                     row[1] = "Uploading";
                 else
                     row[1] = "n/a";
-                row[2] = "" + ((FileSender.fileCompleteness / FileSender.fileSize) * 100 + "%");
+                row[2] = "" + (((double)FileSender.fileCompleteness / FileSender.fileSize) * 100 + "%");
                 row[3] = FileSender.fileSize + " bytes";
                 row[4] = FileSender.fileCompleteness + " bytes";
                 row[5] = "" + FileSender.bytesPerSecond;
                 row[6] = FileSender.clientIP;
                 row[7] = "" + BasicMultiServer.filePort;
-                int isInList = 0;
-                foreach (DataGridViewRow code in uploadData.Rows)
+                if (uploadData.Rows.Count < 1)
                 {
-                    if (code.Cells[0].Value.ToString() == row[0])
-                    {
-                        //isInList = 1; // Do Nothing
-                        if (ClientHandler.uploadInProgress == 1)
-                            row[1] = "Uploading";
-                        else
-                            row[1] = "n/a";
-                        row[2] = "" + ((FileSender.fileCompleteness / FileSender.fileSize) * 100 + "%");
-                        row[3] = FileSender.fileSize + " bytes";
-                        row[4] = FileSender.fileCompleteness + " bytes";
-                        row[5] = "" + FileSender.bytesPerSecond;
-                        row[6] = FileSender.clientIP;
-                        row[7] = "" + BasicMultiServer.filePort;
-                    }
-                }
-                if (isInList == 0)
-                {
-                    uploadData.Rows.Remove(downloadData.CurrentRow);
                     uploadData.Rows.Add(row);
+                }
+                foreach (DataGridViewRow currentRow in uploadData.Rows)
+                {
+                    if (currentRow.Cells[0].Value.ToString() == row[0])
+                    {
+                        currentRow.SetValues(row);
+                    }
                 }
             }
             catch
