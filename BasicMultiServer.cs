@@ -269,5 +269,12 @@ namespace Techtella
                 Client.Query(host.ToString().Split(':')[0], 12345, 10, criteria, true);
             }
         }
+
+        public void CreatePush(string hostname, int fileport, string filename)
+        {
+            Client.Push(hostname, portnum, filename, 0);
+            FileReceiver fr = new FileReceiver(hostname, fileport, filename);
+            fr.RunThreaded();
+        }
     }
 }
