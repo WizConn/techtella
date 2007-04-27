@@ -28,12 +28,12 @@ namespace Techtella
         public static String senderIP;
         public static int senderPort;
         public static string senderFilename;
-        public static string transferIP = "";
-        public static string transferPort = "";
-        public static string transferFilename = "";
-        public static string transferFilesize = "";
-        public static string transferProgress = "";
-        public static string transferStatus = "";
+        public static string transferIP;
+        public static string transferPort;
+        public static string transferFilename;
+        public static string transferFilesize;
+        public static string transferProgress;
+        public static string transferStatus;
         public GUIUpdate updater;
         public String selectedCategory = "ANY";
         public static String[] category = { "ANY", "AUDIO", "VIDEO", "DATA", "TEXT", "IMAGE" };
@@ -90,7 +90,7 @@ namespace Techtella
             {
                 string[] row = { "", "", "", "", "", "", "", "" };
                 row.SetValue(transferFilename, 0);
-                
+                Console.WriteLine(transferFilename);
                 try
                 {
                     long intProgress = (long.Parse(transferFilesize) / FileReceiver.fileCompleteness) * 100;
@@ -111,22 +111,12 @@ namespace Techtella
                     transferStatus = "Downloading";
                 }
                     
-                //row.SetValue(status, 1);
-                int isInList = 0;
-                foreach (DataGridViewRow code in downloadData.Rows)
-                {
-                    if (code.Cells[0].Value.ToString() == row[6])
-                    {
-                        isInList = 1; // Do Nothing
-                    }
-                }
-                if (isInList == 0)
-                {
-                    downloadData.Rows.Add(row);
-                }
+                row.SetValue(transferStatus, 1);
+                downloadData.Rows.Add(row);
             }
             catch
             {
+
             }
         }
 
@@ -327,7 +317,7 @@ namespace Techtella
 
             else if (sender == searchData)
             {
-                DataGridViewCellCollection tempRow = sharedData.CurrentRow.Cells;
+                DataGridViewCellCollection tempRow = searchData.CurrentRow.Cells;
                 if (tempRow[0] != null && tempRow[2] != null)
                 {
 
