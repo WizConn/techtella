@@ -5,6 +5,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace Techtella
 {
@@ -30,12 +31,16 @@ namespace Techtella
 
         private void Run()
         {
+            ClientHandler.downloadInProgress = 1;
             Console.WriteLine("Starting File Receiver");
             Console.WriteLine("IPADDR: " + clientIP);
             Console.WriteLine("PORT: " + filePort);
             bool connected = false;
             TcpClient tc = new TcpClient(clientIP, 12345);
             NetworkStream ns = tc.GetStream();
+            DateTime then = DateTime.Now;
+            DateTime now = DateTime.Now;
+            bool deadConnection = false;
             while (!connected)
             {
                 try
@@ -50,70 +55,81 @@ namespace Techtella
                     Console.WriteLine("Failed");
                     connected = false;
                 }
-            }
-            Console.WriteLine("Success");
-            FileStream fs = new FileStream(myFile, FileMode.Create);
-            StreamWriter sw = new StreamWriter(fs);
-            byte[] buffer = new byte[1];
-            Console.WriteLine("Sending handshake");
-            ns.Write(buffer, 0, 1);
-            Console.WriteLine("Waiting for handshake");
-            ns.Read(buffer, 0, 1);
-            Console.WriteLine("Got handshake, hope i get data!");
-            StreamReader reader = new StreamReader(ns);
-            Int64 bytesGot = 0;
-            Int64 fileLength = Int64.Parse(reader.ReadLine());
-            DateTime then = DateTime.Now;
-            DateTime now = DateTime.Now;
-            long bytesthen = 0;
-            attempted++;
-            while (bytesGot < fileLength)
-            {
-                then = now;
                 now = DateTime.Now;
-                int seconds = ((TimeSpan)(now - then)).Seconds;
-                if (seconds >= 1)
+                if (((TimeSpan)(now - then)).Seconds >= 5)
                 {
-                    long bytediff = bytesGot - bytesthen;
-                    bytesthen = bytesGot;
-                    bytesPerSecond = bytediff / seconds;
-                }
-                try
-                {
-                    fs.WriteByte(Byte.Parse(reader.ReadLine()));
-                    fs.Flush();
-                    Console.Write("So far i got " + bytesGot++ + " bytes\r");
-                    fileCompleteness = bytesGot;
-                }
-                catch
-                {
-                    Console.Write("Waiting for data.                    \r");
+                    MessageBox.Show("The host at " + clientIP + " doesn't have the full version, and cannot upload files simultaneously");
+                    deadConnection = true;
+                    break;
                 }
             }
-            Console.WriteLine();
-            if (bytesGot == fileLength)
+            if (!deadConnection)
             {
-                Console.WriteLine("Received Entire File: " + bytesGot + " vs " + fileLength);
-                completed++;
-                totalReceived += bytesGot;
+                Console.WriteLine("Success");
+                FileStream fs = new FileStream(myFile, FileMode.Create);
+                StreamWriter sw = new StreamWriter(fs);
+                byte[] buffer = new byte[1];
+                Console.WriteLine("Sending handshake");
+                ns.Write(buffer, 0, 1);
+                Console.WriteLine("Waiting for handshake");
+                ns.Read(buffer, 0, 1);
+                Console.WriteLine("Got handshake, hope i get data!");
+                StreamReader reader = new StreamReader(ns);
+                Int64 bytesGot = 0;
+                Int64 fileLength = Int64.Parse(reader.ReadLine());
+                then = DateTime.Now;
+                now = DateTime.Now;
+                long bytesthen = 0;
+                attempted++;
+                while (bytesGot < fileLength)
+                {
+                    then = now;
+                    now = DateTime.Now;
+                    int seconds = ((TimeSpan)(now - then)).Seconds;
+                    if (seconds >= 1)
+                    {
+                        long bytediff = bytesGot - bytesthen;
+                        bytesthen = bytesGot;
+                        bytesPerSecond = bytediff / seconds;
+                    }
+                    try
+                    {
+                        fs.WriteByte(Byte.Parse(reader.ReadLine()));
+                        fs.Flush();
+                        Console.Write("So far i got " + bytesGot++ + " bytes\r");
+                        fileCompleteness = bytesGot;
+                    }
+                    catch
+                    {
+                        Console.Write("Waiting for data.                    \r");
+                    }
+                }
+                Console.WriteLine();
+                if (bytesGot == fileLength)
+                {
+                    Console.WriteLine("Received Entire File: " + bytesGot + " vs " + fileLength);
+                    completed++;
+                    totalReceived += bytesGot;
+                }
+                else if (bytesGot > fileLength)
+                {
+                    Console.WriteLine("Got more data: " + bytesGot + " vs " + fileLength);
+                    totalReceived += bytesGot;
+                }
+                else
+                {
+                    Console.WriteLine("File is incomplete");
+                    totalReceived += bytesGot;
+                }
+                Console.WriteLine("\nPerforming final handshake");
+                ns.Write(buffer, 0, 1);
+                ns.Close();
+                tc.Close();
+                sw.Close();
+                fs.Close();
+                Console.WriteLine("Download Complete");
             }
-            else if (bytesGot > fileLength)
-            {
-                Console.WriteLine("Got more data: " + bytesGot + " vs " + fileLength);
-                totalReceived += bytesGot;
-            }
-            else
-            {
-                Console.WriteLine("File is incomplete");
-                totalReceived += bytesGot;
-            }
-            Console.WriteLine("\nPerforming final handshake");
-            ns.Write(buffer, 0, 1);
-            ns.Close();
-            tc.Close();
-            sw.Close();
-            fs.Close();
-            Console.WriteLine("Download Complete");
+            ClientHandler.downloadInProgress = 0;
         }
 
         public void RunThreaded()

@@ -4,6 +4,7 @@ using System.Text;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Windows.Forms;
 
 namespace Techtella
 {
@@ -21,6 +22,8 @@ namespace Techtella
         public static int pongs = 0;
         public static int statQuery = 0;
         public static int statQueryHit = 0;
+        public static int downloadInProgress = 0;
+        public static int uploadInProgress = 0;
 
         public ClientHandler(Socket s, BasicMultiServer own)
         {
@@ -163,9 +166,17 @@ namespace Techtella
                         //push
                         //descriptor, type, zero, zero, downcode, filename
                         //create a FileSender
-                        Console.WriteLine("got a push");
-                        FileSender sender = new FileSender(iHandle.Split(':')[0].Split('_')[0], parsedPacket.msg);
-                        sender.Run();
+                        if (uploadInProgress == 0)
+                        {
+                            Console.WriteLine("got a push");
+                            FileSender sender = new FileSender(iHandle.Split(':')[0].Split('_')[0], parsedPacket.msg);
+                            sender.Run();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Want to download or upload multiple files at the same time? Get the full version and discover all of Techtella's enhanced features today!\n\nhttp://techtella.2335.gatech.edu/1337fullversion.php");
+                        }
+
                     }
                     else if (parsedPacket.type == (byte)123)
                     {

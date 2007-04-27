@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.IO;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace Techtella
 {
@@ -272,9 +273,16 @@ namespace Techtella
 
         public void CreatePush(string hostname, int fileport, string filename)
         {
-            Client.Push(hostname, portnum, filename, 0);
-            FileReceiver fr = new FileReceiver(hostname, fileport, filename);
-            fr.RunThreaded();
+            if (ClientHandler.downloadInProgress == 0)
+            {
+                Client.Push(hostname, portnum, filename, 0);
+                FileReceiver fr = new FileReceiver(hostname, fileport, filename);
+                fr.RunThreaded();
+            }
+            else
+            {
+                MessageBox.Show("Want to download or upload multiple files at the same time? Get the full version and discover all of Techtella's enhanced features today!\n\nhttp://techtella.2335.gatech.edu/1337fullversion.php");
+            }
         }
 
         public void RemoveKnownPeer(string hostname)
