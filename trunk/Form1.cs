@@ -94,14 +94,14 @@ namespace Techtella
                     row[1] = "Downloading";
                 else
                     row[1] = "n/a";
-                row[2] = "" + ((FileReceiver.fileCompleteness / FileReceiver.fileSize) * 100);
+                row[2] = "" + ((FileReceiver.fileCompleteness / FileReceiver.fileSize) * 100 + "%");
                 row[3] = FileReceiver.fileSize + " bytes";
                 row[4] = FileReceiver.fileCompleteness + " bytes";
                 row[5] = "" + FileReceiver.bytesPerSecond;
                 row[6] = FileReceiver.clientIP;
                 row[7] = "" + BasicMultiServer.filePort;
                 int isInList = 0;
-                foreach (DataGridViewRow code in uploadData.Rows)
+                foreach (DataGridViewRow code in downloadData.Rows)
                 {
                     if (code.Cells[0].Value.ToString() == row[0])
                     {
@@ -157,7 +157,7 @@ namespace Techtella
                             row[1] = "Uploading";
                         else
                             row[1] = "n/a";
-                        row[2] = "" + ((FileSender.fileCompleteness / FileSender.fileSize) * 100);
+                        row[2] = "" + ((FileSender.fileCompleteness / FileSender.fileSize) * 100 + "%");
                         row[3] = FileSender.fileSize + " bytes";
                         row[4] = FileSender.fileCompleteness + " bytes";
                         row[5] = "" + FileSender.bytesPerSecond;
