@@ -30,7 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.2.9.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -49,8 +48,6 @@
     <Compile Include="BasicMultiServer.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="ClientHandler.cs" />
-    <Compile Include="ClientHandlerTest.cs" />
-    <Compile Include="ClientTest.cs" />
     <Compile Include="FileReceiver.cs" />
     <Compile Include="FileSender.cs" />
     <Compile Include="FileClass.cs" />
@@ -121,7 +118,6 @@
       <DependentUpon>Splash.cs</DependentUpon>
     </Compile>
     <Compile Include="statistics.cs" />
-    <Compile Include="statisticsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo.png" />
