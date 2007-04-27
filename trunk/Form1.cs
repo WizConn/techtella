@@ -278,6 +278,8 @@ namespace Techtella
             pushStat.Text = stats.numPush + "";
             bytesdlStat.Text = stats.numBytesReceived + "";
             bytesulStat.Text = stats.numBytesSent + "";
+            filesulStat.Text = FileSender.completed + "";
+            filesdlStat.Text = FileReceiver.completed + "";
             statusLabel.Text = downloadData.RowCount + " Downloads / " + uploadData.RowCount + " Uploads - Sharing " + sharedData.RowCount + " files with " + stats.numPeers + " peers.";
         }
 
