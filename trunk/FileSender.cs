@@ -9,13 +9,14 @@ namespace Techtella
 {
     public class FileSender
     {
-        private string clientIP;
-        private string myFile;
+        private static string clientIP;
+        private static string myFile;
         public static Int64 fileCompleteness;
         public static long bytesPerSecond;
         public static int attempted = 0;
         public static int completed = 0;
         public static long totalSent = 0;
+        public static long fileSize = 0;
         public FileSender(string myClientIpAddr, string filename)
         {
             clientIP = myClientIpAddr;
@@ -53,6 +54,7 @@ namespace Techtella
             NetworkStream netStream = new NetworkStream(sock);
             FileStream fs = new FileStream(FileClass.GetFilePath(myFile) + myFile, FileMode.Open);
             StreamReader sr = new StreamReader(fs);
+            fileSize = fs.Length;
             byte[] data = new byte[1];
             Console.WriteLine("Waiting for handshake");
             netStream.Read(data, 0, 1);

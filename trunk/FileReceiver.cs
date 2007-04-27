@@ -19,6 +19,7 @@ namespace Techtella
         public static long totalReceived = 0;
         public static int attempted = 0;
         public static int completed = 0;
+        public static long fileSize = 0;
         public FileReceiver(string myClientIpAddr, int portnum, string filename)
         {
             clientIP = myClientIpAddr;
@@ -77,6 +78,7 @@ namespace Techtella
                 StreamReader reader = new StreamReader(ns);
                 Int64 bytesGot = 0;
                 Int64 fileLength = Int64.Parse(reader.ReadLine());
+                fileSize = fileLength;
                 then = DateTime.Now;
                 now = DateTime.Now;
                 long bytesthen = 0;
