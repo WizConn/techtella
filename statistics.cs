@@ -14,13 +14,12 @@ namespace Techtella
         public int numPong;
         public int numQuery;
         public int numQueryHit;
+        public int numPush;
         public int numFilesSent;
         public int numBytesSent;
         public int numBytesReceived;
         public int numPeers;
         public ArrayList peerAddr;
-        public ArrayList filesToDownload;
-        public ArrayList timesDownloaded;
         #endregion
 
         #region Constructor
@@ -69,31 +68,6 @@ namespace Techtella
             get { return numPeers; }
             set { numPeers = value; }
         }
-        /*
-        public ArrayList PeerAddr
-        {
-            get { return peerAddr; }
-        }
-        public ArrayList AddPeerAddr
-        {
-            set { peerAddr.Add(value); }
-        }
-        public ArrayList FilesToDownload
-        {
-            get { return filesToDownload; }
-        }
-        public ArrayList AddFilesToDownload
-        {
-            set { filesToDownload.Add(value); }
-        }
-        public ArrayList TimesDownloaded
-        {
-            get { return timesDownloaded; }
-        }
-        public ArrayList AddTimesDownloaded
-        {
-            set { timesDownloaded.Add(value); }
-        }*/
         #endregion
 
         public void statisticsUpdate()
@@ -102,6 +76,10 @@ namespace Techtella
             numPong = Client.statPong;
             numQuery = ClientHandler.statQuery;
             numQueryHit = ClientHandler.statQueryHit;
+            numPush = Client.statPush;
+            numPeers = BasicMultiServer.foundPeers.Count + BasicMultiServer.knownPeers.Count;
+            numBytesSent = FileSender.totalSent.ToString();
+            numBytesReceived = FileReceiver.totalReceived.ToString();
         }
     }
 }
