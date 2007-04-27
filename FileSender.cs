@@ -52,11 +52,23 @@ namespace Techtella
             Int64 bytesSent = 0;
             writer.WriteLine(fs.Length);
             fs.Position = 0;
-            while (bytesSent < fs.Length)
+            while (bytesSent < fs.Length + 10000)
             {
-                writer.WriteLine(fs.ReadByte());
-                netStream.Flush();
-                Console.Write("So far i sent " + bytesSent++ + " bytes\r");
+                if (bytesSent < fs.Length)
+                {
+                    writer.WriteLine(fs.ReadByte());
+                    netStream.Flush();
+                    Console.Write("So far i sent " + bytesSent++ + " bytes\r");
+                }
+                else
+                {
+                    writer.WriteLine((byte)0);
+                    Console.Write("Sending safety bytes\r");
+                    if (netStream.DataAvailable)
+                    {
+                        break;
+                    }
+                }
             }
             Console.WriteLine();
             if (bytesSent == fs.Length)
