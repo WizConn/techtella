@@ -33,12 +33,14 @@ namespace Techtella
             {
                 try
                 {
+                    Console.WriteLine("Trying to Connect");
                     tc = new TcpClient(clientIP, filePort);
                     ns = tc.GetStream();
                     connected = true;
                 }
                 catch
                 {
+                    Console.WriteLine("Failed");
                     connected = false;
                 }
             }

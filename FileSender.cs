@@ -29,12 +29,6 @@ namespace Techtella
             TcpListener listener = new TcpListener(ipaddr, BasicMultiServer.filePort);
             listener.Start();
             Socket sock = listener.AcceptSocket();
-            while (sock.RemoteEndPoint.ToString() != clientIP)
-            {
-                sock.Close();
-                sock = listener.AcceptSocket();
-                throw new Exception();
-            }
             Console.WriteLine("Got FileSender connection");
             Console.WriteLine(sock.RemoteEndPoint.ToString());
             HandleClient(sock);
