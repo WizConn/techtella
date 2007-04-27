@@ -51,6 +51,8 @@
     <Compile Include="ClientHandler.cs" />
     <Compile Include="ClientHandlerTest.cs" />
     <Compile Include="ClientTest.cs" />
+    <Compile Include="FileReceiver.cs" />
+    <Compile Include="FileSender.cs" />
     <Compile Include="FileClass.cs" />
     <Compile Include="GUIUpdate.cs" />
     <Compile Include="ConnectWindow.cs">

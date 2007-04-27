@@ -1,0 +1,53 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.IO;
+using System.Net;
+using System.Net.Sockets;
+using System.Threading;
+
+namespace Techtella
+{
+    public class FileReceiver
+    {
+        private string clientIP;
+        private string myFile;
+        private int filePort;
+        public FileReceiver(string myClientIpAddr, int portnum, string filename)
+        {
+            clientIP = myClientIpAddr;
+            myFile = filename;
+            filePort = portnum;
+            Console.WriteLine("FileReceiver created");
+        }
+
+        private void Run()
+        {
+            Console.WriteLine("Starting File Receiver");
+            Console.WriteLine("IPADDR: " + clientIP);
+            Console.WriteLine("PORT: " + filePort);
+            TcpClient tc = new TcpClient(clientIP, filePort);
+            NetworkStream ns = tc.GetStream();
+            FileStream fs = new FileStream(myFile, FileMode.Create);
+            StreamWriter sw = new StreamWriter(fs);
+            byte[] buffer = new byte[1];
+            while (tc.Connected)
+            {
+                ns.Read(buffer, 0, 1);
+                sw.Write((char)buffer[0]);
+            }
+            Console.WriteLine("Received Entire File");
+            ns.Close();
+            tc.Close();
+            sw.Close();
+            fs.Close();
+            Console.WriteLine("Download Complete");
+        }
+
+        public void RunThreaded()
+        {
+            Thread threadedRun = new Thread(Run);
+            threadedRun.Start();
+        }
+    }
+}

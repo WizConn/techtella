@@ -288,5 +288,31 @@ namespace Techtella
             }
         }
 
+        public static void Push(string host, int portnum, string filename, int downcode)
+        {
+            Console.WriteLine("Client.Push called on " + host + ":" + portnum);
+            try
+            {
+                pingCount++;
+                int descriptor = descriptorHash * 10 + pingCount;
+                byte type = (byte)40;
+                //descriptor, type, zero, zero, downcode, filename
+                string msg = descriptor.ToString() + "?" + type.ToString() + "?0?0?" + downcode+ "?" + filename + "?";
+
+                TcpClient client = new TcpClient(host.Split(':')[0].Split('_')[0], portnum);
+
+                NetworkStream netStream = client.GetStream();
+                StreamReader reader = new StreamReader(netStream);
+                StreamWriter writer = new StreamWriter(netStream);
+
+                writer.WriteLine(msg);
+                writer.Flush();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("PUSH needs to be handled in a more professional manner\n" + e);
+            }
+        }
+
     }
 }
