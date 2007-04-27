@@ -113,6 +113,7 @@ namespace Techtella
             this.sharedTitleCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sharedFileSizeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sharedIdentifierCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statsTab = new System.Windows.Forms.TabPage();
             this.downloadersBox = new System.Windows.Forms.ListBox();
             this.transferGroup = new System.Windows.Forms.GroupBox();
@@ -142,10 +143,11 @@ namespace Techtella
             this.chatInputBox = new System.Windows.Forms.TextBox();
             this.chatOutputBox = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.pushLabel = new System.Windows.Forms.Label();
+            this.pushStat = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.startTab.SuspendLayout();
@@ -712,6 +714,7 @@ namespace Techtella
             this.searchData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.searchData.Size = new System.Drawing.Size(848, 459);
             this.searchData.TabIndex = 7;
+            this.searchData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // searchFileNameCol
             // 
@@ -981,6 +984,12 @@ namespace Techtella
             this.sharedIdentifierCol.Name = "sharedIdentifierCol";
             this.sharedIdentifierCol.ReadOnly = true;
             // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Times Downloaded";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
             // statsTab
             // 
             this.statsTab.Controls.Add(this.downloadersBox);
@@ -1106,6 +1115,8 @@ namespace Techtella
             // 
             // messagesGroup
             // 
+            this.messagesGroup.Controls.Add(this.pushStat);
+            this.messagesGroup.Controls.Add(this.pushLabel);
             this.messagesGroup.Controls.Add(this.pingLabel);
             this.messagesGroup.Controls.Add(this.pongLabel);
             this.messagesGroup.Controls.Add(this.queryLabel);
@@ -1117,7 +1128,7 @@ namespace Techtella
             this.messagesGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.messagesGroup.Location = new System.Drawing.Point(8, 15);
             this.messagesGroup.Name = "messagesGroup";
-            this.messagesGroup.Size = new System.Drawing.Size(200, 78);
+            this.messagesGroup.Size = new System.Drawing.Size(200, 90);
             this.messagesGroup.TabIndex = 10;
             this.messagesGroup.TabStop = false;
             this.messagesGroup.Text = "Messages Processed";
@@ -1298,12 +1309,6 @@ namespace Techtella
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Times Downloaded";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
             // statusLabel
             // 
             this.statusLabel.Name = "statusLabel";
@@ -1326,6 +1331,24 @@ namespace Techtella
             this.statusStrip1.Size = new System.Drawing.Size(856, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // pushLabel
+            // 
+            this.pushLabel.AutoSize = true;
+            this.pushLabel.Location = new System.Drawing.Point(6, 68);
+            this.pushLabel.Name = "pushLabel";
+            this.pushLabel.Size = new System.Drawing.Size(40, 13);
+            this.pushLabel.TabIndex = 19;
+            this.pushLabel.Text = "PUSH:";
+            // 
+            // pushStat
+            // 
+            this.pushStat.AutoSize = true;
+            this.pushStat.Location = new System.Drawing.Point(181, 68);
+            this.pushStat.Name = "pushStat";
+            this.pushStat.Size = new System.Drawing.Size(13, 13);
+            this.pushStat.TabIndex = 13;
+            this.pushStat.Text = "0";
             // 
             // Form1
             // 
@@ -1496,6 +1519,8 @@ namespace Techtella
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel2;
         private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.Label pushStat;
+        private System.Windows.Forms.Label pushLabel;
     }
 }
 
