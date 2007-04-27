@@ -27,6 +27,7 @@ namespace Techtella
 
         public void Run()
         {
+            ClientHandler.uploadInProgress = 1;
             Console.WriteLine("Starting File Sender");
             string myHost = System.Net.Dns.GetHostName();
             string myIP = System.Net.Dns.GetHostEntry(myHost).AddressList[0].ToString();
@@ -112,6 +113,7 @@ namespace Techtella
             netStream.Read(data, 0, 1);
             netStream.Close();
             Console.WriteLine("Wrote entire file");
+            ClientHandler.uploadInProgress = 0;
         }
     }
 }
