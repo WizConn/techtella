@@ -100,7 +100,7 @@ namespace Techtella
                 row[5] = "" + FileReceiver.bytesPerSecond;
                 row[6] = FileReceiver.clientIP;
                 row[7] = "" + FileReceiver.filePort;
-                if (downloadData.Rows.Count < 1)
+                if (downloadData.Rows.Count < 1 && ClientHandler.downloadInProgress == 1)
                 {
                     downloadData.Rows.Add(row);
                 }
@@ -135,7 +135,7 @@ namespace Techtella
                 row[5] = "" + FileSender.bytesPerSecond;
                 row[6] = FileSender.clientIP;
                 row[7] = "" + BasicMultiServer.filePort;
-                if (uploadData.Rows.Count < 1)
+                if (uploadData.Rows.Count < 1 && ClientHandler.uploadInProgress == 1)
                 {
                     uploadData.Rows.Add(row);
                 }
