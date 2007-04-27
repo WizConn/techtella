@@ -90,7 +90,7 @@ namespace Techtella
             {
                 string[] row = { "", "", "", "", "", "", "", "" };
                 row.SetValue(transferFilename, 0);
-                Console.WriteLine(transferFilename);
+                //Console.WriteLine(transferFilename);
                 try
                 {
                     long intProgress = (long.Parse(transferFilesize) / FileReceiver.fileCompleteness) * 100;

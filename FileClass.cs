@@ -106,10 +106,17 @@ namespace Techtella
                     }
                 }
             }
-            NetFiles.Add(filename);
-            FileCodes.Add(code);
-            FileHosts.Add(host);
-            Console.WriteLine(filename + " added to NetFiles from " + host + " with download code " + code);
+            if (filename != "OMFG!")
+            {
+                NetFiles.Add(filename);
+                FileCodes.Add(code);
+                FileHosts.Add(host);
+                Console.WriteLine(filename + " added to NetFiles from " + host + " with download code " + code);
+            }
+            else
+            {
+                return 0;
+            }
             return 1;
         }
 
