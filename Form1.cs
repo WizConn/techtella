@@ -105,7 +105,7 @@ namespace Techtella
                 {
                     if (code.Cells[0].Value.ToString() == row[0])
                     {
-                        isInList = 1; // Do Nothing
+                        //isInList = 1; // Do Nothing
                         row[0] = FileReceiver.myFile;
                         if (ClientHandler.downloadInProgress == 1)
                             row[1] = "Downloading";
@@ -121,6 +121,7 @@ namespace Techtella
                 }
                 if (isInList == 0)
                 {
+                    downloadData.Rows.Remove(downloadData.CurrentRow);
                     downloadData.Rows.Add(row);
                 }
             }
@@ -152,7 +153,7 @@ namespace Techtella
                 {
                     if (code.Cells[0].Value.ToString() == row[0])
                     {
-                        isInList = 1; // Do Nothing
+                        //isInList = 1; // Do Nothing
                         if (ClientHandler.uploadInProgress == 1)
                             row[1] = "Uploading";
                         else
@@ -167,6 +168,7 @@ namespace Techtella
                 }
                 if (isInList == 0)
                 {
+                    uploadData.Rows.Remove(downloadData.CurrentRow);
                     uploadData.Rows.Add(row);
                 }
             }
