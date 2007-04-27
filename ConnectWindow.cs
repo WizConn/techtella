@@ -50,6 +50,10 @@ namespace Techtella
                     server.AddKnownPeer(ip, port);
                     this.Close();
                 }
+                else
+                {
+                    noException = true;
+                }
                 
             }
             else if (sender == cancelButton)
