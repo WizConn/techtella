@@ -17,6 +17,7 @@ namespace Techtella
         public int portnum;
         public static int filePort;
         public DateTime starttime, now;
+        public static int numpeers = 0;
 
         public struct Packet
         {
@@ -27,6 +28,11 @@ namespace Techtella
             public int length;
             public string msg;
             public string from;
+        }
+
+        public void UpdateNumPeers()
+        {
+            numpeers = knownPeers.Count + foundPeers.Count;
         }
         
         public int CreatePing(string host, int port)
