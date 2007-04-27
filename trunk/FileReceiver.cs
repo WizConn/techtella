@@ -59,7 +59,14 @@ namespace Techtella
             while (bytesGot < fileLength)
             {
                 Console.Write("So far i got " + bytesGot++ + " bytes\r");
-                fs.WriteByte(Byte.Parse(reader.ReadLine()));
+                try
+                {
+                    fs.WriteByte(Byte.Parse(reader.ReadLine()));
+                }
+                catch
+                {
+                    Console.Write("Waiting for data.                    \r");
+                }
             } 
             Console.WriteLine("Received Entire File");
             ns.Close();
