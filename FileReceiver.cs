@@ -53,7 +53,7 @@ namespace Techtella
             Console.WriteLine("Waiting for handshake");
             ns.Read(buffer, 0, 1);
             Console.WriteLine("Got handshake, hope i get data!");
-            while (tc.Connected)
+            while (tc.Client.Connected)
             {
                 ns.Read(buffer, 0, 1);
                 sw.Write((char)buffer[0]);
