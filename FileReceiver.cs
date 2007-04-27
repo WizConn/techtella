@@ -53,16 +53,13 @@ namespace Techtella
             Console.WriteLine("Waiting for handshake");
             ns.Read(buffer, 0, 1);
             Console.WriteLine("Got handshake, hope i get data!");
-            int GettingData = 1;
+            StreamReader reader = new StreamReader(ns);
             Int64 bytesGot = 0;
-            while (GettingData > 0)
+            Int64 fileLength = Int64.Parse(reader.ReadLine());
+            while (bytesGot < fileLength)
             {
-                GettingData = ns.Read(buffer, 0, 1);
-                if(GettingData > 0)
-                {
-                    Console.Write("So far i got " + bytesGot++ + " bytes\r");
-                    sw.Write((char)buffer[0]);
-                }
+                Console.Write("So far i got " + bytesGot++ + " bytes\r");
+                fs.WriteByte(Byte.Parse(reader.ReadLine()));
             } 
             Console.WriteLine("Received Entire File");
             ns.Close();

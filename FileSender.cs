@@ -43,22 +43,17 @@ namespace Techtella
             FileStream fs = new FileStream(myFile, FileMode.Open);
             StreamReader sr = new StreamReader(fs);
             byte[] data = new byte[1];
-            int byteToSend;
             Console.WriteLine("Waiting for handshake");
             netStream.Read(data, 0, 1);
             Console.WriteLine("Got handshake, shaking back");
             netStream.Write(data, 0, 1);
             Console.WriteLine("Sending data, hope it gets there");
-
+            StreamWriter writer = new StreamWriter(netStream);
             Int64 bytesSent = 0;
-            while (!sr.EndOfStream)
+            writer.WriteLine(fs.Length);
+            while (bytesSent < fs.Length)
             {
-                    if (!sr.EndOfStream)
-                    {
-                        byteToSend = sr.Read();
-                        data[0] = (byte)byteToSend;
-                    }
-                netStream.Write(data, 0, 1);
+                writer.WriteLine(fs.ReadByte());
                 netStream.Flush();
                 Console.Write("So far i sent " + bytesSent++ + " bytes\r");
             }
