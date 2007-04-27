@@ -11,11 +11,15 @@ namespace Techtella
     {
         private string clientIP;
         private string myFile;
+        public static Int64 fileCompleteness;
+        public static long bytesPerSecond;
         public FileSender(string myClientIpAddr, string filename)
         {
             clientIP = myClientIpAddr;
             myFile = filename;
             Console.WriteLine("FileSender created");
+            fileCompleteness = 0;
+            bytesPerSecond = 0;
         }
 
         public void Run()
@@ -38,6 +42,8 @@ namespace Techtella
 
         private void HandleClient(Socket sock)
         {
+            DateTime then = DateTime.Now;
+            DateTime now = DateTime.Now;
             Console.WriteLine("HandleClient called");
             NetworkStream netStream = new NetworkStream(sock);
             FileStream fs = new FileStream(myFile, FileMode.Open);
@@ -52,13 +58,24 @@ namespace Techtella
             Int64 bytesSent = 0;
             writer.WriteLine(fs.Length);
             fs.Position = 0;
+            long bytesthen = 0;
             while (bytesSent < fs.Length + 10000)
             {
+                then = now;
+                now = DateTime.Now;
+                int seconds = ((TimeSpan)(now - then)).Seconds;
+                if (seconds >= 1)
+                {
+                    long bytediff = bytesSent - bytesthen;
+                    bytesthen = bytesSent;
+                    bytesPerSecond = bytediff / seconds;
+                }
                 if (bytesSent < fs.Length)
                 {
                     writer.WriteLine(fs.ReadByte());
                     netStream.Flush();
                     Console.Write("So far i sent " + bytesSent++ + " bytes\r");
+                    fileCompleteness = bytesSent;
                 }
                 else
                 {

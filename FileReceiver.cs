@@ -13,12 +13,16 @@ namespace Techtella
         private string clientIP;
         private string myFile;
         private int filePort;
+        public static long bytesPerSecond;
+        public static long fileCompleteness;
         public FileReceiver(string myClientIpAddr, int portnum, string filename)
         {
             clientIP = myClientIpAddr;
             myFile = filename;
             filePort = portnum;
             Console.WriteLine("FileReceiver created");
+            fileCompleteness = 0;
+            bytesPerSecond = 0;
         }
 
         private void Run()
@@ -56,13 +60,26 @@ namespace Techtella
             StreamReader reader = new StreamReader(ns);
             Int64 bytesGot = 0;
             Int64 fileLength = Int64.Parse(reader.ReadLine());
+            DateTime then = DateTime.Now;
+            DateTime now = DateTime.Now;
+            long bytesthen = 0;
             while (bytesGot < fileLength)
             {
+                then = now;
+                now = DateTime.Now;
+                int seconds = ((TimeSpan)(now - then)).Seconds;
+                if (seconds >= 1)
+                {
+                    long bytediff = bytesGot - bytesthen;
+                    bytesthen = bytesGot;
+                    bytesPerSecond = bytediff / seconds;
+                }
                 try
                 {
                     fs.WriteByte(Byte.Parse(reader.ReadLine()));
                     fs.Flush();
                     Console.Write("So far i got " + bytesGot++ + " bytes\r");
+                    fileCompleteness = bytesGot;
                 }
                 catch
                 {
