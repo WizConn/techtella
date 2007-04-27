@@ -42,11 +42,18 @@ namespace Techtella
             NetworkStream netStream = new NetworkStream(sock);
             FileStream fs = new FileStream(myFile, FileMode.Open);
             StreamReader sr = new StreamReader(fs);
+            byte[] data = new byte[1];
+            int byteToSend;
+            Console.WriteLine("Waiting for handshake");
+            netStream.Read(data, 0, 1);
+            Console.WriteLine("Got handshake, shaking back");
+            netStream.Write(data, 0, 1);
+            Console.WriteLine("Sending data, hope it gets there");
+
 
             while (!sr.EndOfStream)
             {
-                int byteToSend = sr.Read();
-                byte[] data = new byte[1];
+                byteToSend = sr.Read();
                 data[0] = (byte)byteToSend;
                 netStream.Write(data, 0, 1);
             }
