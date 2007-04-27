@@ -33,11 +33,8 @@ namespace Techtella
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.disconnectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutTechtellaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabControl();
@@ -65,23 +62,7 @@ namespace Techtella
             this.downloadsLabel = new System.Windows.Forms.Label();
             this.uploadsLabel = new System.Windows.Forms.Label();
             this.uploadData = new System.Windows.Forms.DataGridView();
-            this.ulFileNameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ulStatusCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ulProgressCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ulSizeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ulUploadedCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ulSpeedCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ulIPCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ulPortCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.downloadData = new System.Windows.Forms.DataGridView();
-            this.dlFilenameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dlStatusCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dlProgressCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dlSizeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dlDownloadedCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dlspeedCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dlIPCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dlPortCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.searchTab = new System.Windows.Forms.TabPage();
             this.downloadButton = new System.Windows.Forms.Button();
             this.searchData = new System.Windows.Forms.DataGridView();
@@ -126,6 +107,8 @@ namespace Techtella
             this.filesulStat = new System.Windows.Forms.Label();
             this.bytesdlLabel = new System.Windows.Forms.Label();
             this.messagesGroup = new System.Windows.Forms.GroupBox();
+            this.pushStat = new System.Windows.Forms.Label();
+            this.pushLabel = new System.Windows.Forms.Label();
             this.pingLabel = new System.Windows.Forms.Label();
             this.pongLabel = new System.Windows.Forms.Label();
             this.queryLabel = new System.Windows.Forms.Label();
@@ -146,8 +129,24 @@ namespace Techtella
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.pushLabel = new System.Windows.Forms.Label();
-            this.pushStat = new System.Windows.Forms.Label();
+            this.dlFilenameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dlStatusCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dlProgressCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dlSizeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dlDownloadedCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dlspeedCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dlIPCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dlPortCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ulFileNameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ulStatusCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ulProgressCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ulSizeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ulUploadedCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ulSpeedCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ulIPCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ulPortCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.yourIPLabel = new System.Windows.Forms.Label();
+            this.yourIP = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.startTab.SuspendLayout();
@@ -174,7 +173,6 @@ namespace Techtella
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
-            this.optionsToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -186,7 +184,6 @@ namespace Techtella
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.connectToolStripMenuItem,
-            this.disconnectToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
@@ -196,43 +193,21 @@ namespace Techtella
             // connectToolStripMenuItem
             // 
             this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-            this.connectToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.connectToolStripMenuItem.Text = "Connect";
             this.connectToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
-            // 
-            // disconnectToolStripMenuItem
-            // 
-            this.disconnectToolStripMenuItem.Enabled = false;
-            this.disconnectToolStripMenuItem.Name = "disconnectToolStripMenuItem";
-            this.disconnectToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.disconnectToolStripMenuItem.Text = "Disconnect";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(134, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
-            // 
-            // optionsToolStripMenuItem
-            // 
-            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.settingsToolStripMenuItem});
-            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
-            this.optionsToolStripMenuItem.Text = "Options";
-            // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.settingsToolStripMenuItem.Text = "Settings";
-            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -270,6 +245,8 @@ namespace Techtella
             // startTab
             // 
             this.startTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(227)))), ((int)(((byte)(167)))));
+            this.startTab.Controls.Add(this.yourIP);
+            this.startTab.Controls.Add(this.yourIPLabel);
             this.startTab.Controls.Add(this.startBox);
             this.startTab.Controls.Add(this.pictureBox1);
             this.startTab.Location = new System.Drawing.Point(4, 22);
@@ -540,54 +517,6 @@ namespace Techtella
             this.uploadData.Size = new System.Drawing.Size(848, 223);
             this.uploadData.TabIndex = 1;
             // 
-            // ulFileNameCol
-            // 
-            this.ulFileNameCol.HeaderText = "File Name";
-            this.ulFileNameCol.Name = "ulFileNameCol";
-            this.ulFileNameCol.ReadOnly = true;
-            // 
-            // ulStatusCol
-            // 
-            this.ulStatusCol.HeaderText = "Status";
-            this.ulStatusCol.Name = "ulStatusCol";
-            this.ulStatusCol.ReadOnly = true;
-            // 
-            // ulProgressCol
-            // 
-            this.ulProgressCol.HeaderText = "Progress";
-            this.ulProgressCol.Name = "ulProgressCol";
-            this.ulProgressCol.ReadOnly = true;
-            // 
-            // ulSizeCol
-            // 
-            this.ulSizeCol.HeaderText = "File Size";
-            this.ulSizeCol.Name = "ulSizeCol";
-            this.ulSizeCol.ReadOnly = true;
-            // 
-            // ulUploadedCol
-            // 
-            this.ulUploadedCol.HeaderText = "Uploaded";
-            this.ulUploadedCol.Name = "ulUploadedCol";
-            this.ulUploadedCol.ReadOnly = true;
-            // 
-            // ulSpeedCol
-            // 
-            this.ulSpeedCol.HeaderText = "KB/s";
-            this.ulSpeedCol.Name = "ulSpeedCol";
-            this.ulSpeedCol.ReadOnly = true;
-            // 
-            // ulIPCol
-            // 
-            this.ulIPCol.HeaderText = "IP";
-            this.ulIPCol.Name = "ulIPCol";
-            this.ulIPCol.ReadOnly = true;
-            // 
-            // ulPortCol
-            // 
-            this.ulPortCol.HeaderText = "Port";
-            this.ulPortCol.Name = "ulPortCol";
-            this.ulPortCol.ReadOnly = true;
-            // 
             // downloadData
             // 
             this.downloadData.AllowUserToAddRows = false;
@@ -615,54 +544,6 @@ namespace Techtella
             this.downloadData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.downloadData.Size = new System.Drawing.Size(848, 223);
             this.downloadData.TabIndex = 0;
-            // 
-            // dlFilenameCol
-            // 
-            this.dlFilenameCol.HeaderText = "File Name";
-            this.dlFilenameCol.Name = "dlFilenameCol";
-            this.dlFilenameCol.ReadOnly = true;
-            // 
-            // dlStatusCol
-            // 
-            this.dlStatusCol.HeaderText = "Status";
-            this.dlStatusCol.Name = "dlStatusCol";
-            this.dlStatusCol.ReadOnly = true;
-            // 
-            // dlProgressCol
-            // 
-            this.dlProgressCol.HeaderText = "Progress";
-            this.dlProgressCol.Name = "dlProgressCol";
-            this.dlProgressCol.ReadOnly = true;
-            // 
-            // dlSizeCol
-            // 
-            this.dlSizeCol.HeaderText = "File Size";
-            this.dlSizeCol.Name = "dlSizeCol";
-            this.dlSizeCol.ReadOnly = true;
-            // 
-            // dlDownloadedCol
-            // 
-            this.dlDownloadedCol.HeaderText = "Downloaded";
-            this.dlDownloadedCol.Name = "dlDownloadedCol";
-            this.dlDownloadedCol.ReadOnly = true;
-            // 
-            // dlspeedCol
-            // 
-            this.dlspeedCol.HeaderText = "KB/s";
-            this.dlspeedCol.Name = "dlspeedCol";
-            this.dlspeedCol.ReadOnly = true;
-            // 
-            // dlIPCol
-            // 
-            this.dlIPCol.HeaderText = "IP";
-            this.dlIPCol.Name = "dlIPCol";
-            this.dlIPCol.ReadOnly = true;
-            // 
-            // dlPortCol
-            // 
-            this.dlPortCol.HeaderText = "Port";
-            this.dlPortCol.Name = "dlPortCol";
-            this.dlPortCol.ReadOnly = true;
             // 
             // searchTab
             // 
@@ -1133,6 +1014,24 @@ namespace Techtella
             this.messagesGroup.TabStop = false;
             this.messagesGroup.Text = "Messages Processed";
             // 
+            // pushStat
+            // 
+            this.pushStat.AutoSize = true;
+            this.pushStat.Location = new System.Drawing.Point(162, 68);
+            this.pushStat.Name = "pushStat";
+            this.pushStat.Size = new System.Drawing.Size(13, 13);
+            this.pushStat.TabIndex = 13;
+            this.pushStat.Text = "0";
+            // 
+            // pushLabel
+            // 
+            this.pushLabel.AutoSize = true;
+            this.pushLabel.Location = new System.Drawing.Point(6, 68);
+            this.pushLabel.Name = "pushLabel";
+            this.pushLabel.Size = new System.Drawing.Size(40, 13);
+            this.pushLabel.TabIndex = 19;
+            this.pushLabel.Text = "PUSH:";
+            // 
             // pingLabel
             // 
             this.pingLabel.AutoSize = true;
@@ -1332,23 +1231,118 @@ namespace Techtella
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // pushLabel
+            // dlFilenameCol
             // 
-            this.pushLabel.AutoSize = true;
-            this.pushLabel.Location = new System.Drawing.Point(6, 68);
-            this.pushLabel.Name = "pushLabel";
-            this.pushLabel.Size = new System.Drawing.Size(40, 13);
-            this.pushLabel.TabIndex = 19;
-            this.pushLabel.Text = "PUSH:";
+            this.dlFilenameCol.HeaderText = "File Name";
+            this.dlFilenameCol.Name = "dlFilenameCol";
+            this.dlFilenameCol.ReadOnly = true;
             // 
-            // pushStat
+            // dlStatusCol
             // 
-            this.pushStat.AutoSize = true;
-            this.pushStat.Location = new System.Drawing.Point(162, 68);
-            this.pushStat.Name = "pushStat";
-            this.pushStat.Size = new System.Drawing.Size(13, 13);
-            this.pushStat.TabIndex = 13;
-            this.pushStat.Text = "0";
+            this.dlStatusCol.HeaderText = "Status";
+            this.dlStatusCol.Name = "dlStatusCol";
+            this.dlStatusCol.ReadOnly = true;
+            // 
+            // dlProgressCol
+            // 
+            this.dlProgressCol.HeaderText = "Progress";
+            this.dlProgressCol.Name = "dlProgressCol";
+            this.dlProgressCol.ReadOnly = true;
+            // 
+            // dlSizeCol
+            // 
+            this.dlSizeCol.HeaderText = "File Size";
+            this.dlSizeCol.Name = "dlSizeCol";
+            this.dlSizeCol.ReadOnly = true;
+            // 
+            // dlDownloadedCol
+            // 
+            this.dlDownloadedCol.HeaderText = "Downloaded";
+            this.dlDownloadedCol.Name = "dlDownloadedCol";
+            this.dlDownloadedCol.ReadOnly = true;
+            // 
+            // dlspeedCol
+            // 
+            this.dlspeedCol.HeaderText = "B/s";
+            this.dlspeedCol.Name = "dlspeedCol";
+            this.dlspeedCol.ReadOnly = true;
+            // 
+            // dlIPCol
+            // 
+            this.dlIPCol.HeaderText = "IP";
+            this.dlIPCol.Name = "dlIPCol";
+            this.dlIPCol.ReadOnly = true;
+            // 
+            // dlPortCol
+            // 
+            this.dlPortCol.HeaderText = "Port";
+            this.dlPortCol.Name = "dlPortCol";
+            this.dlPortCol.ReadOnly = true;
+            // 
+            // ulFileNameCol
+            // 
+            this.ulFileNameCol.HeaderText = "File Name";
+            this.ulFileNameCol.Name = "ulFileNameCol";
+            this.ulFileNameCol.ReadOnly = true;
+            // 
+            // ulStatusCol
+            // 
+            this.ulStatusCol.HeaderText = "Status";
+            this.ulStatusCol.Name = "ulStatusCol";
+            this.ulStatusCol.ReadOnly = true;
+            // 
+            // ulProgressCol
+            // 
+            this.ulProgressCol.HeaderText = "Progress";
+            this.ulProgressCol.Name = "ulProgressCol";
+            this.ulProgressCol.ReadOnly = true;
+            // 
+            // ulSizeCol
+            // 
+            this.ulSizeCol.HeaderText = "File Size";
+            this.ulSizeCol.Name = "ulSizeCol";
+            this.ulSizeCol.ReadOnly = true;
+            // 
+            // ulUploadedCol
+            // 
+            this.ulUploadedCol.HeaderText = "Uploaded";
+            this.ulUploadedCol.Name = "ulUploadedCol";
+            this.ulUploadedCol.ReadOnly = true;
+            // 
+            // ulSpeedCol
+            // 
+            this.ulSpeedCol.HeaderText = "B/s";
+            this.ulSpeedCol.Name = "ulSpeedCol";
+            this.ulSpeedCol.ReadOnly = true;
+            // 
+            // ulIPCol
+            // 
+            this.ulIPCol.HeaderText = "IP";
+            this.ulIPCol.Name = "ulIPCol";
+            this.ulIPCol.ReadOnly = true;
+            // 
+            // ulPortCol
+            // 
+            this.ulPortCol.HeaderText = "Port";
+            this.ulPortCol.Name = "ulPortCol";
+            this.ulPortCol.ReadOnly = true;
+            // 
+            // yourIPLabel
+            // 
+            this.yourIPLabel.AutoSize = true;
+            this.yourIPLabel.Location = new System.Drawing.Point(512, 6);
+            this.yourIPLabel.Name = "yourIPLabel";
+            this.yourIPLabel.Size = new System.Drawing.Size(58, 13);
+            this.yourIPLabel.TabIndex = 2;
+            this.yourIPLabel.Text = "Your IP is: ";
+            // 
+            // yourIP
+            // 
+            this.yourIP.AutoSize = true;
+            this.yourIP.Location = new System.Drawing.Point(576, 6);
+            this.yourIP.Name = "yourIP";
+            this.yourIP.Size = new System.Drawing.Size(0, 13);
+            this.yourIP.TabIndex = 3;
             // 
             // Form1
             // 
@@ -1411,7 +1405,6 @@ namespace Techtella
         private System.Windows.Forms.TabPage searchTab;
         private System.Windows.Forms.TabPage sharedTab;
         private System.Windows.Forms.TabPage statsTab;
-        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutTechtellaToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -1432,25 +1425,9 @@ namespace Techtella
         private System.Windows.Forms.Label addPeerLabel;
         private System.Windows.Forms.Label ipLabel;
         private System.Windows.Forms.DataGridView downloadData;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dlFilenameCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dlStatusCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dlProgressCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dlSizeCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dlDownloadedCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dlspeedCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dlIPCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dlPortCol;
         private System.Windows.Forms.Label downloadsLabel;
         private System.Windows.Forms.Label uploadsLabel;
         private System.Windows.Forms.DataGridView uploadData;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ulFileNameCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ulStatusCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ulProgressCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ulSizeCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ulUploadedCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ulSpeedCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ulIPCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ulPortCol;
         private System.Windows.Forms.Label categoryLabel;
         private System.Windows.Forms.Label searchTitleLabel;
         private System.Windows.Forms.Label searchFileLabel;
@@ -1497,10 +1474,8 @@ namespace Techtella
         private System.Windows.Forms.Label pongStat;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem disconnectToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.TabPage chatTab;
         private System.Windows.Forms.TextBox chatOutputBox;
         private System.Windows.Forms.TextBox chatInputBox;
@@ -1521,6 +1496,24 @@ namespace Techtella
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Label pushStat;
         private System.Windows.Forms.Label pushLabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ulFileNameCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ulStatusCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ulProgressCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ulSizeCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ulUploadedCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ulSpeedCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ulIPCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ulPortCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dlFilenameCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dlStatusCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dlProgressCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dlSizeCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dlDownloadedCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dlspeedCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dlIPCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dlPortCol;
+        private System.Windows.Forms.Label yourIP;
+        private System.Windows.Forms.Label yourIPLabel;
     }
 }
 

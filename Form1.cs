@@ -58,6 +58,10 @@ namespace Techtella
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
             updater.RunThreaded();
+            string myHost = System.Net.Dns.GetHostName();
+            string myIP = System.Net.Dns.GetHostEntry(myHost).AddressList[0].ToString();
+            yourIP.Text = myIP;
+
         }
 
         public struct Transfer
@@ -81,6 +85,11 @@ namespace Techtella
         public void SetText(string output)
         {
             chatOutputBox.Text = output;
+        }
+
+        public void UpdateDownloaders()
+        {
+            downloadersBox.Text += ClientHandler.pushIP;
         }
 
         public void UpdateDownloads()
@@ -351,212 +360,205 @@ namespace Techtella
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
+            if (sender == chatSendButton)
             {
-                if (sender == chatSendButton)
+                if (chatIP == null)
                 {
-                    if (chatIP == null)
+                    DataGridViewCellCollection tempRow = knownPeersChatData.CurrentRow.Cells;
+                    if (tempRow[0] != null && tempRow[1] != null)
                     {
-                        DataGridViewCellCollection tempRow = knownPeersChatData.CurrentRow.Cells;
-                        if (tempRow[0] != null && tempRow[1] != null)
+
+                        chatIP = tempRow[0].Value.ToString();
+                        string temp = tempRow[1].Value.ToString();
+                        Console.WriteLine(tempRow);
+                        try
                         {
-
-                            chatIP = tempRow[0].Value.ToString();
-                            string temp = tempRow[1].Value.ToString();
-                            Console.WriteLine(tempRow);
-                            try
-                            {
-                                chatPort = int.Parse(temp);
-                            }
-                            catch { }
+                            chatPort = int.Parse(temp);
                         }
+                        catch { }
                     }
-                    Client.SendMsg(chatIP, chatPort, chatInputBox.Text);
-                    updater.owner.chatMessages.Add("You: " + chatInputBox.Text + "\r\n");
-                    chatInputBox.Text = "";
                 }
-                else if (sender == forcePingButton)
+                Client.SendMsg(chatIP, chatPort, chatInputBox.Text);
+                updater.owner.chatMessages.Add("You: " + chatInputBox.Text + "\r\n");
+                chatInputBox.Text = "";
+            }
+            else if (sender == forcePingButton)
+            {
+                if (knownPeerIP == null)
                 {
-                    if (knownPeerIP == null)
+                    DataGridViewCellCollection tempRow = knownPeersData.CurrentRow.Cells;
+                    if (tempRow[0] != null && tempRow[1] != null)
                     {
-                        DataGridViewCellCollection tempRow = knownPeersData.CurrentRow.Cells;
-                        if (tempRow[0] != null && tempRow[1] != null)
+
+                        knownPeerIP = tempRow[0].Value.ToString();
+                        string temp = tempRow[1].Value.ToString();
+                        Console.WriteLine(tempRow);
+                        try
                         {
-
-                            knownPeerIP = tempRow[0].Value.ToString();
-                            string temp = tempRow[1].Value.ToString();
-                            Console.WriteLine(tempRow);
-                            try
-                            {
-                                knownPeerPort = int.Parse(temp);
-                            }
-                            catch { }
+                            knownPeerPort = int.Parse(temp);
                         }
+                        catch { }
                     }
-                    server.CreatePing(knownPeerIP, knownPeerPort);
                 }
-                else if (sender == browseButton)
+                server.CreatePing(knownPeerIP, knownPeerPort);
+            }
+            else if (sender == browseButton)
+            {
+                openFileDialog1.ShowDialog();
+            }
+            else if (sender == addSharedFileButton)
+            {
+                FileInfo info = new FileInfo(shareFileBox.Text);
+                long filesize = info.Length;
+                string filesizeConverted = "";
+                if (shareCategoryCombo.SelectedIndex == -1)
                 {
-                    openFileDialog1.ShowDialog();
+                    shareCategoryCombo.SelectedIndex = 0;
                 }
-                else if (sender == addSharedFileButton)
+                if (filesize > 1024 && filesize < 1048576)
                 {
-                    FileInfo info = new FileInfo(shareFileBox.Text);
-                    long filesize = info.Length;
-                    string filesizeConverted = "";
-                    if (shareCategoryCombo.SelectedIndex == -1)
+                    filesize = filesize / 1024;
+                    filesizeConverted = filesize.ToString() + " KB";
+                }
+                else if (filesize > 1048576 && filesize < 1073741824)
+                {
+                    filesize = filesize / 1048576;
+                    filesizeConverted = filesize.ToString() + " MB";
+                }
+                else if (filesize > 1073741824)
+                {
+                    filesize = filesize / 1073741824;
+                    filesizeConverted = filesize.ToString() + " GB";
+                }
+                else
+                {
+                    filesizeConverted = filesize.ToString() + " bytes"; 
+                }
+                file = category[shareCategoryCombo.SelectedIndex] + "*" + shareTitleBox.Text + "*" + shareFileBox.Text + "|" + filesizeConverted;
+                
+                FileClass.AddFile(file);
+                try
+                {
+                    string[] row = { "", "", "", "", "" };
+                    int i = 0;
+                    foreach (string col in file.Split('*'))
                     {
-                        shareCategoryCombo.SelectedIndex = 0;
-                    }
-                    if (filesize > 1024 && filesize < 1048576)
-                    {
-                        filesize = filesize / 1024;
-                        filesizeConverted = filesize.ToString() + " KB";
-                    }
-                    else if (filesize > 1048576 && filesize < 1073741824)
-                    {
-                        filesize = filesize / 1048576;
-                        filesizeConverted = filesize.ToString() + " MB";
-                    }
-                    else if (filesize > 1073741824)
-                    {
-                        filesize = filesize / 1073741824;
-                        filesizeConverted = filesize.ToString() + " GB";
-                    }
-                    else
-                    {
-                        filesizeConverted = filesize.ToString() + " bytes";
-                    }
-                    file = category[shareCategoryCombo.SelectedIndex] + "*" + shareTitleBox.Text + "*" + shareFileBox.Text + "|" + filesizeConverted;
-
-                    FileClass.AddFile(file);
-                    try
-                    {
-                        string[] row = { "", "", "", "", "" };
-                        int i = 0;
-                        foreach (string col in file.Split('*'))
+                        if (i == 0)
                         {
-                            if (i == 0)
-                            {
-                                sharedCategory = col;
-                            }
-                            else if (i == 1)
-                            {
-                                title = col;
-                            }
-                            else if (i == 2)
-                            {
-                                filePath = col;
-                                filePath = filePath.Split('|')[0];
-                            }
-                            fileName = filePath.Split('\\')[filePath.Split('\\').Length - 1];
-                            i++;
+                            sharedCategory = col;
                         }
-                        row.SetValue(fileName, 0);
-                        row.SetValue(sharedCategory, 1);
-                        row.SetValue(title, 2);
-
-                        row.SetValue(filesizeConverted, 3);
-                        row.SetValue("?", 4);
-                        sharedData.Rows.Add(row);
-
-                    }
-                    catch (NullReferenceException) { }
-                }
-                else if (sender == searchButton)
-                {
-                    if (searchCategoryCombo.SelectedIndex == -1)
-                    {
-                        searchCategoryCombo.SelectedIndex = 0;
-                    }
-                    String searchQuery = searchCategory[searchCategoryCombo.SelectedIndex] + "*" + searchTitleBox.Text + "*" + searchFileNameBox.Text;
-                    Console.WriteLine(searchQuery);
-                    server.CreateQuery(searchQuery);
-                }
-                else if (sender == removeButton)
-                {
-                    listFiles = FileClass.GetFileData();
-                    tempFilePath = listFiles[sharedData.CurrentRow.Index].ToString();
-                    sharedData.Rows.Remove(sharedData.CurrentRow);
-                    FileClass.RemoveFile(tempFilePath);
-                }
-                else if (sender == downloadButton)
-                {
-                    if (senderIP == null)
-                    {
-                        DataGridViewCellCollection tempRow = searchData.CurrentRow.Cells;
-                        if (tempRow[0] != null && tempRow[2] != null)
+                        else if (i == 1)
                         {
-
-                            senderIP = tempRow[2].Value.ToString().Split(':')[0];
-                            string temp = tempRow[2].Value.ToString().Split(':')[1];
-                            try
-                            {
-                                senderPort = int.Parse(temp);
-                            }
-                            catch { }
-                            senderFilename = tempRow[0].Value.ToString();
+                            title = col;
                         }
-                        transferFilesize = tempRow[1].Value.ToString();
-                    }
-                    server.CreatePush(senderIP, senderPort, senderFilename);
-                    transferIP = senderIP;
-                    transferPort = senderPort.ToString();
-                    transferFilename = senderFilename;
-                }
-                else if (sender == addPeerButton)
-                {
-                    bool noException = true;
-                    string ip = ipBox.Text;
-                    int port = 12345;
-                    int successCode = 0;
-
-                    try
-                    {
-                        successCode = server.CreatePing(ip, port);
-                        if (successCode == 0)
+                        else if (i == 2)
                         {
-                            throw new Exception();
+                            filePath = col;
+                            filePath = filePath.Split('|')[0];
                         }
+                        fileName = filePath.Split('\\')[filePath.Split('\\').Length-1];
+                        i++;
                     }
-                    catch
+                    row.SetValue(fileName, 0);
+                    row.SetValue(sharedCategory, 1);
+                    row.SetValue(title, 2);
+                    
+                    row.SetValue(filesizeConverted, 3);
+                    row.SetValue("?", 4);
+                    sharedData.Rows.Add(row);
+                    
+                }
+                catch (NullReferenceException) { }
+            }
+            else if (sender == searchButton)
+            {
+                if(searchCategoryCombo.SelectedIndex == -1) {
+                    searchCategoryCombo.SelectedIndex = 0;
+                }
+                String searchQuery = searchCategory[searchCategoryCombo.SelectedIndex] + "*" + searchTitleBox.Text + "*" + searchFileNameBox.Text;
+                Console.WriteLine(searchQuery);
+                server.CreateQuery(searchQuery);
+            }
+            else if (sender == removeButton)
+            {
+                listFiles = FileClass.GetFileData();
+                tempFilePath = listFiles[sharedData.CurrentRow.Index].ToString();
+                sharedData.Rows.Remove(sharedData.CurrentRow);
+                FileClass.RemoveFile(tempFilePath);
+            }
+            else if (sender == downloadButton)
+            {
+                if (senderIP == null)
+                {
+                    DataGridViewCellCollection tempRow = searchData.CurrentRow.Cells;
+                    if (tempRow[0] != null && tempRow[2] != null)
                     {
-                        MessageBox.Show("Unable to find a peer at " + ip + ":" + port);
-                        noException = false;
+
+                        senderIP = tempRow[2].Value.ToString().Split(':')[0];
+                        string temp = tempRow[2].Value.ToString().Split(':')[1];
+                        try
+                        {
+                            senderPort = int.Parse(temp);
+                        }
+                        catch { }
+                        senderFilename = tempRow[0].Value.ToString();
                     }
-                    if (noException)
+                    transferFilesize = tempRow[1].Value.ToString();
+                }
+                server.CreatePush(senderIP, senderPort, senderFilename);
+                transferIP = senderIP;
+                transferPort = senderPort.ToString();
+                transferFilename = senderFilename;
+            }
+            else if (sender == addPeerButton)
+            {
+                bool noException = true;
+                string ip = ipBox.Text;
+                int port = 12345;
+                int successCode = 0;
+
+                try
+                {
+                    successCode = server.CreatePing(ip, port);
+                    if (successCode == 0)
                     {
-                        server.AddKnownPeer(ip, port);
-                        ipBox.Text = "";
-                        //might need to manually update knownPeersData
+                        throw new Exception();
                     }
                 }
-                else if (sender == movePeerButton)
+                catch
                 {
-                    if (movePeerIP == null)
-                    {
-                        DataGridViewCellCollection tempRow = peersData.CurrentRow.Cells;
-                        if (tempRow[0] != null && tempRow[1] != null)
-                        {
-
-                            movePeerIP = tempRow[0].Value.ToString();
-                            string temp = tempRow[1].Value.ToString();
-                            try
-                            {
-                                movePeerPort = int.Parse(temp);
-                            }
-                            catch { }
-                        }
-                    }
-                    server.AddKnownPeer(movePeerIP, movePeerPort);
-                    peersData.Rows.Remove(peersData.CurrentRow);
-
-
+                    MessageBox.Show("Unable to find a peer at " + ip + ":" + port);
+                    noException = false;
+                }
+                if (noException)
+                {
+                    server.AddKnownPeer(ip, port);
+                    ipBox.Text = "";
                     //might need to manually update knownPeersData
                 }
             }
-            catch
+            else if (sender == movePeerButton)
             {
+                if (movePeerIP == null)
+                {
+                    DataGridViewCellCollection tempRow = peersData.CurrentRow.Cells;
+                    if (tempRow[0] != null && tempRow[1] != null)
+                    {
+
+                        movePeerIP = tempRow[0].Value.ToString();
+                        string temp = tempRow[1].Value.ToString();
+                        try
+                        {
+                            movePeerPort = int.Parse(temp);
+                        }
+                        catch { }
+                    }
+                }
+                server.AddKnownPeer(movePeerIP, movePeerPort);
+                peersData.Rows.Remove(peersData.CurrentRow);
+                
+                
+                //might need to manually update knownPeersData
             }
         }
 
@@ -579,7 +581,7 @@ namespace Techtella
                 {
                     tabControl.Enabled = true;
                     connectToolStripMenuItem.Enabled = false;
-                    disconnectToolStripMenuItem.Enabled = true;
+                    //disconnectToolStripMenuItem.Enabled = true;
                     char[] delimit = new char[] { '_' };
                     foreach (string peer in server.knownPeers)
                     {
@@ -600,11 +602,7 @@ namespace Techtella
                     
                 }
             }
-            else if (sender == settingsToolStripMenuItem)
-            {
-                Settings settings = new Settings();
-                settings.ShowDialog();
-            }
+            
             
         }
 
