@@ -82,11 +82,13 @@ namespace Techtella
             {
                 Console.WriteLine("File is incomplete");
             }
+            Console.WriteLine("\nPerforming final handshake");
+            ns.Write(buffer, 0, 1);
             ns.Close();
             tc.Close();
             sw.Close();
             fs.Close();
-            Console.WriteLine("\nDownload Complete");
+            Console.WriteLine("Download Complete");
         }
 
         public void RunThreaded()
