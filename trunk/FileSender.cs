@@ -46,7 +46,7 @@ namespace Techtella
             DateTime now = DateTime.Now;
             Console.WriteLine("HandleClient called");
             NetworkStream netStream = new NetworkStream(sock);
-            FileStream fs = new FileStream(myFile, FileMode.Open);
+            FileStream fs = new FileStream(FileClass.GetFilePath(myFile) + myFile, FileMode.Open);
             StreamReader sr = new StreamReader(fs);
             byte[] data = new byte[1];
             Console.WriteLine("Waiting for handshake");
