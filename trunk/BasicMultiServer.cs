@@ -276,5 +276,42 @@ namespace Techtella
             FileReceiver fr = new FileReceiver(hostname, fileport, filename);
             fr.RunThreaded();
         }
+
+        public void RemoveKnownPeer(string hostname)
+        {
+            Console.WriteLine("RemoveKnownPeer called on " + toRemove.ToString());
+            object toRemove = null;
+            foreach (object host in knownPeers)
+            {
+                if (host.ToString().Split('_')[0].Split(':')[0] == hostname)
+                {
+                    toRemove = host;
+                }
+            }
+            if (toRemove != null)
+            {
+                Console.WriteLine("Removed " + toRemove.ToString());
+                knownPeers.Remove(toRemove);
+            }
+        }
+
+        public void RemoveFoundPeer(string hostname)
+        {
+            Console.WriteLine("RemoveFoundPeer called on " + toRemove.ToString());
+            object toRemove = null;
+            foreach (object host in foundPeers)
+            {
+                if (host.ToString().Split('_')[0].Split(':')[0] == hostname)
+                {
+                    toRemove = host;
+                }
+            }
+            if (toRemove != null)
+            {
+                Console.WriteLine("Removed " + toRemove.ToString());
+                foundPeers.Remove(toRemove);
+            }
+        }
+
     }
 }
