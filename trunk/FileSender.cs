@@ -13,6 +13,9 @@ namespace Techtella
         private string myFile;
         public static Int64 fileCompleteness;
         public static long bytesPerSecond;
+        public static int attempted = 0;
+        public static int completed = 0;
+
         public FileSender(string myClientIpAddr, string filename)
         {
             clientIP = myClientIpAddr;
@@ -42,6 +45,7 @@ namespace Techtella
 
         private void HandleClient(Socket sock)
         {
+            attempted++;
             DateTime then = DateTime.Now;
             DateTime now = DateTime.Now;
             Console.WriteLine("HandleClient called");
@@ -91,6 +95,7 @@ namespace Techtella
             if (bytesSent == fs.Length)
             {
                 Console.WriteLine("Wrote Entire File " + bytesSent + " vs " + fs.Length);
+                completed++;
             }
             else if (bytesSent > fs.Length)
             {
