@@ -126,16 +126,20 @@ namespace Techtella
                             Console.WriteLine("Received Entire File: " + bytesGot + " vs " + fileLength);
                             completed++;
                             totalReceived += bytesGot;
+                            fileCompleteness = bytesGot;
                         }
                         else if (bytesGot > fileLength)
                         {
                             Console.WriteLine("Got more data: " + bytesGot + " vs " + fileLength);
                             totalReceived += bytesGot;
+                            fileCompleteness = bytesGot;
+
                         }
                         else
                         {
                             Console.WriteLine("File is incomplete");
                             totalReceived += bytesGot;
+                            fileCompleteness = bytesGot;
                         }
                         Console.WriteLine("\nPerforming final handshake");
                         ns.Write(buffer, 0, 1);
