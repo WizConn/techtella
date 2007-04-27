@@ -88,30 +88,41 @@ namespace Techtella
             try
             {
                 string[] row = { "", "", "", "", "", "", "", "" };
-                row.SetValue(transferFilename, 0);
-                //Console.WriteLine(transferFilename);
-                try
+
+                row[0] = FileReceiver.myFile;
+                if (ClientHandler.downloadInProgress == 1)
+                    row[1] = "Downloading";
+                else
+                    row[1] = "n/a";
+                row[2] = "" + ((FileReceiver.fileCompleteness / FileReceiver.fileSize) * 100);
+                row[3] = FileReceiver.fileSize + " bytes";
+                row[4] = FileReceiver.fileCompleteness + " bytes";
+                row[5] = "" + FileReceiver.bytesPerSecond;
+                row[6] = FileReceiver.clientIP;
+                row[7] = "" + BasicMultiServer.filePort;
+                int isInList = 0;
+                foreach (DataGridViewRow code in uploadData.Rows)
                 {
-                    long intProgress = (long.Parse(transferFilesize) / FileReceiver.fileCompleteness) * 100;
-                    transferProgress = intProgress.ToString() + "%";
+                    if (code.Cells[0].Value.ToString() == row[0])
+                    {
+                        isInList = 1; // Do Nothing
+                        row[0] = FileReceiver.myFile;
+                        if (ClientHandler.downloadInProgress == 1)
+                            row[1] = "Downloading";
+                        else
+                            row[1] = "n/a";
+                        row[2] = "" + ((FileReceiver.fileCompleteness / FileReceiver.fileSize) * 100 + "%");
+                        row[3] = FileReceiver.fileSize + " bytes";
+                        row[4] = FileReceiver.fileCompleteness + " bytes";
+                        row[5] = "" + FileReceiver.bytesPerSecond;
+                        row[6] = FileReceiver.clientIP;
+                        row[7] = "" + BasicMultiServer.filePort;
+                    }
                 }
-                catch (FormatException) { }
-                //row.SetValue(progress, 2);
-                row.SetValue(transferFilesize, 3);
-                row.SetValue(FileReceiver.fileCompleteness, 4);
-                row.SetValue(FileReceiver.bytesPerSecond, 5);
-                row.SetValue(transferIP, 6);
-                row.SetValue(transferPort, 7);
-                if(transferProgress == "100%") {
-                    transferStatus = "Completed";
-                }
-                else if (FileReceiver.fileCompleteness > 0)
+                if (isInList == 0)
                 {
-                    transferStatus = "Downloading";
+                    downloadData.Rows.Add(row);
                 }
-                    
-                row.SetValue(transferStatus, 1);
-                downloadData.Rows.Add(row);
             }
             catch
             {
@@ -124,21 +135,13 @@ namespace Techtella
             try
             {
                 string[] row = { "", "", "", "", "", "", "", "" };
-                //row.SetValue(filename, 0);
-                //row.SetValue(status, 1);
-                //row.SetValue(progress, 2);
-                //row.SetValue(filesize, 3);
-                row.SetValue(FileSender.fileCompleteness, 4);
-                row.SetValue(FileSender.bytesPerSecond, 5);
-                //row.SetValue(ip, 6);
-                //row.SetValue(port, 7);
 
                 row[0] = FileSender.myFile;
-                if (ClientHandler.uploadInProgress == 0)
+                if (ClientHandler.uploadInProgress == 1)
                     row[1] = "Uploading";
                 else
                     row[1] = "n/a";
-                row[2] = "" + ((FileSender.fileCompleteness / FileSender.fileSize) * 100);
+                row[2] = "" + ((FileSender.fileCompleteness / FileSender.fileSize) * 100 + "%");
                 row[3] = FileSender.fileSize + " bytes";
                 row[4] = FileSender.fileCompleteness + " bytes";
                 row[5] = "" + FileSender.bytesPerSecond;
@@ -150,6 +153,16 @@ namespace Techtella
                     if (code.Cells[0].Value.ToString() == row[0])
                     {
                         isInList = 1; // Do Nothing
+                        if (ClientHandler.uploadInProgress == 1)
+                            row[1] = "Uploading";
+                        else
+                            row[1] = "n/a";
+                        row[2] = "" + ((FileSender.fileCompleteness / FileSender.fileSize) * 100);
+                        row[3] = FileSender.fileSize + " bytes";
+                        row[4] = FileSender.fileCompleteness + " bytes";
+                        row[5] = "" + FileSender.bytesPerSecond;
+                        row[6] = FileSender.clientIP;
+                        row[7] = "" + BasicMultiServer.filePort;
                     }
                 }
                 if (isInList == 0)
