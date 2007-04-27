@@ -45,7 +45,7 @@ namespace Techtella
             byte[] data = new byte[1024];
             byte[] bytesize = new byte[2];
             int byteToSend;
-            int bytelen = 0;
+            Int16 bytelen = 0;
             Console.WriteLine("Waiting for handshake");
             netStream.Read(data, 0, 1);
             Console.WriteLine("Got handshake, shaking back");
@@ -69,8 +69,8 @@ namespace Techtella
                         data[i] = 0;
                     }
                 }
-                Console.Write("Sent a " + bytelen + " byte packet\r");
-                bytesize = BitConverter.GetBytes((Int16)bytelen);
+                bytesize = BitConverter.GetBytes(bytelen);
+                Console.Write("Sent a " + bytelen + " byte packet with bytes" + bytesize[0] + " and " + bytesize[1] + "\r");
                 netStream.Write(bytesize, 0, 2);
                 netStream.Write(data, 0, 1024);
             }
