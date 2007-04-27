@@ -145,7 +145,7 @@ namespace Techtella
             {
                 Console.WriteLine(File.ToString());
                 Console.WriteLine(File.ToString().Split('*')[0] + " ?= " + criteria.Split('*')[0].Split('|'));
-                if (File.ToString().Split('*')[0] == criteria.Split('*')[0].Split('|')[0] || File.ToString().Split('*')[0] == "ANY")
+                if (File.ToString().Split('*')[0] == criteria.Split('*')[0].Split('|')[0] || criteria.ToString().Split('*')[0] == "ANY")
                 {
                     Console.WriteLine(File.ToString().Split('*')[1].Split('|')[0] + " ?= " + criteria.Split('*')[1].Split('|'));
                     if (File.ToString().Split('*')[1].Split('|')[0] == criteria.Split('*')[1].Split('|')[0])
@@ -190,37 +190,22 @@ namespace Techtella
             Console.WriteLine("GetFilePath called for " + criteria);
             foreach (object File in FileList)
             {
-                if (File.ToString().Split('*')[0] == criteria.Split('*')[0] || File.ToString().Split('*')[0] == "ANY")
-                {
-                    if (File.ToString().Split('*')[1].Split('|')[0] == criteria.Split('*')[1].Split('|')[0])
+                Console.WriteLine(File.ToString().Split('*')[2].Split('|')[0].Split('\\')[File.ToString().Split('*')[2].Split('\\').Length - 1]);
+                    if (File.ToString().Split('*')[2].Split('|')[0].Split('\\')[File.ToString().Split('*')[2].Split('\\').Length-1] == criteria)
                     {
                         Console.WriteLine("Getting filepath");
                         string[] parts = File.ToString().Split('*')[2].Split('\\');
                         string path = "";
                         foreach (string part in parts)
                         {
-                            if (part != criteria.Split('*')[1].Split('|')[0])
+                            if (part.Split('|')[0] != criteria)
                             {
                                 path += part + @"\";
                             }
                         }
+                        Console.WriteLine(path);
                         return path;
                     }
-                    if (File.ToString().Split('*')[2].Split('\\')[File.ToString().Split('*')[2].Split('\\').Length - 1].Split('|')[0] == criteria.Split('*')[2].Split('\\')[criteria.Split('*')[2].Split('\\').Length - 1].Split('|')[0])
-                    {
-                        Console.WriteLine("Getting filepath");
-                        string[] parts = File.ToString().Split('*')[2].Split('\\');
-                        string path = "";
-                        foreach (string part in parts)
-                        {
-                            if (part != criteria.Split('*')[2].Split('|')[0])
-                            {
-                                path += part + @"\";
-                            }
-                        }
-                        return path;
-                    }
-                }
             }
             Console.WriteLine("Um... couldn't... get... filepath?... wtf?");
             return "OMFG!";
