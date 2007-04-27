@@ -58,11 +58,11 @@ namespace Techtella
             Int64 fileLength = Int64.Parse(reader.ReadLine());
             while (bytesGot < fileLength)
             {
-                Console.Write("So far i got " + bytesGot++ + " bytes\r");
                 try
                 {
                     fs.WriteByte(Byte.Parse(reader.ReadLine()));
                     fs.Flush();
+                    Console.Write("So far i got " + bytesGot++ + " bytes\r");
                 }
                 catch
                 {
