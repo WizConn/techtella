@@ -164,7 +164,7 @@ namespace Techtella
                         //descriptor, type, zero, zero, downcode, filename
                         //create a FileSender
                         Console.WriteLine("got a push");
-                        FileSender sender = new FileSender(iHandle.Split(':')[0].Split('_')[0], parsedPacket.msg.Split('?')[5]);
+                        FileSender sender = new FileSender(iHandle.Split(':')[0].Split('_')[0], parsedPacket.msg);
                         sender.Run();
                     }
                     else if (parsedPacket.type == (byte)123)

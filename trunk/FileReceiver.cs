@@ -26,8 +26,22 @@ namespace Techtella
             Console.WriteLine("Starting File Receiver");
             Console.WriteLine("IPADDR: " + clientIP);
             Console.WriteLine("PORT: " + filePort);
-            TcpClient tc = new TcpClient(clientIP, filePort);
+            bool connected = false;
+            TcpClient tc = new TcpClient(clientIP, 12345);
             NetworkStream ns = tc.GetStream();
+            while (!connected)
+            {
+                try
+                {
+                    tc = new TcpClient(clientIP, filePort);
+                    ns = tc.GetStream();
+                    connected = true;
+                }
+                catch
+                {
+                    connected = false;
+                }
+            }
             FileStream fs = new FileStream(myFile, FileMode.Create);
             StreamWriter sw = new StreamWriter(fs);
             byte[] buffer = new byte[1];
