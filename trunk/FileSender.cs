@@ -4,6 +4,7 @@ using System.Text;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Windows.Forms;
 
 namespace Techtella
 {
@@ -28,21 +29,28 @@ namespace Techtella
 
         public void Run()
         {
-            ClientHandler.uploadInProgress = 1;
-            Console.WriteLine("Starting File Sender");
-            string myHost = System.Net.Dns.GetHostName();
-            string myIP = System.Net.Dns.GetHostEntry(myHost).AddressList[0].ToString();
-            IPAddress ipaddr = IPAddress.Parse(myIP);
-            Console.WriteLine("IPADDR: " + myIP);
-            Console.WriteLine("PORT: " + BasicMultiServer.filePort);
-            TcpListener listener = new TcpListener(ipaddr, BasicMultiServer.filePort);
-            listener.Start();
-            Socket sock = listener.AcceptSocket();
-            Console.WriteLine("Got FileSender connection");
-            Console.WriteLine(sock.RemoteEndPoint.ToString());
-            HandleClient(sock);
-            Console.WriteLine("Disconnecting");
-            sock.Close();
+            try
+            {
+                ClientHandler.uploadInProgress = 1;
+                Console.WriteLine("Starting File Sender");
+                string myHost = System.Net.Dns.GetHostName();
+                string myIP = System.Net.Dns.GetHostEntry(myHost).AddressList[0].ToString();
+                IPAddress ipaddr = IPAddress.Parse(myIP);
+                Console.WriteLine("IPADDR: " + myIP);
+                Console.WriteLine("PORT: " + BasicMultiServer.filePort);
+                TcpListener listener = new TcpListener(ipaddr, BasicMultiServer.filePort);
+                listener.Start();
+                Socket sock = listener.AcceptSocket();
+                Console.WriteLine("Got FileSender connection");
+                Console.WriteLine(sock.RemoteEndPoint.ToString());
+                HandleClient(sock);
+                Console.WriteLine("Disconnecting");
+                sock.Close();
+            }
+            catch (SocketException e)
+            {
+                Console.WriteLine("Error connecting to client who requested file " + e);
+            }
         }
 
         private void HandleClient(Socket sock)
