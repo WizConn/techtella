@@ -92,7 +92,7 @@ namespace Techtella
                     i++;
                     foreach (DataGridViewRow code in searchData.Rows)
                     {
-                        if (code.Cells[3].Value.ToString() == row[3])
+                        if (code.Cells[0].Value.ToString() == row[0])
                         {
                             isInList = 1; // Do Nothing
                         }
@@ -105,7 +105,7 @@ namespace Techtella
             }
             catch
             {
-                throw new Exception();
+
             }
         }
 
