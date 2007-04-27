@@ -83,11 +83,6 @@ namespace Techtella
             chatOutputBox.Text = output;
         }
 
-        public void UpdateDownloaders()
-        {
-            downloadersBox.Text += ClientHandler.pushIP + "\n";
-        }
-
         public void UpdateDownloads()
         {
             try
@@ -137,8 +132,20 @@ namespace Techtella
                 row.SetValue(FileSender.bytesPerSecond, 5);
                 //row.SetValue(ip, 6);
                 //row.SetValue(port, 7);
+
+                row[0] = FileSender.myFile;
+                if (ClientHandler.uploadInProgress == 0)
+                    row[1] = "Uploading";
+                else
+                    row[1] = "n/a";
+                row[2] = "" + ((FileSender.fileCompleteness / FileSender.fileSize) * 100);
+                row[3] = FileSender.fileSize + " bytes";
+                row[4] = FileSender.fileCompleteness + " bytes";
+                row[5] = "" + FileSender.bytesPerSecond;
+                row[6] = FileSender.clientIP;
+                row[7] = "" + BasicMultiServer.filePort;
                 int isInList = 0;
-                foreach (DataGridViewRow code in downloadData.Rows)
+                foreach (DataGridViewRow code in uploadData.Rows)
                 {
                     if (code.Cells[0].Value.ToString() == row[0])
                     {
@@ -147,7 +154,7 @@ namespace Techtella
                 }
                 if (isInList == 0)
                 {
-                    downloadData.Rows.Add(row);
+                    uploadData.Rows.Add(row);
                 }
             }
             catch
@@ -548,13 +555,9 @@ namespace Techtella
                         catch { }
                     }
                 }
-                server.RemoveFoundPeer(movePeerIP);
                 server.AddKnownPeer(movePeerIP, movePeerPort);
                 peersData.Rows.Remove(peersData.CurrentRow);
-                string[] row = { "", "", "" };
-                row.SetValue(movePeerIP, 0);
-                row.SetValue(movePeerPort.ToString(), 1);
-                knownPeersData.Rows.Add(row);
+                
                 
                 //might need to manually update knownPeersData
             }
