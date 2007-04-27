@@ -71,8 +71,10 @@ namespace Techtella
             {
                 Console.WriteLine("File is incomplete at " + bytesSent + " bytes, " + fs.Length + " needed");
             }
+            Console.WriteLine("\nWrite complete, waiting for final handshake");
+            netStream.Read(data, 0, 1);
             netStream.Close();
-            Console.WriteLine("\nWrote entire file");
+            Console.WriteLine("Wrote entire file");
         }
     }
 }
