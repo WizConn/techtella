@@ -94,7 +94,7 @@ namespace Techtella
                     row[1] = "Downloading";
                 else
                     row[1] = "n/a";
-                row[2] = ((int)(((double)FileReceiver.fileCompleteness / FileSender.fileSize) * 100)).ToString() + "%";
+                row[2] = ((int)(((double)FileReceiver.fileCompleteness / FileReceiver.fileSize) * 100)).ToString() + "%";
                 row[3] = FileReceiver.fileSize + " bytes";
                 row[4] = FileReceiver.fileCompleteness + " bytes";
                 row[5] = "" + FileReceiver.bytesPerSecond;
