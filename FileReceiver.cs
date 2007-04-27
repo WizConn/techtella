@@ -62,6 +62,7 @@ namespace Techtella
                 try
                 {
                     fs.WriteByte(Byte.Parse(reader.ReadLine()));
+                    fs.Flush();
                 }
                 catch
                 {
