@@ -24,6 +24,7 @@ namespace Techtella
         public static int statQueryHit = 0;
         public static int downloadInProgress = 0;
         public static int uploadInProgress = 0;
+        public static string pushIP = "";
 
         public ClientHandler(Socket s, BasicMultiServer own)
         {
@@ -169,6 +170,7 @@ namespace Techtella
                         if (uploadInProgress == 0)
                         {
                             Console.WriteLine("got a push");
+                            pushIP = iHandle.Split(':')[0].Split('_')[0];
                             FileSender sender = new FileSender(iHandle.Split(':')[0].Split('_')[0], parsedPacket.msg);
                             sender.Run();
                         }

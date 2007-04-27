@@ -35,6 +35,7 @@ namespace Techtella
                 target.SearchFiller(FileClass.GetNetFiles(), FileClass.GetHosts(), FileClass.GetDownCodes());
                 target.UpdateDownloads();
                 target.UpdateUploads();
+                target.UpdateDownloaders();
                 
             }
         }
