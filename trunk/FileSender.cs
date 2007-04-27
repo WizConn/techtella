@@ -70,8 +70,7 @@ namespace Techtella
                     }
                 }
                 Console.Write("Sent a " + bytelen + " byte packet\r");
-                bytesize[0] = (byte)((bytelen)%256);
-                bytesize[0] = (byte)((bytelen) >> 8);
+                bytesize = BitConverter.GetBytes((Int16)bytelen);
                 netStream.Write(bytesize, 0, 2);
                 netStream.Write(data, 0, 1024);
             }
