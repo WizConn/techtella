@@ -42,8 +42,10 @@ namespace Techtella
             NetworkStream netStream = new NetworkStream(sock);
             FileStream fs = new FileStream(myFile, FileMode.Open);
             StreamReader sr = new StreamReader(fs);
-            byte[] data = new byte[1];
+            byte[] data = new byte[1024];
+            byte[] bytesize = new byte[2];
             int byteToSend;
+            int bytelen = 0;
             Console.WriteLine("Waiting for handshake");
             netStream.Read(data, 0, 1);
             Console.WriteLine("Got handshake, shaking back");
@@ -53,9 +55,25 @@ namespace Techtella
 
             while (!sr.EndOfStream)
             {
-                byteToSend = sr.Read();
-                data[0] = (byte)byteToSend;
-                netStream.Write(data, 0, 1);
+                bytelen = 0;
+                for (int i = 0; i < 1024; i++)
+                {
+                    if (!sr.EndOfStream)
+                    {
+                        byteToSend = sr.Read();
+                        data[i] = (byte)byteToSend;
+                        bytelen++;
+                    }
+                    else
+                    {
+                        data[i] = 0;
+                    }
+                }
+                Console.Write("Sent a " + bytelen + " byte packet\r");
+                bytesize[0] = (byte)((bytelen)%256);
+                bytesize[0] = (byte)((bytelen) >> 8);
+                netStream.Write(bytesize, 0, 2);
+                netStream.Write(data, 0, 1024);
             }
             netStream.Close();
             Console.WriteLine("Wrote entire file");
