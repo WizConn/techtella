@@ -57,6 +57,7 @@ namespace Techtella
                 data[0] = (byte)byteToSend;
                 netStream.Write(data, 0, 1);
             }
+            netStream.Close();
             Console.WriteLine("Wrote entire file");
         }
     }
