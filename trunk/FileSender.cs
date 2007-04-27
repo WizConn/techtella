@@ -50,7 +50,7 @@ namespace Techtella
             netStream.Write(data, 0, 1);
             Console.WriteLine("Sending data, hope it gets there");
 
-
+            Int64 bytesSent = 0;
             while (!sr.EndOfStream)
             {
                     if (!sr.EndOfStream)
@@ -59,6 +59,7 @@ namespace Techtella
                         data[0] = (byte)byteToSend;
                     }
                 netStream.Write(data, 0, 1);
+                Console.Write("So far i sent " + bytesSent++ + " bytes\r");
             }
             netStream.Close();
             Console.WriteLine("Wrote entire file");
