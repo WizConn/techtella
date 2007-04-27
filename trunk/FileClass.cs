@@ -151,7 +151,7 @@ namespace Techtella
             foreach (object File in FileList)
             {
                 Console.WriteLine(File.ToString());
-                Console.WriteLine(File.ToString().Split('*')[0] + " ?= " + criteria.Split('*')[0]);
+                Console.WriteLine(File.ToString().Split('*')[0] + " ?= " + criteria.Split('*')[0].Split('|'));
                 if (File.ToString().Split('*')[0] == criteria.Split('*')[0].Split('|')[0] || criteria.ToString().Split('*')[0] == "ANY")
                 {
                     Console.WriteLine(File.ToString().Split('*')[1].Split('|')[0] + " ?= " + criteria.Split('*')[1].Split('|'));
