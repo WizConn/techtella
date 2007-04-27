@@ -87,21 +87,21 @@ namespace Techtella
                 DateTime timeOutNow = DateTime.Now;
                 while (bytesGot < fileLength)
                 {
-                    then = now;
                     now = DateTime.Now;
+                    fileCompleteness = bytesGot;
                     int seconds = ((TimeSpan)(now - then)).Seconds;
                     if (seconds >= 1)
                     {
                         long bytediff = bytesGot - bytesthen;
                         bytesthen = bytesGot;
                         bytesPerSecond = bytediff / seconds;
+                        then = now;
                     }
                     try
                     {
                         fs.WriteByte(Byte.Parse(reader.ReadLine()));
                         fs.Flush();
                         Console.Write("So far i got " + bytesGot++ + " bytes\r");
-                        fileCompleteness = bytesGot;
                         timeOutThen = DateTime.Now;
                     }
                     catch
