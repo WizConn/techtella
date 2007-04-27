@@ -75,6 +75,7 @@ namespace Techtella
             numQuery = ClientHandler.statQuery;
             numQueryHit = ClientHandler.statQueryHit;
             numPush = Client.statPush;
+            numPeers = BasicMultiServer.numPeers;
             numBytesSent = (int)FileSender.totalSent;
             numBytesReceived = (int)FileReceiver.totalReceived;
         }
