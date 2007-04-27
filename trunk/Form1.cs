@@ -534,7 +534,11 @@ namespace Techtella
                 {
                     server.AddKnownPeer(ip, port);
                     ipBox.Text = "";
-                    //might need to manually update knownPeersData
+                    string[] row = { "", "", "" };
+                    row.SetValue(ip, 0);
+                    row.SetValue(port.ToString(), 1);
+                    row.SetValue("0", 2);
+                    knownPeersData.Rows.Add(row);
                 }
             }
             else if (sender == movePeerButton)
@@ -556,8 +560,12 @@ namespace Techtella
                 }
                 server.AddKnownPeer(movePeerIP, movePeerPort);
                 peersData.Rows.Remove(peersData.CurrentRow);
-                
-                
+
+                string[] row = { "", "", "" };
+                row.SetValue(movePeerIP, 0);
+                row.SetValue(movePeerPort.ToString(), 1);
+                row.SetValue("0", 2);
+                knownPeersData.Rows.Add(row);
                 //might need to manually update knownPeersData
             }
         }
