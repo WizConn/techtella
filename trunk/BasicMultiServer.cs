@@ -279,7 +279,7 @@ namespace Techtella
 
         public void RemoveKnownPeer(string hostname)
         {
-            Console.WriteLine("RemoveKnownPeer called on " + toRemove.ToString());
+            Console.WriteLine("RemoveKnownPeer called on " + hostname);
             object toRemove = null;
             foreach (object host in knownPeers)
             {
@@ -290,14 +290,14 @@ namespace Techtella
             }
             if (toRemove != null)
             {
-                Console.WriteLine("Removed " + toRemove.ToString());
+                Console.WriteLine("Removed " + hostname);
                 knownPeers.Remove(toRemove);
             }
         }
 
         public void RemoveFoundPeer(string hostname)
         {
-            Console.WriteLine("RemoveFoundPeer called on " + toRemove.ToString());
+            Console.WriteLine("RemoveFoundPeer called on " + hostname.ToString());
             object toRemove = null;
             foreach (object host in foundPeers)
             {
