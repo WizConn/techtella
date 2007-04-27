@@ -58,9 +58,10 @@ namespace Techtella
                 netStream.Flush();
                 Console.Write("So far i sent " + bytesSent++ + " bytes\r");
             }
+            Console.WriteLine();
             if (bytesSent == fs.Length)
             {
-                Console.WriteLine("Received Entire File");
+                Console.WriteLine("Wrote Entire File " + bytesSent + " vs " + fs.Length);
             }
             else if (bytesSent > fs.Length)
             {
@@ -71,7 +72,7 @@ namespace Techtella
                 Console.WriteLine("File is incomplete at " + bytesSent + " bytes, " + fs.Length + " needed");
             }
             netStream.Close();
-            Console.WriteLine("Wrote entire file");
+            Console.WriteLine("\nWrote entire file");
         }
     }
 }

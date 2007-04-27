@@ -68,9 +68,10 @@ namespace Techtella
                     Console.Write("Waiting for data.                    \r");
                 }
             }
+            Console.WriteLine();
             if (bytesGot == fileLength)
             {
-                Console.WriteLine("Received Entire File");
+                Console.WriteLine("Received Entire File: " + bytesGot + " vs " + fileLength);
             }
             else if (bytesGot > fileLength)
             {
@@ -84,7 +85,7 @@ namespace Techtella
             tc.Close();
             sw.Close();
             fs.Close();
-            Console.WriteLine("Download Complete");
+            Console.WriteLine("\nDownload Complete");
         }
 
         public void RunThreaded()
