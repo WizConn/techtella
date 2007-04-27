@@ -83,6 +83,8 @@ namespace Techtella
                 now = DateTime.Now;
                 long bytesthen = 0;
                 attempted++;
+                DateTime timeOutThen = DateTime.Now;
+                DateTime timeOutNow = DateTime.Now;
                 while (bytesGot < fileLength)
                 {
                     then = now;
@@ -100,31 +102,42 @@ namespace Techtella
                         fs.Flush();
                         Console.Write("So far i got " + bytesGot++ + " bytes\r");
                         fileCompleteness = bytesGot;
+                        timeOutThen = DateTime.Now;
                     }
                     catch
                     {
                         Console.Write("Waiting for data.                    \r");
+                        timeOutNow = DateTime.Now;
+                        if (((TimeSpan)(timeOutNow - timeOutThen)).Seconds > 10)
+                        {
+                            MessageBox.Show("The host at " + clientIP + " doesn't appear to be alive anymore. Aborting download.");
+                            deadConnection = true;
+                            break;
+                        }
                     }
                 }
-                Console.WriteLine();
-                if (bytesGot == fileLength)
+                if (!deadConnection)
                 {
-                    Console.WriteLine("Received Entire File: " + bytesGot + " vs " + fileLength);
-                    completed++;
-                    totalReceived += bytesGot;
+                    Console.WriteLine();
+                    if (bytesGot == fileLength)
+                    {
+                        Console.WriteLine("Received Entire File: " + bytesGot + " vs " + fileLength);
+                        completed++;
+                        totalReceived += bytesGot;
+                    }
+                    else if (bytesGot > fileLength)
+                    {
+                        Console.WriteLine("Got more data: " + bytesGot + " vs " + fileLength);
+                        totalReceived += bytesGot;
+                    }
+                    else
+                    {
+                        Console.WriteLine("File is incomplete");
+                        totalReceived += bytesGot;
+                    }
+                    Console.WriteLine("\nPerforming final handshake");
+                    ns.Write(buffer, 0, 1);
                 }
-                else if (bytesGot > fileLength)
-                {
-                    Console.WriteLine("Got more data: " + bytesGot + " vs " + fileLength);
-                    totalReceived += bytesGot;
-                }
-                else
-                {
-                    Console.WriteLine("File is incomplete");
-                    totalReceived += bytesGot;
-                }
-                Console.WriteLine("\nPerforming final handshake");
-                ns.Write(buffer, 0, 1);
                 ns.Close();
                 tc.Close();
                 sw.Close();
