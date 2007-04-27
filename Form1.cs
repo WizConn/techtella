@@ -401,7 +401,7 @@ namespace Techtella
                     {
 
                         senderIP = tempRow[2].Value.ToString().Split(':')[0];
-                        string temp = senderIP.Split(':')[1];
+                        string temp = tempRow[2].Value.ToString().Split(':')[1];
                         try
                         {
                             senderPort = int.Parse(temp);
