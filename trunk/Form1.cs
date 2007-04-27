@@ -25,6 +25,9 @@ namespace Techtella
         public static int foundPeerPort;
         public static String movePeerIP;
         public static int movePeerPort;
+        public static String senderIP;
+        public static int senderPort;
+        public static string senderFilename;
         public GUIUpdate updater;
         public String selectedCategory = "ANY";
         public static String[] category = { "ANY", "AUDIO", "VIDEO", "DATA", "TEXT", "IMAGE" };
@@ -237,6 +240,24 @@ namespace Techtella
                 }
 
             }
+
+            else if (sender == searchData)
+            {
+                DataGridViewCellCollection tempRow = sharedData.CurrentRow.Cells;
+                if (tempRow[0] != null && tempRow[2] != null)
+                {
+
+                    senderIP = tempRow[2].Value.ToString().Split(':')[0];
+                    string temp = senderIP.Split(':')[1];
+                    try
+                    {
+                        senderPort = int.Parse(temp);
+                    }
+                    catch { }
+                    senderFilename = tempRow[0].Value.ToString();
+                }
+            }
+
             //else if (sender == sharedData)
             //{
             //    removeRow = sharedData.CurrentRow;
@@ -373,7 +394,23 @@ namespace Techtella
             }
             else if (sender == downloadButton)
             {
-                //do downloading stuff
+                if (senderIP == null)
+                {
+                    DataGridViewCellCollection tempRow = searchData.CurrentRow.Cells;
+                    if (tempRow[0] != null && tempRow[2] != null)
+                    {
+
+                        senderIP = tempRow[2].Value.ToString().Split(':')[0];
+                        string temp = senderIP.Split(':')[1];
+                        try
+                        {
+                            senderPort = int.Parse(temp);
+                        }
+                        catch { }
+                        senderFilename = tempRow[0].Value.ToString();
+                    }
+                }
+                Client.Push(senderIP, senderPort, senderFilename, 0);
             }
             else if (sender == addPeerButton)
             {
