@@ -68,21 +68,21 @@ namespace Techtella
             long bytesthen = 0;
             while (bytesSent < fs.Length + 10000)
             {
-                then = now;
                 now = DateTime.Now;
+                fileCompleteness = bytesSent;
                 int seconds = ((TimeSpan)(now - then)).Seconds;
                 if (seconds >= 1)
                 {
                     long bytediff = bytesSent - bytesthen;
                     bytesthen = bytesSent;
                     bytesPerSecond = bytediff / seconds;
+                    then = now;
                 }
                 if (bytesSent < fs.Length)
                 {
                     writer.WriteLine(fs.ReadByte());
                     netStream.Flush();
                     Console.Write("So far i sent " + bytesSent++ + " bytes\r");
-                    fileCompleteness = bytesSent;
                 }
                 else
                 {
