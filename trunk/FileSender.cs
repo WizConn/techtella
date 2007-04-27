@@ -51,11 +51,24 @@ namespace Techtella
             StreamWriter writer = new StreamWriter(netStream);
             Int64 bytesSent = 0;
             writer.WriteLine(fs.Length);
+            fs.Position = 0;
             while (bytesSent < fs.Length)
             {
                 writer.WriteLine(fs.ReadByte());
                 netStream.Flush();
                 Console.Write("So far i sent " + bytesSent++ + " bytes\r");
+            }
+            if (bytesSent == fs.Length)
+            {
+                Console.WriteLine("Received Entire File");
+            }
+            else if (bytesSent > fs.Length)
+            {
+                Console.WriteLine("Got more data: " + bytesSent + " vs " + fs.Length);
+            }
+            else
+            {
+                Console.WriteLine("File is incomplete at " + bytesSent + " bytes, " + fs.Length + " needed");
             }
             netStream.Close();
             Console.WriteLine("Wrote entire file");

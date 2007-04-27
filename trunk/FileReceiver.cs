@@ -67,8 +67,19 @@ namespace Techtella
                 {
                     Console.Write("Waiting for data.                    \r");
                 }
-            } 
-            Console.WriteLine("Received Entire File");
+            }
+            if (bytesGot == fileLength)
+            {
+                Console.WriteLine("Received Entire File");
+            }
+            else if (bytesGot > fileLength)
+            {
+                Console.WriteLine("Got more data: " + bytesGot + " vs " + fileLength);
+            }
+            else
+            {
+                Console.WriteLine("File is incomplete");
+            }
             ns.Close();
             tc.Close();
             sw.Close();
