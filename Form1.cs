@@ -328,17 +328,21 @@ namespace Techtella
                 if (filesize > 1024 && filesize < 1048576)
                 {
                     filesize = filesize / 1024;
-                    filesizeConverted = filesize.ToString() + "KB";
+                    filesizeConverted = filesize.ToString() + " KB";
                 }
                 else if (filesize > 1048576 && filesize < 1073741824)
                 {
                     filesize = filesize / 1048576;
-                    filesizeConverted = filesize.ToString() + "MB";
+                    filesizeConverted = filesize.ToString() + " MB";
                 }
                 else if (filesize > 1073741824)
                 {
                     filesize = filesize / 1073741824;
-                    filesizeConverted = filesize.ToString() + "GB";
+                    filesizeConverted = filesize.ToString() + " GB";
+                }
+                else
+                {
+                    filesizeConverted = filesize.ToString() + " bytes"; 
                 }
                 file = category[shareCategoryCombo.SelectedIndex] + "*" + shareTitleBox.Text + "*" + shareFileBox.Text + "|" + filesizeConverted;
                 
