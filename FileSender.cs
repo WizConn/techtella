@@ -59,6 +59,7 @@ namespace Techtella
                         data[0] = (byte)byteToSend;
                     }
                 netStream.Write(data, 0, 1);
+                netStream.Flush();
                 Console.Write("So far i sent " + bytesSent++ + " bytes\r");
             }
             netStream.Close();
