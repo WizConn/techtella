@@ -47,7 +47,7 @@ namespace Techtella
             Console.WriteLine("Success");
             FileStream fs = new FileStream(myFile, FileMode.Create);
             StreamWriter sw = new StreamWriter(fs);
-            byte[] buffer = new byte[1];
+            byte[] buffer = new byte[1024];
             Console.WriteLine("Sending handshake");
             ns.Write(buffer, 0, 1);
             Console.WriteLine("Waiting for handshake");
@@ -56,11 +56,14 @@ namespace Techtella
             int GettingData = 1;
             while (GettingData > 0)
             {
-                GettingData = ns.Read(buffer, 0, 1);
-                if (GettingData > 0)
+                GettingData = ns.Read(buffer, 0, 2);
+                int bytelen = (int)buffer[0] + (int)(buffer[1] << 8);
+                GettingData = ns.Read(buffer, 0, 1024);
+                for(int i = 0; i < bytelen; i++)
                 {
-                    sw.Write((char)buffer[0]);
+                    sw.Write((char)buffer[i]);
                 }
+                Console.Write("Received a " + bytelen + " byte packet\r");
             } 
             Console.WriteLine("Received Entire File");
             ns.Close();
