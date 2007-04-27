@@ -57,7 +57,7 @@ namespace Techtella
             while (GettingData > 0)
             {
                 GettingData = ns.Read(buffer, 0, 2);
-                int bytelen = (int)buffer[0] + (int)(buffer[1] << 8);
+                int bytelen = BitConverter.ToInt16(buffer, 0);
                 GettingData = ns.Read(buffer, 0, 1024);
                 for(int i = 0; i < bytelen; i++)
                 {
