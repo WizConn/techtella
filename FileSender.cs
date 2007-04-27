@@ -33,6 +33,7 @@ namespace Techtella
             {
                 sock.Close();
                 sock = listener.AcceptSocket();
+                throw new Exception();
             }
             Console.WriteLine("Got FileSender connection");
             Console.WriteLine(sock.RemoteEndPoint.ToString());
