@@ -54,11 +54,13 @@ namespace Techtella
             ns.Read(buffer, 0, 1);
             Console.WriteLine("Got handshake, hope i get data!");
             int GettingData = 1;
+            Int64 bytesGot = 0;
             while (GettingData > 0)
             {
                 GettingData = ns.Read(buffer, 0, 1);
                 if(GettingData > 0)
                 {
+                    Console.Write("So far i got " + bytesGot++ + " bytes\r");
                     sw.Write((char)buffer[0]);
                 }
             } 
