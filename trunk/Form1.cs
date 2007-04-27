@@ -276,6 +276,20 @@ namespace Techtella
             pongStat.Text = stats.numPong + "";
             queryStat.Text = stats.numQuery + "";
             queryHitStat.Text = stats.numQueryHit + "";
+            pushStat.Text = stats.numPush + "";
+            bytesdlStat.Text = stats.numBytesReceived + "";
+            bytesulStat.Text = stats.numBytesSent + "";
+            int dls, uls, files = 0;
+            foreach(DataGridViewRow row in downloadData){
+                dls++;
+            }
+            foreach(DataGridViewRow row in uploadData){
+                uls++;
+            }
+            foreach(DataGridViewRow row in sharedData){
+                files++;
+            }
+            statusLabel = dls + " Downloads / " + uls + " Uploads - Sharing " + files + " files with " + stats.numPeers + ".";
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
