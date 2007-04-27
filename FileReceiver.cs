@@ -11,9 +11,9 @@ namespace Techtella
 {
     public class FileReceiver
     {
-        private string clientIP;
-        private string myFile;
-        private int filePort;
+        public static string clientIP;
+        public static string myFile;
+        public static int filePort;
         public static long bytesPerSecond;
         public static long fileCompleteness;
         public static long totalReceived = 0;
