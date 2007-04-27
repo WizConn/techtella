@@ -28,6 +28,12 @@ namespace Techtella
         public static String senderIP;
         public static int senderPort;
         public static string senderFilename;
+        public static string transferIP = "";
+        public static string transferPort = "";
+        public static string transferFilename = "";
+        public static string transferFilesize = "";
+        public static string transferProgress = "";
+        public static string transferStatus = "";
         public GUIUpdate updater;
         public String selectedCategory = "ANY";
         public static String[] category = { "ANY", "AUDIO", "VIDEO", "DATA", "TEXT", "IMAGE" };
@@ -76,6 +82,85 @@ namespace Techtella
         public void SetText(string output)
         {
             chatOutputBox.Text = output;
+        }
+
+        public void UpdateDownloads()
+        {
+            try
+            {
+                string[] row = { "", "", "", "", "", "", "", "" };
+                row.SetValue(transferFilename, 0);
+                
+                try
+                {
+                    long intProgress = (long.Parse(transferFilesize) / FileReceiver.fileCompleteness) * 100;
+                    transferProgress = intProgress.ToString() + "%";
+                }
+                catch (FormatException) { }
+                //row.SetValue(progress, 2);
+                row.SetValue(transferFilesize, 3);
+                row.SetValue(FileReceiver.fileCompleteness, 4);
+                row.SetValue(FileReceiver.bytesPerSecond, 5);
+                row.SetValue(transferIP, 6);
+                row.SetValue(transferPort, 7);
+                if(transferProgress == "100%") {
+                    transferStatus = "Completed";
+                }
+                else if (FileReceiver.fileCompleteness > 0)
+                {
+                    transferStatus = "Downloading";
+                }
+                    
+                //row.SetValue(status, 1);
+                int isInList = 0;
+                foreach (DataGridViewRow code in downloadData.Rows)
+                {
+                    if (code.Cells[0].Value.ToString() == row[0])
+                    {
+                        isInList = 1; // Do Nothing
+                    }
+                }
+                if (isInList == 0)
+                {
+                    downloadData.Rows.Add(row);
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        public void UpdateUploads()
+        {
+            try
+            {
+                string[] row = { "", "", "", "", "", "", "", "" };
+                //row.SetValue(filename, 0);
+                //row.SetValue(status, 1);
+                //row.SetValue(progress, 2);
+                //row.SetValue(filesize, 3);
+                row.SetValue(FileSender.fileCompleteness, 4);
+                row.SetValue(FileSender.bytesPerSecond, 5);
+                //row.SetValue(ip, 6);
+                //row.SetValue(port, 7);
+                int isInList = 0;
+                foreach (DataGridViewRow code in downloadData.Rows)
+                {
+                    if (code.Cells[0].Value.ToString() == row[0])
+                    {
+                        isInList = 1; // Do Nothing
+                    }
+                }
+                if (isInList == 0)
+                {
+                    downloadData.Rows.Add(row);
+                }
+            }
+            catch
+            {
+
+            }
         }
 
         public void SearchFiller(ArrayList filenamelist, ArrayList hostlist, ArrayList codeslist)
@@ -413,8 +498,12 @@ namespace Techtella
                         catch { }
                         senderFilename = tempRow[0].Value.ToString();
                     }
+                    transferFilesize = tempRow[1].Value.ToString();
                 }
                 server.CreatePush(senderIP, senderPort, senderFilename);
+                transferIP = senderIP;
+                transferPort = senderPort.ToString();
+                transferFilename = senderFilename;
             }
             else if (sender == addPeerButton)
             {
