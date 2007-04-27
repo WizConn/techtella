@@ -9,8 +9,8 @@ namespace Techtella
 {
     public class FileSender
     {
-        private static string clientIP;
-        private static string myFile;
+        public static string clientIP;
+        public static string myFile;
         public static Int64 fileCompleteness;
         public static long bytesPerSecond;
         public static int attempted = 0;
