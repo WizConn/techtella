@@ -185,5 +185,45 @@ namespace Techtella
             return "OMFG!";
         }
 
+        public static string GetFilePath(string criteria)
+        {
+            Console.WriteLine("GetFilePath called for " + criteria);
+            foreach (object File in FileList)
+            {
+                if (File.ToString().Split('*')[0] == criteria.Split('*')[0] || File.ToString().Split('*')[0] == "ANY")
+                {
+                    if (File.ToString().Split('*')[1].Split('|')[0] == criteria.Split('*')[1].Split('|')[0])
+                    {
+                        Console.WriteLine("Getting filepath");
+                        string[] parts = File.ToString().Split('*')[2].Split('\\');
+                        string path = "";
+                        foreach (string part in parts)
+                        {
+                            if (part != criteria.Split('*')[1].Split('|')[0])
+                            {
+                                path += part + @"\";
+                            }
+                        }
+                        return path;
+                    }
+                    if (File.ToString().Split('*')[2].Split('\\')[File.ToString().Split('*')[2].Split('\\').Length - 1].Split('|')[0] == criteria.Split('*')[2].Split('\\')[criteria.Split('*')[2].Split('\\').Length - 1].Split('|')[0])
+                    {
+                        Console.WriteLine("Getting filepath");
+                        string[] parts = File.ToString().Split('*')[2].Split('\\');
+                        string path = "";
+                        foreach (string part in parts)
+                        {
+                            if (part != criteria.Split('*')[2].Split('|')[0])
+                            {
+                                path += part + @"\";
+                            }
+                        }
+                        return path;
+                    }
+                }
+            }
+            Console.WriteLine("Um... couldn't... get... filepath?... wtf?");
+            return "OMFG!";
+        }
     }
 }
