@@ -115,7 +115,7 @@ namespace Techtella
                 int isInList = 0;
                 foreach (DataGridViewRow code in downloadData.Rows)
                 {
-                    if (code.Cells[0].Value.ToString() == row[0])
+                    if (code.Cells[0].Value.ToString() == row[6])
                     {
                         isInList = 1; // Do Nothing
                     }
