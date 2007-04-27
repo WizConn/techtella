@@ -14,6 +14,7 @@ namespace Techtella
         public static int pingCount = 0;
         public static int statPing = 0;
         public static int statPong = 0;
+        public static int statPush = 0;
         public static int TTL = 10;
         public static int MyQuery = 0; //PUT IN TO GET RID OFF ERROR - WHAT IS THIS?
 
@@ -294,6 +295,7 @@ namespace Techtella
             try
             {
                 pingCount++;
+                statPush++;
                 int descriptor = descriptorHash * 10 + pingCount;
                 byte type = (byte)40;
                 //descriptor, type, zero, zero, downcode, filename

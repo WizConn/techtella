@@ -15,7 +15,7 @@ namespace Techtella
         public static long bytesPerSecond;
         public static int attempted = 0;
         public static int completed = 0;
-
+        public static long totalSent = 0;
         public FileSender(string myClientIpAddr, string filename)
         {
             clientIP = myClientIpAddr;
@@ -96,14 +96,17 @@ namespace Techtella
             {
                 Console.WriteLine("Wrote Entire File " + bytesSent + " vs " + fs.Length);
                 completed++;
+                totalSent += bytesSent;
             }
             else if (bytesSent > fs.Length)
             {
                 Console.WriteLine("Got more data: " + bytesSent + " vs " + fs.Length);
+                totalSent += bytesSent;
             }
             else
             {
                 Console.WriteLine("File is incomplete at " + bytesSent + " bytes, " + fs.Length + " needed");
+                totalSent += bytesSent;
             }
             Console.WriteLine("\nWrite complete, waiting for final handshake");
             netStream.Read(data, 0, 1);

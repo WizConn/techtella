@@ -15,6 +15,7 @@ namespace Techtella
         private int filePort;
         public static long bytesPerSecond;
         public static long fileCompleteness;
+        public static long totalReceived = 0;
         public static int attempted = 0;
         public static int completed = 0;
         public FileReceiver(string myClientIpAddr, int portnum, string filename)
@@ -94,14 +95,17 @@ namespace Techtella
             {
                 Console.WriteLine("Received Entire File: " + bytesGot + " vs " + fileLength);
                 completed++;
+                totalReceived += bytesGot;
             }
             else if (bytesGot > fileLength)
             {
                 Console.WriteLine("Got more data: " + bytesGot + " vs " + fileLength);
+                totalReceived += bytesGot;
             }
             else
             {
                 Console.WriteLine("File is incomplete");
+                totalReceived += bytesGot;
             }
             Console.WriteLine("\nPerforming final handshake");
             ns.Write(buffer, 0, 1);
