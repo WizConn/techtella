@@ -46,7 +46,7 @@ namespace Techtella
             {
                 foreach (object fileObj in FileList)
                 {
-                    if (fileObj.ToString().Split('*')[1] == filename)
+                    if (fileObj.ToString().Split('*')[2].Split('\\')[fileObj.ToString().Split('*')[2].Split('\\').Length-1].Split('|')[0] == filename)
                     {
                         toRemove = fileObj;
                     }
@@ -72,7 +72,7 @@ namespace Techtella
             {
                 foreach (object fileObj in NetFiles)
                 {
-                    if (fileObj.ToString().Split('*')[1] == filename)
+                    if (fileObj.ToString().Split('*')[2].Split('\\')[fileObj.ToString().Split('*')[2].Split('\\').Length-1].Split('|')[0] == filename)
                     {
                         toRemove = fileObj;
                     }
