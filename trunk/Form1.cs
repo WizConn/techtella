@@ -83,6 +83,11 @@ namespace Techtella
             chatOutputBox.Text = output;
         }
 
+        public void UpdateDownloaders()
+        {
+            downloadersBox.Text += ClientHandler.pushIP + "\n";
+        }
+
         public void UpdateDownloads()
         {
             try
@@ -543,9 +548,13 @@ namespace Techtella
                         catch { }
                     }
                 }
+                server.RemoveFoundPeer(movePeerIP);
                 server.AddKnownPeer(movePeerIP, movePeerPort);
                 peersData.Rows.Remove(peersData.CurrentRow);
-                
+                string[] row = { "", "", "" };
+                row.SetValue(movePeerIP, 0);
+                row.SetValue(movePeerPort.ToString(), 1);
+                knownPeersData.Rows.Add(row);
                 
                 //might need to manually update knownPeersData
             }
