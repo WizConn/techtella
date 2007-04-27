@@ -33,7 +33,7 @@ namespace Techtella
             {
                 try
                 {
-                    Console.WriteLine("Trying to Connect");
+                    Console.WriteLine("Trying to Connect:" + clientIP + ":" + filePort);
                     tc = new TcpClient(clientIP, filePort);
                     ns = tc.GetStream();
                     connected = true;
@@ -44,9 +44,15 @@ namespace Techtella
                     connected = false;
                 }
             }
+            Console.WriteLine("Success");
             FileStream fs = new FileStream(myFile, FileMode.Create);
             StreamWriter sw = new StreamWriter(fs);
             byte[] buffer = new byte[1];
+            Console.WriteLine("Sending handshake");
+            ns.Write(buffer, 0, 1);
+            Console.WriteLine("Waiting for handshake");
+            ns.Read(buffer, 0, 1);
+            Console.WriteLine("Got handshake, hope i get data!");
             while (tc.Connected)
             {
                 ns.Read(buffer, 0, 1);
